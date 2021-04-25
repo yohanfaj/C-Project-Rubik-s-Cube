@@ -15,25 +15,25 @@ T_COLOR select_color()
     switch(color_case)
     {
     case RED_CASE:
-        return 10;
+        return 'R';
         break;
     case BLUE_CASE:
-        return 20;
+        return 'B';
         break;
     case GREEN_CASE:
-        return 30;
+        return 'G';
         break;
     case WHITE_CASE:
-        return 40;
+        return 'W';
         break;
     case YELLOW_CASE:
-        return 50;
+        return 'Y';
         break;
     case ORANGE_CASE:
-        return 60;
+        return 'O';
         break;
     case LG_CASE:
-        return 70;
+        return '-';
         break;
     default:
         break;
@@ -70,35 +70,64 @@ T_SIDE side_to_index()
 }
 
 
+const char* index_to_side(int i)
+{
+    switch(i)
+    {
+    case 1:
+        return "FRONT";
+        break;
+    case 2:
+        return "BACK";
+        break;
+    case 3:
+        return "UP";
+        break;
+    case 4:
+        return "DOWN";
+        break;
+    case 5:
+        return "RIGHT";
+        break;
+    case 6:
+        return "LEFT";
+        break;
+    default:
+        break;
+    }
+}
+
+
 
 /* CUBE REPRESENTATION FUNCTIONS */
 
-void create_rubiks(int ****rubiks)
+void create_rubiks(char ****rubiks)
 {
     int i,j;
-    *rubiks = (int ***) malloc(FACE * sizeof(int));
+    *rubiks = (char ***) malloc(FACE * sizeof(char));
     for (i = 0; i < SIZE; i++)
     {
         for (j = 0; j < SIZE; j++)
         {
-            *rubiks[i][j] = (int*) malloc(SIZE * sizeof(int));
+            *rubiks[i][j] = (char*) malloc(SIZE * sizeof(char));
         }
     }
 }
 
 
-void init_rubiks(int ***rubiks)
+void init_rubiks(char ***rubiks)
 {
     int i,j,k;
     for (i = 1; i <= FACE; i++)
     {
+        *rubiks[i] = index_to_side(i); // warning: assignment discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
         if (side_to_index() == 1)
         {
             for (j = 0; j < SIZE; j++)
             {
                 for (k = 0; i < SIZE; i++)
                 {
-                    *rubiks[j][k] = WHITE_CASE;
+                    *rubiks[j][k] = 'W';
                 }
             }
             
@@ -110,7 +139,7 @@ void init_rubiks(int ***rubiks)
             {
                 for (k = 0; k < SIZE; k++)
                 {
-                    *rubiks[j][k] = YELLOW_CASE;
+                    *rubiks[j][k] = 'Y';
                 }
             }   
         }
@@ -121,7 +150,7 @@ void init_rubiks(int ***rubiks)
             {
                 for (k = 0; k < SIZE; k++)
                 {
-                    *rubiks[j][k] = BLUE_CASE;
+                    *rubiks[j][k] = 'B';
                 } 
             }
             
@@ -133,7 +162,7 @@ void init_rubiks(int ***rubiks)
             {
                 for (k = 0; k < SIZE; k++)
                 {
-                    *rubiks[j][k] = GREEN_CASE;
+                    *rubiks[j][k] = 'G';
                 }
             }
             
@@ -145,7 +174,7 @@ void init_rubiks(int ***rubiks)
             {
                 for (k = 0; k < SIZE; k++)
                 {
-                    *rubiks[j][k] = RED_CASE;
+                    *rubiks[j][k] = 'R';
                 }
             }
             
@@ -157,7 +186,7 @@ void init_rubiks(int ***rubiks)
             {
                 for (k = 0; k < SIZE; k++)
                 {
-                    *rubiks[j][k] = ORANGE_CASE;
+                    *rubiks[j][k] = 'O';
                 }
             }
             
@@ -166,16 +195,18 @@ void init_rubiks(int ***rubiks)
 }
 
 
-void display_rubiks(int ***rubiks)
+void display_rubiks(char ***rubiks)
 {
     int i,j,k;
+
     for (i = 1; i <= FACE; i++)
     {
+        printf("Face: %s\n", index_to_side(i));
         for (j = 0; i < SIZE; j++)
         {
             for (k = 0; k < SIZE; k++)
             {
-                printf("%d ", rubiks[i][j][k]);
+                printf("%c ", rubiks[i][j][k]);
             }
             printf("\n");
         }
@@ -187,7 +218,7 @@ void display_rubiks(int ***rubiks)
 
 
 
-void free_rubiks(int ***rubiks)
+void free_rubiks(char ***rubiks)
 {
     int i,j;
     for (i = 0; i < FACE; i++)

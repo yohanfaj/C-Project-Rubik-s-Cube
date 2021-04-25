@@ -38,16 +38,17 @@ typedef enum T_COLOR
 
 T_COLOR select_color();
 T_SIDE side_to_index();
+const char* index_to_side(int i);
 
 
 /* CUBE REPRESENTATION FUNCTIONS */
-void create_rubiks(int ****rubiks);
-void init_rubiks(int ***rubiks);
-void display_rubiks(int ***rubiks);
+void create_rubiks(char ****rubiks);
+void init_rubiks(char ***rubiks);
+void display_rubiks(char ***rubiks);
 void blank_rubiks();
 void fill_rubiks();
 void scramble_rubiks();
-void free_rubiks(int ***rubiks);
+void free_rubiks(char ***rubiks);
 
 
 /* MOVEMENT FUNCTIONS */
