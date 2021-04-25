@@ -17,3 +17,4 @@ void main(void)
     display_rubiks(rubiks);
     free_rubiks(rubiks);
 }
+
