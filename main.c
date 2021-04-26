@@ -9,9 +9,9 @@
 
 void main(void)
 {
-    char ***rubiks;
+    int i,j,k;
+    char ***rubiks = create_rubiks();
     printf("Here is the rubiks cube: \n");
-    create_rubiks(&rubiks);
     init_rubiks(rubiks);
     display_rubiks(rubiks);
     free_rubiks(rubiks);

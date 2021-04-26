@@ -76,22 +76,16 @@ const char* index_to_side(int i)
     {
     case 1:
         return "FRONT";
-        break;
     case 2:
         return "BACK";
-        break;
     case 3:
         return "UP";
-        break;
     case 4:
         return "DOWN";
-        break;
     case 5:
         return "RIGHT";
-        break;
     case 6:
         return "LEFT";
-        break;
     default:
         break;
     }
@@ -101,18 +95,23 @@ const char* index_to_side(int i)
 
 /* CUBE REPRESENTATION FUNCTIONS */
 
-void create_rubiks(char ****rubiks)
+char*** create_rubiks()
 {
-    int i,j;
-    *rubiks = (char ***) malloc(FACE * sizeof(char));
-    for (i = 0; i < SIZE; i++)
+    char i,j,k;
+    char ***rubiks = malloc(FACE * sizeof(char**));
+    for (i = 0; i <= FACE; i++)
     {
-        for (j = 0; j < SIZE; j++)
+        rubiks[i] = malloc(SIZE * sizeof(char*));
+        for (j = 0; j <= SIZE; j++)
         {
-            *rubiks[i][j] = (char*) malloc(SIZE * sizeof(char));
-        }
+            rubiks[i][j] = malloc(SIZE * sizeof(char));
+            for (k = 0; k <= SIZE; k++)
+                rubiks[i][j][k] = '-'; 
+        }  
     }
+    return rubiks;
 }
+
 
 
 void init_rubiks(char ***rubiks)
@@ -120,8 +119,70 @@ void init_rubiks(char ***rubiks)
     int i,j,k;
     for (i = 1; i <= FACE; i++)
     {
-        *rubiks[i] = index_to_side(i); // warning: assignment discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
-        if (side_to_index() == 1)
+        init_face(rubiks, i);
+        /* **rubiks[i] = index_to_side(i); warning: assignment discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers ] */
+        switch (i)
+        {
+        case 1:
+            for (j = 0; j <= SIZE; j++)
+            {
+                for (k = 0; k <= SIZE; k++)
+                {
+                    *rubiks[j][k] = 'W';
+                }
+            }
+            
+        case 2:
+            for (j = 0; j <= SIZE; j++)
+            {
+                for (k = 0; k <= SIZE; k++)
+                {
+                    *rubiks[j][k] = 'Y';
+                }
+            }
+
+        case 3:
+            for (j = 0; j <= SIZE; j++)
+            {
+                for (k = 0; k <= SIZE; k++)
+                {
+                    *rubiks[j][k] = 'B';
+                } 
+            }
+
+        case 4:
+            for (j = 0; j <= SIZE; j++)
+            {
+                for (k = 0; k <= SIZE; k++)
+                {
+                    *rubiks[j][k] = 'G';
+                }
+            }
+
+        case 5: 
+            for (j = 0; j <= SIZE; j++)
+            {
+                for (k = 0; k <= SIZE; k++)
+                {
+                    *rubiks[j][k] = 'R';
+                }
+            }
+
+        case 6:
+            for (j = 0; j <= SIZE; j++)
+            {
+                for (k = 0; k <= SIZE; k++)
+                {
+                    *rubiks[j][k] = 'O';
+                }
+            }  
+
+        default:
+            break;
+        } 
+    }
+}
+ /*       if (i == 1)
         {
             for (j = 0; j < SIZE; j++)
             {
@@ -133,7 +194,7 @@ void init_rubiks(char ***rubiks)
             
         }
         
-        else if (side_to_index() == 2)
+        else if (i == 2)
         {
             for (j = 0; j < SIZE; j++)
             {
@@ -144,7 +205,7 @@ void init_rubiks(char ***rubiks)
             }   
         }
         
-        else if (side_to_index() == 3)
+        else if (i == 3)
         {
             for (j = 0; j < SIZE; j++)
             {
@@ -156,7 +217,7 @@ void init_rubiks(char ***rubiks)
             
         }
         
-        else if (side_to_index() == 4)
+        else if (i == 4)
         {
             for (j = 0; j < SIZE; j++)
             {
@@ -168,7 +229,7 @@ void init_rubiks(char ***rubiks)
             
         }
         
-        else if (side_to_index() == 5)
+        else if (i == 5)
         {
             for (j = 0; j < SIZE; j++)
             {
@@ -180,7 +241,7 @@ void init_rubiks(char ***rubiks)
             
         }
         
-        else if (side_to_index() == 6)
+        else if (i == 6)
         {
             for (j = 0; j < SIZE; j++)
             {
@@ -188,11 +249,11 @@ void init_rubiks(char ***rubiks)
                 {
                     *rubiks[j][k] = 'O';
                 }
-            }
-            
+            }  
         }
     }  
-}
+}*/
+
 
 
 void display_rubiks(char ***rubiks)
@@ -202,7 +263,7 @@ void display_rubiks(char ***rubiks)
     for (i = 1; i <= FACE; i++)
     {
         printf("Face: %s\n", index_to_side(i));
-        for (j = 0; i < SIZE; j++)
+        for (j = 0; j < SIZE; j++)
         {
             for (k = 0; k < SIZE; k++)
             {
