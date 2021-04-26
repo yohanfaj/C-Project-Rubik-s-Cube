@@ -119,7 +119,6 @@ void init_rubiks(char ***rubiks)
     int i,j,k;
     for (i = 1; i <= FACE; i++)
     {
-        init_face(rubiks, i);
         /* **rubiks[i] = index_to_side(i); warning: assignment discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers ] */
         switch (i)
         {
@@ -256,10 +255,29 @@ void init_rubiks(char ***rubiks)
 
 
 
+void fill_face(char ***rubiks)
+{
+    int i,j,k;
+    for (i = 1; i <= FACE; i++)
+    {
+        printf("Face: %s\n", index_to_side(i));
+        for (j = 0; j < SIZE; j++)
+        {
+            for (k = 0; k < SIZE; k++)
+            {
+                printf("Line %d - Case %d: ", j, k);
+                scanf("%c", &(rubiks[i][j][k]));
+            }
+            printf("\n");
+        }
+        printf("\n");
+    }
+}
+
+
 void display_rubiks(char ***rubiks)
 {
     int i,j,k;
-
     for (i = 1; i <= FACE; i++)
     {
         printf("Face: %s\n", index_to_side(i));
@@ -274,9 +292,6 @@ void display_rubiks(char ***rubiks)
         printf("\n");
     }
 }
-
-
-
 
 
 void free_rubiks(char ***rubiks)
