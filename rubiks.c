@@ -125,7 +125,7 @@ void init_rubiks(char ***rubiks)
             {
                 for (k = 0; k <= SIZE; k++)
                 {
-                    *(*(*(rubiks+i)+j)+k) = 'W';
+                    *(*(*(rubiks+i)+j)+k) = 'G';
                 }
             }
             break;
@@ -134,7 +134,7 @@ void init_rubiks(char ***rubiks)
             {
                 for (k = 0; k <= SIZE; k++)
                 {
-                    *(*(*(rubiks+i)+j)+k) = 'Y';
+                    *(*(*(rubiks+i)+j)+k) = 'B';
                 }
             }
             break;
@@ -143,7 +143,7 @@ void init_rubiks(char ***rubiks)
             {
                 for (k = 0; k <= SIZE; k++)
                 {
-                    *(*(*(rubiks+i)+j)+k) = 'B';
+                    *(*(*(rubiks+i)+j)+k) = 'W';
                 } 
             }
             break;
@@ -152,7 +152,7 @@ void init_rubiks(char ***rubiks)
             {
                 for (k = 0; k <= SIZE; k++)
                 {
-                    *(*(*(rubiks+i)+j)+k) = 'G';
+                    *(*(*(rubiks+i)+j)+k) = 'Y';
                 }
             }
             break;
@@ -276,16 +276,37 @@ void fill_face(char ***rubiks)
 void display_rubiks(char ***rubiks)
 {
     int i,j,k;
-    for (i = 1; i <= FACE; i++)
-    {
-        printf("Face: %s\n", index_to_side(i));
-        for (j = 0; j < SIZE; j++)
-        {
-            for (k = 0; k < SIZE; k++)
-            {
-                printf("%c ", rubiks[i][j][k]);
-            }
-            printf("\n");
+    for(j=0;j<SIZE;j++){
+        printf("        ");
+        for(k=0;k<SIZE;k++){
+            printf("%c ", rubiks[3][j][k]);
+        }
+        printf("\n");
+    }
+    printf("\n");
+    for(j=0;j<SIZE;j++){
+        for(k=0;k<SIZE;k++){
+            printf("%c ", rubiks[6][j][k]);
+        }
+        printf("  ");
+        for(k=0;k<SIZE;k++){
+            printf("%c ", rubiks[1][j][k]);
+        }
+        printf("  ");
+        for(k=0;k<SIZE;k++){
+            printf("%c ", rubiks[5][j][k]);
+        }
+        printf("  ");
+        for(k=0;k<SIZE;k++){
+            printf("%c ", rubiks[2][j][k]);
+        }
+        printf("\n");
+    }
+    printf("\n");
+    for(j=0;j<SIZE;j++){
+        printf("        ");
+        for(k=0;k<SIZE;k++){
+            printf("%c ", rubiks[4][j][k]);
         }
         printf("\n");
     }
