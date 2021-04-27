@@ -127,55 +127,55 @@ void init_rubiks(char ***rubiks)
             {
                 for (k = 0; k <= SIZE; k++)
                 {
-                    *rubiks[j][k] = 'W';
+                    *(*(*(rubiks+i)+j)+k) = 'W';
                 }
             }
-            
+            break;
         case 2:
             for (j = 0; j <= SIZE; j++)
             {
                 for (k = 0; k <= SIZE; k++)
                 {
-                    *rubiks[j][k] = 'Y';
+                    *(*(*(rubiks+i)+j)+k) = 'Y';
                 }
             }
-
+            break;
         case 3:
             for (j = 0; j <= SIZE; j++)
             {
                 for (k = 0; k <= SIZE; k++)
                 {
-                    *rubiks[j][k] = 'B';
+                    *(*(*(rubiks+i)+j)+k) = 'B';
                 } 
             }
-
+            break;
         case 4:
             for (j = 0; j <= SIZE; j++)
             {
                 for (k = 0; k <= SIZE; k++)
                 {
-                    *rubiks[j][k] = 'G';
+                    *(*(*(rubiks+i)+j)+k) = 'G';
                 }
             }
-
+            break;
         case 5: 
             for (j = 0; j <= SIZE; j++)
             {
                 for (k = 0; k <= SIZE; k++)
                 {
-                    *rubiks[j][k] = 'R';
+                    *(*(*(rubiks+i)+j)+k) = 'R';
                 }
             }
-
+            break;
         case 6:
             for (j = 0; j <= SIZE; j++)
             {
                 for (k = 0; k <= SIZE; k++)
                 {
-                    *rubiks[j][k] = 'O';
+                    *(*(*(rubiks+i)+j)+k) = 'O';
                 }
             }  
-
+            break;
         default:
             break;
         } 
