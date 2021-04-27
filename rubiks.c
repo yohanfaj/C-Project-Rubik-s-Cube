@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <windows.h>
 #include "conio.h"
 #include "rubiks.h"
 #define FACE 6
 #define SIZE 3
-
 
 /* ENUM TYPE FUNCTIONS */
 
@@ -279,6 +279,7 @@ void display_rubiks(char ***rubiks)
     for(j=0;j<SIZE;j++){
         printf("        ");
         for(k=0;k<SIZE;k++){
+            text_color(15);
             printf("%c ", rubiks[3][j][k]);
         }
         printf("\n");
@@ -286,18 +287,22 @@ void display_rubiks(char ***rubiks)
     printf("\n");
     for(j=0;j<SIZE;j++){
         for(k=0;k<SIZE;k++){
+            text_color(4);
             printf("%c ", rubiks[6][j][k]);
         }
         printf("  ");
         for(k=0;k<SIZE;k++){
+            text_color(2);
             printf("%c ", rubiks[1][j][k]);
         }
         printf("  ");
         for(k=0;k<SIZE;k++){
+            text_color(12);
             printf("%c ", rubiks[5][j][k]);
         }
         printf("  ");
         for(k=0;k<SIZE;k++){
+            text_color(9);
             printf("%c ", rubiks[2][j][k]);
         }
         printf("\n");
@@ -306,10 +311,12 @@ void display_rubiks(char ***rubiks)
     for(j=0;j<SIZE;j++){
         printf("        ");
         for(k=0;k<SIZE;k++){
+            text_color(14);
             printf("%c ", rubiks[4][j][k]);
         }
         printf("\n");
     }
+    text_color(15);
 }
 
 void blank_rubiks(char ***rubiks){
@@ -334,4 +341,12 @@ void free_rubiks(char ***rubiks)
         }  
     }
     free(rubiks);
+}
+
+void text_color(int color) {
+    static int BACKGROUND;
+    HANDLE h = GetStdHandle ( STD_OUTPUT_HANDLE );
+    CONSOLE_SCREEN_BUFFER_INFO csbiInfo;
+    GetConsoleScreenBufferInfo(h, &csbiInfo);
+    SetConsoleTextAttribute (GetStdHandle (STD_OUTPUT_HANDLE), color + (BACKGROUND << 4));
 }

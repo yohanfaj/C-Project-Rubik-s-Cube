@@ -4,10 +4,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <windows.h>
 #include "conio.h"
 #define FACE 6
 #define SIZE 3
-
     
 /* ENUM VARIABLES */
 
@@ -69,5 +69,8 @@ void LEFT_anticlockwise();
 void horizontal_rotation();
 void vertical_rotation();
 int move_rubiks();
+
+/* TEXT COLOR */
+void text_color(int color);
 
 #endif
