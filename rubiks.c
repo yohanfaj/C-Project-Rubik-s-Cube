@@ -266,7 +266,7 @@ void fill_face(char ***rubiks)
             for (k = 0; k < SIZE; k++)
             {
                 printf("Line %d - Case %d: ", j, k);
-                scanf("%c", &(rubiks[i][j][k]));
+                scanf(" %c", &(rubiks[i][j][k]));
             }
             printf("\n");
         }
