@@ -11,10 +11,12 @@ void main(void)
 {
     int i,j,k;
     char ***rubiks = create_rubiks();
-    printf("Here is a blank rubiks cube: \n");
+    printf("Here is a normal rubiks cube: \n");
     init_rubiks(rubiks);
     display_rubiks(rubiks);
-    
+    printf("Here is a blank rubiks cube: \n");
+    blank_rubiks(rubiks);
+    display_rubiks(rubiks);
     printf("Please fill the cube with the following letters: R for RED, B for BLUE, G for GREEN, Y for YELLOW, O for ORANGE or W for WHITE: \n");
     fill_face(rubiks);
     printf("Here is your custom rubiks cube: \n");

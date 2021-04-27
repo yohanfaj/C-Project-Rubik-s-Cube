@@ -105,8 +105,6 @@ char*** create_rubiks()
         for (j = 0; j <= SIZE; j++)
         {
             rubiks[i][j] = malloc(SIZE * sizeof(char));
-            for (k = 0; k <= SIZE; k++)
-                rubiks[i][j][k] = '-'; 
         }  
     }
     return rubiks;
@@ -293,6 +291,16 @@ void display_rubiks(char ***rubiks)
     }
 }
 
+void blank_rubiks(char ***rubiks){
+    int i,j,k;
+    for(i=1;i<=FACE;i++){
+        for(j=0;j<SIZE;j++){
+            for(k=0;k<SIZE;k++){
+                *(*(*(rubiks+i)+j)+k)='-';
+            }
+        }
+    }
+}
 
 void free_rubiks(char ***rubiks)
 {
