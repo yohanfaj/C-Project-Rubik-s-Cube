@@ -9,33 +9,33 @@
 
 /* ENUM TYPE FUNCTIONS */
 
-T_COLOR select_color(char color)
+enum T_COLOR select_color()
 {
-    switch(color)
+    enum T_COLOR color_case;
+    switch(color_case)
     {
-    case 'R':
-        return RED_CASE;
+    case RED_CASE:
+        return 'R';
         break;
-    case 'B':
-        return BLUE_CASE;
+    case BLUE_CASE:
+        return 'B';
         break;
-    case 'G':
-        return GREEN_CASE;
+    case GREEN_CASE:
+        return 'G';
         break;
-    case 'W':
-        return WHITE_CASE;
+    case WHITE_CASE:
+        return 'W';
         break;
-    case 'Y':
-        return YELLOW_CASE;
+    case YELLOW_CASE:
+        return 'Y';
         break;
-    case 'O':
-        return ORANGE_CASE;
+    case ORANGE_CASE:
+        return 'O';
         break;
-    case '-':
-        return LG_CASE;
+    case LG_CASE:
+        return '-';
         break;
     default:
-        return LG_CASE;
         break;
     }
 }
@@ -279,7 +279,7 @@ void display_rubiks(char ***rubiks)
     for(j=0;j<SIZE;j++){
         printf("        ");
         for(k=0;k<SIZE;k++){
-            text_color(select_color(rubiks[3][j][k]));
+            text_color(15);
             printf("%c ", rubiks[3][j][k]);
         }
         printf("\n");
@@ -287,22 +287,22 @@ void display_rubiks(char ***rubiks)
     printf("\n");
     for(j=0;j<SIZE;j++){
         for(k=0;k<SIZE;k++){
-            text_color(select_color(rubiks[6][j][k]));
+            text_color(12);
             printf("%c ", rubiks[6][j][k]);
         }
         printf("  ");
         for(k=0;k<SIZE;k++){
-            text_color(select_color(rubiks[1][j][k]));
+            text_color(2);
             printf("%c ", rubiks[1][j][k]);
         }
         printf("  ");
         for(k=0;k<SIZE;k++){
-            text_color(select_color(rubiks[5][j][k]));
+            text_color(4);
             printf("%c ", rubiks[5][j][k]);
         }
         printf("  ");
         for(k=0;k<SIZE;k++){
-            text_color(select_color(rubiks[2][j][k]));
+            text_color(9);
             printf("%c ", rubiks[2][j][k]);
         }
         printf("\n");
@@ -311,7 +311,7 @@ void display_rubiks(char ***rubiks)
     for(j=0;j<SIZE;j++){
         printf("        ");
         for(k=0;k<SIZE;k++){
-            text_color(select_color(rubiks[4][j][k]));
+            text_color(14);
             printf("%c ", rubiks[4][j][k]);
         }
         printf("\n");
