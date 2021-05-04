@@ -41,9 +41,9 @@ T_COLOR select_color()
 }
 
 
-T_SIDE side_to_index()
+enum T_SIDE side_to_index()
 {
-    T_SIDE side;
+    enum T_SIDE side;
     switch(side)
     {
     case FRONT:

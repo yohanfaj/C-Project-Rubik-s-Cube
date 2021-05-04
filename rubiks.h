@@ -11,15 +11,7 @@
     
 /* ENUM VARIABLES */
 
-typedef enum T_SIDE
-{
-    FRONT=1,
-    BACK=2,
-    UP=3,
-    DOWN=4,
-    RIGHT=5,
-    LEFT=6,
-}T_SIDE;
+enum T_SIDE {FRONT,BACK,UP,DOWN,RIGHT,LEFT,};
 
 
 typedef enum T_COLOR
@@ -37,7 +29,7 @@ typedef enum T_COLOR
 /* ENUM TYPE FUNCTIONS */
 
 T_COLOR select_color();
-T_SIDE side_to_index();
+enum T_SIDE side_to_index();
 const char* index_to_side(int i);
 
 
