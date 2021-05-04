@@ -41,28 +41,27 @@ enum T_COLOR select_color(char color)
 }
 
 
-enum T_SIDE side_to_index()
+enum T_SIDE side_to_index(char[] side)
 {
-    enum T_SIDE side;
     switch(side)
     {
-    case FRONT:
-        return 0;
+    case "FRONT":
+        return FRONT;
         break;
-    case BACK:
-        return 1;
+    case "BACK":
+        return BACK;
         break;
-    case UP:
-        return 2;
+    case "UP":
+        return UP;
         break;
-    case DOWN:
-        return 3;
+    case "DOWN":
+        return DOWN;
         break;
-    case RIGHT:
-        return 4;
+    case "RIGHT":
+        return RIGHT;
         break;
-    case LEFT:
-        return 5;
+    case "LEFT":
+        return LEFT;
         break;
     default:
         break;
@@ -123,7 +122,6 @@ void init_rubiks(char ***rubiks)
     int i,j,k;
     for (i = 0; i < FACE; i++)
     {
-        /* **rubiks[i] = index_to_side(i); warning: assignment discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers ] */
         switch (i)
         {
         case 0:
@@ -185,78 +183,7 @@ void init_rubiks(char ***rubiks)
         } 
     }
 }
- /*       if (i == 1)
-        {
-            for (j = 0; j < SIZE; j++)
-            {
-                for (k = 0; i < SIZE; i++)
-                {
-                    *rubiks[j][k] = 'W';
-                }
-            }
-            
-        }
-        
-        else if (i == 2)
-        {
-            for (j = 0; j < SIZE; j++)
-            {
-                for (k = 0; k < SIZE; k++)
-                {
-                    *rubiks[j][k] = 'Y';
-                }
-            }   
-        }
-        
-        else if (i == 3)
-        {
-            for (j = 0; j < SIZE; j++)
-            {
-                for (k = 0; k < SIZE; k++)
-                {
-                    *rubiks[j][k] = 'B';
-                } 
-            }
-            
-        }
-        
-        else if (i == 4)
-        {
-            for (j = 0; j < SIZE; j++)
-            {
-                for (k = 0; k < SIZE; k++)
-                {
-                    *rubiks[j][k] = 'G';
-                }
-            }
-            
-        }
-        
-        else if (i == 5)
-        {
-            for (j = 0; j < SIZE; j++)
-            {
-                for (k = 0; k < SIZE; k++)
-                {
-                    *rubiks[j][k] = 'R';
-                }
-            }
-            
-        }
-        
-        else if (i == 6)
-        {
-            for (j = 0; j < SIZE; j++)
-            {
-                for (k = 0; k < SIZE; k++)
-                {
-                    *rubiks[j][k] = 'O';
-                }
-            }  
-        }
-    }  
-}*/
-
+ 
 
 
 void fill_face(char ***rubiks)
