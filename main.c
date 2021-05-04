@@ -43,6 +43,6 @@ void main(void)
     }
 
     free_rubiks(rubiks);
-    printf("Thank you for using the simulator. Have a nice day ! \n");
+    printf("Thank you for using the simulator. Have a nice day ! ");
 }
 

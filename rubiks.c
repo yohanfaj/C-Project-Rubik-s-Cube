@@ -263,7 +263,7 @@ void fill_face(char ***rubiks)
         {
             for (k = 0; k < SIZE; k++)
             {
-                printf("Line %d - Case %d: ", j+1, k+1);
+                printf("Line %d - Case %d: ", j, k);
                 scanf(" %c", &(rubiks[i][j][k]));
             }
             printf("\n");
@@ -287,7 +287,7 @@ void display_rubiks(char ***rubiks)
     printf("\n");
     for(j=0;j<SIZE;j++){
         for(k=0;k<SIZE;k++){
-            text_color(12);
+            text_color(4);
             printf("%c ", rubiks[6][j][k]);
         }
         printf("  ");
@@ -297,7 +297,7 @@ void display_rubiks(char ***rubiks)
         }
         printf("  ");
         for(k=0;k<SIZE;k++){
-            text_color(4);
+            text_color(12);
             printf("%c ", rubiks[5][j][k]);
         }
         printf("  ");
