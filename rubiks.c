@@ -125,7 +125,7 @@ void init_rubiks(char ***rubiks)
             {
                 for (k = 0; k <= SIZE; k++)
                 {
-                    *(*(*(rubiks+i)+j)+k) = 'G';
+                    *(*(*(rubiks+i)+j)+k) = 'W';
                 }
             }
             break;
@@ -134,7 +134,7 @@ void init_rubiks(char ***rubiks)
             {
                 for (k = 0; k <= SIZE; k++)
                 {
-                    *(*(*(rubiks+i)+j)+k) = 'B';
+                    *(*(*(rubiks+i)+j)+k) = 'O';
                 }
             }
             break;
@@ -143,7 +143,7 @@ void init_rubiks(char ***rubiks)
             {
                 for (k = 0; k <= SIZE; k++)
                 {
-                    *(*(*(rubiks+i)+j)+k) = 'W';
+                    *(*(*(rubiks+i)+j)+k) = 'G';
                 } 
             }
             break;
@@ -152,7 +152,7 @@ void init_rubiks(char ***rubiks)
             {
                 for (k = 0; k <= SIZE; k++)
                 {
-                    *(*(*(rubiks+i)+j)+k) = 'Y';
+                    *(*(*(rubiks+i)+j)+k) = 'R';
                 }
             }
             break;
@@ -161,7 +161,7 @@ void init_rubiks(char ***rubiks)
             {
                 for (k = 0; k <= SIZE; k++)
                 {
-                    *(*(*(rubiks+i)+j)+k) = 'R';
+                    *(*(*(rubiks+i)+j)+k) = 'B';
                 }
             }
             break;
@@ -170,7 +170,7 @@ void init_rubiks(char ***rubiks)
             {
                 for (k = 0; k <= SIZE; k++)
                 {
-                    *(*(*(rubiks+i)+j)+k) = 'O';
+                    *(*(*(rubiks+i)+j)+k) = 'Y';
                 }
             }  
             break;
@@ -279,31 +279,31 @@ void display_rubiks(char ***rubiks)
     for(j=0;j<SIZE;j++){
         printf("        ");
         for(k=0;k<SIZE;k++){
-            text_color(select_color(rubiks[3][j][k]));
-            printf("%c ", rubiks[3][j][k]);
+            text_color(select_color(rubiks[1][j][k]));
+            printf("%c ", rubiks[1][j][k]);
         }
         printf("\n");
     }
     printf("\n");
     for(j=0;j<SIZE;j++){
         for(k=0;k<SIZE;k++){
-            text_color(select_color(rubiks[6][j][k]));
-            printf("%c ", rubiks[6][j][k]);
+            text_color(select_color(rubiks[2][j][k]));
+            printf("%c ", rubiks[2][j][k]);
         }
         printf("  ");
         for(k=0;k<SIZE;k++){
-            text_color(select_color(rubiks[1][j][k]));
-            printf("%c ", rubiks[1][j][k]);
+            text_color(select_color(rubiks[3][j][k]));
+            printf("%c ", rubiks[3][j][k]);
+        }
+        printf("  ");
+        for(k=0;k<SIZE;k++){
+            text_color(select_color(rubiks[4][j][k]));
+            printf("%c ", rubiks[4][j][k]);
         }
         printf("  ");
         for(k=0;k<SIZE;k++){
             text_color(select_color(rubiks[5][j][k]));
             printf("%c ", rubiks[5][j][k]);
-        }
-        printf("  ");
-        for(k=0;k<SIZE;k++){
-            text_color(select_color(rubiks[2][j][k]));
-            printf("%c ", rubiks[2][j][k]);
         }
         printf("\n");
     }
@@ -311,8 +311,8 @@ void display_rubiks(char ***rubiks)
     for(j=0;j<SIZE;j++){
         printf("        ");
         for(k=0;k<SIZE;k++){
-            text_color(select_color(rubiks[4][j][k]));
-            printf("%c ", rubiks[4][j][k]);
+            text_color(select_color(rubiks[6][j][k]));
+            printf("%c ", rubiks[6][j][k]);
         }
         printf("\n");
     }
