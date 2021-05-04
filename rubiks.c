@@ -47,22 +47,22 @@ enum T_SIDE side_to_index()
     switch(side)
     {
     case FRONT:
-        return 1;
+        return 0;
         break;
     case BACK:
-        return 2;
+        return 1;
         break;
     case UP:
-        return 3;
+        return 2;
         break;
     case DOWN:
-        return 4;
+        return 3;
         break;
     case RIGHT:
-        return 5;
+        return 4;
         break;
     case LEFT:
-        return 6;
+        return 5;
         break;
     default:
         break;
@@ -105,10 +105,10 @@ char*** create_rubiks()
 {
     char i,j,k;
     char ***rubiks = malloc(FACE * sizeof(char**));
-    for (i = 0; i <= FACE; i++)
+    for (i = 0; i < FACE; i++)
     {
         rubiks[i] = malloc(SIZE * sizeof(char*));
-        for (j = 0; j <= SIZE; j++)
+        for (j = 0; j < SIZE; j++)
         {
             rubiks[i][j] = malloc(SIZE * sizeof(char));
         }  
@@ -121,60 +121,60 @@ char*** create_rubiks()
 void init_rubiks(char ***rubiks)
 {
     int i,j,k;
-    for (i = 1; i <= FACE; i++)
+    for (i = 0; i < FACE; i++)
     {
         /* **rubiks[i] = index_to_side(i); warning: assignment discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers ] */
         switch (i)
         {
-        case 1:
-            for (j = 0; j <= SIZE; j++)
+        case 0:
+            for (j = 0; j < SIZE; j++)
             {
-                for (k = 0; k <= SIZE; k++)
+                for (k = 0; k < SIZE; k++)
                 {
                     *(*(*(rubiks+i)+j)+k) = 'W';
                 }
             }
             break;
-        case 2:
-            for (j = 0; j <= SIZE; j++)
+        case 1:
+            for (j = 0; j < SIZE; j++)
             {
-                for (k = 0; k <= SIZE; k++)
+                for (k = 0; k < SIZE; k++)
                 {
                     *(*(*(rubiks+i)+j)+k) = 'O';
                 }
             }
             break;
-        case 3:
-            for (j = 0; j <= SIZE; j++)
+        case 2:
+            for (j = 0; j < SIZE; j++)
             {
-                for (k = 0; k <= SIZE; k++)
+                for (k = 0; k < SIZE; k++)
                 {
                     *(*(*(rubiks+i)+j)+k) = 'G';
                 } 
             }
             break;
-        case 4:
-            for (j = 0; j <= SIZE; j++)
+        case 3:
+            for (j = 0; j < SIZE; j++)
             {
-                for (k = 0; k <= SIZE; k++)
+                for (k = 0; k < SIZE; k++)
                 {
                     *(*(*(rubiks+i)+j)+k) = 'R';
                 }
             }
             break;
-        case 5: 
-            for (j = 0; j <= SIZE; j++)
+        case 4: 
+            for (j = 0; j < SIZE; j++)
             {
-                for (k = 0; k <= SIZE; k++)
+                for (k = 0; k < SIZE; k++)
                 {
                     *(*(*(rubiks+i)+j)+k) = 'B';
                 }
             }
             break;
-        case 6:
-            for (j = 0; j <= SIZE; j++)
+        case 5:
+            for (j = 0; j < SIZE; j++)
             {
-                for (k = 0; k <= SIZE; k++)
+                for (k = 0; k < SIZE; k++)
                 {
                     *(*(*(rubiks+i)+j)+k) = 'Y';
                 }
@@ -262,7 +262,7 @@ void init_rubiks(char ***rubiks)
 void fill_face(char ***rubiks)
 {
     int i,j,k;
-    for (i = 1; i <= FACE; i++)
+    for (i = 0; i < FACE; i++)
     {
         printf("Face: %s\n", index_to_side(i));
         for (j = 0; j < SIZE; j++)
@@ -285,13 +285,18 @@ void display_rubiks(char ***rubiks)
     for(j=0;j<SIZE;j++){
         printf("        ");
         for(k=0;k<SIZE;k++){
-            text_color(select_color(rubiks[1][j][k]));
-            printf("%c ", rubiks[1][j][k]);
+            text_color(select_color(rubiks[0][j][k]));
+            printf("%c ", rubiks[0][j][k]);
         }
         printf("\n");
     }
     printf("\n");
     for(j=0;j<SIZE;j++){
+        for(k=0;k<SIZE;k++){
+            text_color(select_color(rubiks[1][j][k]));
+            printf("%c ", rubiks[1][j][k]);
+        }
+        printf("  ");
         for(k=0;k<SIZE;k++){
             text_color(select_color(rubiks[2][j][k]));
             printf("%c ", rubiks[2][j][k]);
@@ -306,19 +311,14 @@ void display_rubiks(char ***rubiks)
             text_color(select_color(rubiks[4][j][k]));
             printf("%c ", rubiks[4][j][k]);
         }
-        printf("  ");
-        for(k=0;k<SIZE;k++){
-            text_color(select_color(rubiks[5][j][k]));
-            printf("%c ", rubiks[5][j][k]);
-        }
         printf("\n");
     }
     printf("\n");
     for(j=0;j<SIZE;j++){
         printf("        ");
         for(k=0;k<SIZE;k++){
-            text_color(select_color(rubiks[6][j][k]));
-            printf("%c ", rubiks[6][j][k]);
+            text_color(select_color(rubiks[5][j][k]));
+            printf("%c ", rubiks[5][j][k]);
         }
         printf("\n");
     }
@@ -327,7 +327,7 @@ void display_rubiks(char ***rubiks)
 
 void blank_rubiks(char ***rubiks){
     int i,j,k;
-    for(i=1;i<=FACE;i++){
+    for(i=0;i<FACE;i++){
         for(j=0;j<SIZE;j++){
             for(k=0;k<SIZE;k++){
                 *(*(*(rubiks+i)+j)+k)='-';
