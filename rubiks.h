@@ -11,24 +11,15 @@
     
 /* ENUM VARIABLES */
 
-enum T_SIDE {FRONT,BACK,UP,DOWN,RIGHT,LEFT,};
+enum T_SIDE {FRONT,BACK,UP,DOWN,RIGHT,LEFT};
 
 
-typedef enum T_COLOR
-{
-    RED_CASE=10,
-    BLUE_CASE=20,
-    GREEN_CASE=30,
-    WHITE_CASE=40,
-    YELLOW_CASE=50,
-    ORANGE_CASE=60,
-    LG_CASE=70,
-}T_COLOR;
+enum T_COLOR{RED_CASE,BLUE_CASE,GREEN_CASE,WHITE_CASE,YELLOW_CASE,ORANGE_CASE,LG_CASE};
 
 
 /* ENUM TYPE FUNCTIONS */
 
-T_COLOR select_color();
+enum T_COLOR select_color();
 enum T_SIDE side_to_index();
 const char* index_to_side(int i);
 

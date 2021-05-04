@@ -9,9 +9,9 @@
 
 /* ENUM TYPE FUNCTIONS */
 
-T_COLOR select_color()
+enum T_COLOR select_color()
 {
-    T_COLOR color_case;
+    enum T_COLOR color_case;
     switch(color_case)
     {
     case RED_CASE:
