@@ -74,18 +74,24 @@ const char* index_to_side(int i)
 {
     switch(i)
     {
-    case 1:
-        return "FRONT";
-    case 2:
-        return "BACK";
-    case 3:
+    case 0:
         return "UP";
-    case 4:
-        return "DOWN";
-    case 5:
-        return "RIGHT";
-    case 6:
+        break;
+    case 1:
         return "LEFT";
+        break;
+    case 2:
+        return "FRONT";
+        break;
+    case 3:
+        return "RIGHT";
+        break;
+    case 4:
+        return "BACK";
+        break;
+    case 5:
+        return "DOWN";
+        break;
     default:
         break;
     }
