@@ -9,17 +9,18 @@
 #define FACE 6
 #define SIZE 3
     
+
 /* ENUM VARIABLES */
 
 enum T_SIDE {FRONT,BACK,UP,DOWN,RIGHT,LEFT};
 
 
-typedef enum T_COLOR{RED_CASE=12,BLUE_CASE=9,GREEN_CASE=2,WHITE_CASE=15,YELLOW_CASE=14,ORANGE_CASE=4,LG_CASE=7}T_COLOR;
+enum T_COLOR{RED_CASE=12,BLUE_CASE=9,GREEN_CASE=2,WHITE_CASE=15,YELLOW_CASE=14,ORANGE_CASE=4,LG_CASE=7};
 
 
 /* ENUM TYPE FUNCTIONS */
 
-T_COLOR select_color(char color);
+enum T_COLOR select_color(char color);
 enum T_SIDE side_to_index();
 const char* index_to_side(int i);
 

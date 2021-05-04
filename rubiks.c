@@ -9,7 +9,7 @@
 
 /* ENUM TYPE FUNCTIONS */
 
-T_COLOR select_color(char color)
+enum T_COLOR select_color(char color)
 {
     switch(color)
     {
