@@ -41,7 +41,7 @@ enum T_COLOR select_color(char color)
 }
 
 
-enum T_SIDE side_to_index(str side)
+enum T_SIDE side_to_index(char side)
 {
     if (side == 'FRONT')
         return FRONT;

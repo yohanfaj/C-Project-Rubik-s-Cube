@@ -21,7 +21,7 @@ enum T_COLOR{RED_CASE=12,BLUE_CASE=9,GREEN_CASE=2,WHITE_CASE=15,YELLOW_CASE=14,O
 /* ENUM TYPE FUNCTIONS */
 
 enum T_COLOR select_color(char color);
-enum T_SIDE side_to_index(str side);
+enum T_SIDE side_to_index(char side);
 const char* index_to_side(int i);
 
 
