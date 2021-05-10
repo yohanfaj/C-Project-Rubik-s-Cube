@@ -265,6 +265,33 @@ void free_rubiks(char ***rubiks)
     free(rubiks);
 }
 
+
+/* MOVEMENT FUNCTIONS */
+
+void FRONT_clockwise(char ***rubiks, int type)
+{
+    int cpt,i,j,k;
+    for (cpt = 0; cpt < type; cpt++)
+    {
+        rubiks[side_to_index("UP")][3][1] = rubiks[side_to_index("RIGHT")][1][1];
+        rubiks[side_to_index("UP")][3][2] = rubiks[side_to_index("RIGHT")][2][1];
+        rubiks[side_to_index("UP")][3][3] = rubiks[side_to_index("RIGHT")][3][1];
+
+        rubiks[side_to_index("RIGHT")][1][1] = rubiks[side_to_index("DOWN")][1][1];
+        rubiks[side_to_index("RIGHT")][2][1] = rubiks[side_to_index("DOWN")][1][2];
+        rubiks[side_to_index("RIGHT")][3][1] = rubiks[side_to_index("DOWN")][1][3];
+
+        rubiks[side_to_index("DOWN")][1][1] = rubiks[side_to_index("LEFT")][1][3];
+        rubiks[side_to_index("DOWN")][1][2] = rubiks[side_to_index("LEFT")][2][3];
+        rubiks[side_to_index("DOWN")][1][3] = rubiks[side_to_index("LEFT")][3][3];
+
+        rubiks[side_to_index("LEFT")][1][3] = rubiks[side_to_index("UP")][3][1];
+        rubiks[side_to_index("LEFT")][2][3] = rubiks[side_to_index("UP")][3][1];
+        rubiks[side_to_index("LEFT")][3][3] = rubiks[side_to_index("UP")][3][1];
+    } 
+}
+
+
 void BACK_clockwise(char ***rubiks){
     int i;
     char save1[3], save2[3];
@@ -286,6 +313,7 @@ void BACK_clockwise(char ***rubiks){
         *(*(*(rubiks+1)+(2-i)))=save1[i];
     }
 }
+
 
 void text_color(int color) {
     static int BACKGROUND;
