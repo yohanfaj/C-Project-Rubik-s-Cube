@@ -41,31 +41,20 @@ enum T_COLOR select_color(char color)
 }
 
 
-enum T_SIDE side_to_index(char[] side)
+enum T_SIDE side_to_index(str side)
 {
-    switch(side)
-    {
-    case "FRONT":
+    if (side == 'FRONT')
         return FRONT;
-        break;
-    case "BACK":
+    else if (side == 'BACK')
         return BACK;
-        break;
-    case "UP":
+    else if (side == 'UP')
         return UP;
-        break;
-    case "DOWN":
+    else if (side == 'DOWN')
         return DOWN;
-        break;
-    case "RIGHT":
+    else if (side == 'RIGHT')
         return RIGHT;
-        break;
-    case "LEFT":
+    else if (side == 'LEFT')
         return LEFT;
-        break;
-    default:
-        break;
-    }
 }
 
 
