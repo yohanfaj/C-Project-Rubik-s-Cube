@@ -43,6 +43,12 @@ void main(void)
                 printf("Here is your custom rubiks cube: \n");
                 display_rubiks(rubiks);
 
+            case 4:
+                init_rubiks(rubiks);
+                FRONT_clockwise(rubiks, 1);
+                display_rubiks(rubiks);
+                break;
+            
             case 0:
                 printf("Thank you for using the simulator. Have a nice day !");
                 break;
