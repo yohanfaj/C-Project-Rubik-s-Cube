@@ -178,11 +178,10 @@ void init_rubiks(char ***rubiks)
 void fill_face(char ***rubiks)
 {
     int i,j,k;
-    int cptR=8, cptB=8, cptG=8;
-    int cptW=8, cptY=8, cptO=8;
     char c;
     for (i = 0; i < FACE; i++)
     {
+        printf("Please give your character input in UPPERCASE ! \n");
         printf("Face: %s\n", index_to_side(i));
         for (j = 0; j < SIZE; j++)
         {
@@ -190,66 +189,13 @@ void fill_face(char ***rubiks)
             {
                 printf("Line %d - Case %d: ", j, k);
                 scanf(" %c", &(rubiks[i][j][k]));
-                switch (rubiks[i][j][k])
-                {
-                case 'R':
-                    if (cptR>=0)
-                        cptR--;
-                    else
-                        rubiks[i][j][k] = '-';
-                        cptR=0;
-                    break;
-
-                case 'B':
-                    if (cptB>=0)
-                        cptB--;
-                    else
-                        rubiks[i][j][k] = '-';
-                        cptB=0;
-                    break;
-
-                case 'G':
-                    if (cptG>=0)
-                        cptG--;
-                    else
-                        rubiks[i][j][k] = '-';
-                        cptG=0;
-                    break;
-
-                case 'Y':
-                    if (cptY>=0)
-                        cptY--;
-                    else
-                        rubiks[i][j][k] = '-';
-                        cptY=0;
-                    break;
-
-                case 'O':
-                    if (cptO>=0)
-                        cptO--;
-                    else
-                        rubiks[i][j][k] = '-';
-                        cptO=0;
-                    break;
-
-                case 'W':
-                    if (cptW>=0)
-                        cptW--;
-                    else
-                        rubiks[i][j][k] = '-';
-                        cptW=0
-                    break;
-
-                default:
+                if (rubiks[i][j][k]!='R' && rubiks[i][j][k]!='B' && rubiks[i][j][k]!='G' && rubiks[i][j][k]!='W' 
+                && rubiks[i][j][k]!='O' && rubiks[i][j][k]!='Y')
                     rubiks[i][j][k] = '-';
-                    break;
-                }
             }
             printf("\n");
         }
-        printf("\nCOLOR CASES REMAINING: \n");
-        printf("RED: %d -- BLUE: %d -- GREEN: %d\n", cptR, cptB, cptG);
-        printf("YELLOW: %d -- ORANGE: %d -- WHITE: %d\n\n", cptY, cptO, cptW);
+        printf("\n");
     }
 }
 
@@ -517,6 +463,30 @@ void BACK_anticlockwise(char ***rubiks, int type){
             rubiks[side_to_index("RIGHT")][2-i][0]=rubiks[side_to_index("DOWN")][2][2-i];
             rubiks[side_to_index("DOWN")][2][2-i]=rubiks[side_to_index("RIGHT")][i][2];
             rubiks[side_to_index("RIGHT")][i][2]=save1[i];
+        }
+    }
+}
+
+void UP_anticlockwise(char ***rubiks, int type){
+    int i, cpt;
+    char save1[3], save2[3];
+    for(cpt=0;cpt<type;cpt++){
+        for(i=0;i<SIZE;i++){
+            save1[i]=rubiks[side_to_index("UP")][0][i];
+            save2[i]=rubiks[side_to_index("UP")][i][2];
+        }
+        for(i=0;i<SIZE;i++){
+            rubiks[side_to_index("UP")][i][2]=rubiks[side_to_index("UP")][2][2-i];
+            rubiks[side_to_index("UP")][2][2-i]=rubiks[side_to_index("UP")][0][2-i];
+            rubiks[side_to_index("UP")][0][2-i]=save1[i];
+            rubiks[side_to_index("UP")][0][i]=save2[i];
+        }
+        for(i=0;i<SIZE;i++){
+            save1[i]=rubiks[side_to_index("BACK")][0][i];
+            rubiks[side_to_index("BACK")][0][i]=rubiks[side_to_index("RIGHT")][0][i];
+            rubiks[side_to_index("RIGHT")][0][i]=rubiks[side_to_index("FRONT")][0][i];
+            rubiks[side_to_index("FRONT")][0][i]=rubiks[side_to_index("LEFT")][0][i];
+            rubiks[side_to_index("LEFT")][0][i]=save1[i];
         }
     }
 }
