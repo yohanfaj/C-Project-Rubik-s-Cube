@@ -252,17 +252,17 @@ void fill_all_faces(char ***rubiks)
     }
 }
 
-fill_user_face(char ***rubiks)
+/*fill_user_face(char ***rubiks)
 {
     int i,j,k;
     printf("Which face ?\n");
-}
+}*/
 
 
-void scramble_rubriks(char ***rubiks)
+void scramble_rubiks(char ***rubiks)
 {
     int i,j,k;
-    int random_case
+    int random_case;
     int cptR=8, cptB=8, cptG=8;
     int cptW=8, cptY=8, cptO=8;
     for (i = 0; i < FACE; i++)
@@ -271,69 +271,58 @@ void scramble_rubriks(char ***rubiks)
         {
             for (k = 0; k < SIZE; k++)
             {
-                random_case = rand()%9
+                random_case = rand()%6;
                 switch (random_case)
                 {
-                case 1:
-                    if (cptR>=0)
+                case 0:
+                    if (cptR>=0) {
+                        rubiks[i][j][k] = 'R';
                         cptR--;
-                    else
-                        rubiks[i][j][k] = '-';
-                        cptR=0;
+                    }
                     break;
 
-                case 'B':
-                    if (cptB>=0)
+                case 1:
+                    if (cptB>=0) {
+                        rubiks[i][j][k] = 'B';
                         cptB--;
-                    else
-                        rubiks[i][j][k] = '-';
-                        cptB=0;
+                    }
                     break;
 
-                case 'G':
-                    if (cptG>=0)
+                case 2:
+                    if (cptG>=0) {
+                        rubiks[i][j][k] = 'G';
                         cptG--;
-                    else
-                        rubiks[i][j][k] = '-';
-                        cptG=0;
+                    }
                     break;
 
-                case 'Y':
-                    if (cptY>=0)
+                case 3:
+                    if (cptY>=0) {
+                        rubiks[i][j][k] = 'Y';
                         cptY--;
-                    else
-                        rubiks[i][j][k] = '-';
-                        cptY=0;
+                    }
                     break;
 
-                case 'O':
-                    if (cptO>=0)
+                case 4:
+                    if (cptO>=0) {
+                        rubiks[i][j][k] = 'O';
                         cptO--;
-                    else
-                        rubiks[i][j][k] = '-';
-                        cptO=0;
+                    }
                     break;
 
-                case 'W':
-                    if (cptW>=0)
+                case 5:
+                    if (cptW>=0) {
+                        rubiks[i][j][k] = 'W';
                         cptW--;
-                    else
-                        rubiks[i][j][k] = '-';
-                        cptW=0
+                    }
                     break;
 
-                default:
+                default: 
                     rubiks[i][j][k] = '-';
                     break;
                 }
             }
-            printf("\n");
         }
-        printf("\nCOLOR CASES REMAINING: \n");
-        printf("RED: %d -- BLUE: %d -- GREEN: %d\n", cptR, cptB, cptG);
-        printf("YELLOW: %d -- ORANGE: %d -- WHITE: %d\n\n", cptY, cptO, cptW);
     }
-}
 }
 
 
