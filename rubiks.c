@@ -178,8 +178,10 @@ void init_rubiks(char ***rubiks)
 void fill_face(char ***rubiks)
 {
     int i,j,k;
+    char c;
     for (i = 0; i < FACE; i++)
     {
+        printf("Please give your character input in UPPERCASE ! \n")
         printf("Face: %s\n", index_to_side(i));
         for (j = 0; j < SIZE; j++)
         {
@@ -187,6 +189,9 @@ void fill_face(char ***rubiks)
             {
                 printf("Line %d - Case %d: ", j, k);
                 scanf(" %c", &(rubiks[i][j][k]));
+                if (rubiks[i][j][k]!='R' && rubiks[i][j][k]!='B' && rubiks[i][j][k]!='G' && rubiks[i][j][k]!='W' 
+                && rubiks[i][j][k]!='O' && rubiks[i][j][k]!='Y')
+                    rubiks[i][j][k] = '-';
             }
             printf("\n");
         }

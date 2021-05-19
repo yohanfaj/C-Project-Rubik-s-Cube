@@ -44,9 +44,9 @@ void main(void)
                 display_rubiks(rubiks);
 
             case 4:
-                init_rubiks(rubiks);
+                /*init_rubiks(rubiks);
                 FRONT_clockwise(rubiks, 1);
-                display_rubiks(rubiks);
+                display_rubiks(rubiks);*/
                 break;
             
             case 0:
