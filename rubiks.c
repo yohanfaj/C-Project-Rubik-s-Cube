@@ -292,25 +292,27 @@ void FRONT_clockwise(char ***rubiks, int type)
 }
 
 
-void BACK_clockwise(char ***rubiks){
-    int i;
+void BACK_clockwise(char ***rubiks, int type){
+    int i, cpt;
     char save1[3], save2[3];
-    for(i=0;i<SIZE;i++){
-        save1[i]=*(*(*(rubiks+4))+i);
-        save2[i]=*(*(*(rubiks+4)+i)+2);
-    }
-    for(i=0;i<SIZE;i++){
-        *(*(*(rubiks+4))+i)=*(*(*(rubiks+4)+(2-i)));
-        *(*(*(rubiks+4)+(2-i)))=*(*(*(rubiks+4)+2)+(2-i));
-        *(*(*(rubiks+4)+2)+(2-i))=save2[i];
-        *(*(*(rubiks+4)+i)+2)=save1[i];
-    }
-    for(i=0;i<SIZE;i++){
-        save1[i]=*(*(*(rubiks))+i);
-        *(*(*(rubiks))+i)=*(*(*(rubiks+3)+i)+2);
-        *(*(*(rubiks+3)+i)+2)=*(*(*(rubiks+5)+2)+(2-i));
-        *(*(*(rubiks+5)+2)+(2-i))=*(*(*(rubiks+1)+(2-i)));
-        *(*(*(rubiks+1)+(2-i)))=save1[i];
+    for(cpt=0;cpt<type;cpt++){
+        for(i=0;i<SIZE;i++){
+            save1[i]=rubiks[4][0][i];
+            save2[i]=rubiks[4][i][2];
+        }
+        for(i=0;i<SIZE;i++){
+            rubiks[4][0][i]=rubiks[4][2-i][0];
+            rubiks[4][2-i][0]=rubiks[4][2][2-i];
+            rubiks[4][2][2-i]=save2[i];
+            rubiks[4][i][2]=save1[i];
+        }
+        for(i=0;i<SIZE;i++){
+            save1[i]=rubiks[0][0][i];
+            rubiks[0][0][i]=rubiks[3][i][2];
+            rubiks[3][i][2]=rubiks[5][2][2-i];
+            rubiks[5][2][2-i]=rubiks[1][2-i][0];
+            rubiks[1][2-i][0]=save1[i];
+        }
     }
 }
 
