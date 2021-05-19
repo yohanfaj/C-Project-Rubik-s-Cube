@@ -448,8 +448,8 @@ void RIGHT_clockwise(char ***rubiks, int type){
             save1[i]=rubiks[side_to_index("UP")][i][2];
             rubiks[side_to_index("UP")][i][2]=rubiks[side_to_index("FRONT")][i][2];
             rubiks[side_to_index("FRONT")][i][2]=rubiks[side_to_index("DOWN")][i][2];
-            rubiks[side_to_index("DOWN")][2][i]=rubiks[side_to_index("RIGHT")][2-i][0];
-            rubiks[side_to_index("RIGHT")][2-i][0]=save1[i];
+            rubiks[side_to_index("DOWN")][i][2]=rubiks[side_to_index("BACK")][2-i][0];
+            rubiks[side_to_index("BACK")][2-i][0]=save1[i];
         }
     }
 }
@@ -472,8 +472,8 @@ void LEFT_clockwise(char ***rubiks, int type){
             save1[i]=rubiks[side_to_index("DOWN")][i][0];
             rubiks[side_to_index("DOWN")][i][0]=rubiks[side_to_index("FRONT")][i][0];
             rubiks[side_to_index("FRONT")][i][0]=rubiks[side_to_index("UP")][i][0];
-            rubiks[side_to_index("UP")][i][2]=rubiks[side_to_index("BACK")][2-i][2];
-            rubiks[side_to_index("RIGHT")][2-i][2]=save1[i];
+            rubiks[side_to_index("UP")][i][0]=rubiks[side_to_index("BACK")][2-i][2];
+            rubiks[side_to_index("BACK")][2-i][2]=save1[i];
         }
     }
 }
@@ -519,7 +519,7 @@ void BACK_anticlockwise(char ***rubiks, int type){
         for(i=0;i<SIZE;i++){
             save1[i]=rubiks[side_to_index("UP")][0][i];
             rubiks[side_to_index("UP")][0][i]=rubiks[side_to_index("LEFT")][2-i][0];
-            rubiks[side_to_index("RIGHT")][2-i][0]=rubiks[side_to_index("DOWN")][2][2-i];
+            rubiks[side_to_index("LEFT")][2-i][0]=rubiks[side_to_index("DOWN")][2][2-i];
             rubiks[side_to_index("DOWN")][2][2-i]=rubiks[side_to_index("RIGHT")][i][2];
             rubiks[side_to_index("RIGHT")][i][2]=save1[i];
         }
@@ -569,7 +569,7 @@ void DOWN_anticlockwise(char ***rubiks, int type){
             rubiks[side_to_index("LEFT")][2][i]=rubiks[side_to_index("FRONT")][2][i];
             rubiks[side_to_index("FRONT")][2][i]=rubiks[side_to_index("RIGHT")][2][i];
             rubiks[side_to_index("RIGHT")][2][i]=rubiks[side_to_index("BACK")][2][i];
-            rubiks[side_to_index("LEFT")][2][i]=save1[i];
+            rubiks[side_to_index("BACK")][2][i]=save1[i];
         }
     }
 }
@@ -593,7 +593,7 @@ void RIGHT_anticlockwise(char ***rubiks, int type){
             rubiks[side_to_index("DOWN")][i][2]=rubiks[side_to_index("FRONT")][i][2];
             rubiks[side_to_index("FRONT")][i][2]=rubiks[side_to_index("UP")][i][2];
             rubiks[side_to_index("UP")][i][2]=rubiks[side_to_index("BACK")][2-i][0];
-            rubiks[side_to_index("LEFT")][2-i][0]=save1[i];
+            rubiks[side_to_index("BACK")][2-i][0]=save1[i];
         }
     }
 }
@@ -616,8 +616,8 @@ void LEFT_anticlockwise(char ***rubiks, int type){
             save1[i]=rubiks[side_to_index("UP")][i][0];
             rubiks[side_to_index("UP")][i][0]=rubiks[side_to_index("FRONT")][i][0];
             rubiks[side_to_index("FRONT")][i][0]=rubiks[side_to_index("DOWN")][i][0];
-            rubiks[side_to_index("DOWN")][i][0]=rubiks[side_to_index("BACK")][2-i][0];
-            rubiks[side_to_index("BACK")][2-i][0]=save1[i];
+            rubiks[side_to_index("DOWN")][i][0]=rubiks[side_to_index("BACK")][2-i][2];
+            rubiks[side_to_index("BACK")][2-i][2]=save1[i];
         }
     }
 }
