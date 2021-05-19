@@ -252,12 +252,30 @@ void fill_all_faces(char ***rubiks)
     }
 }
 
-fill_user_face(char ***rubiks)
+/*fill_user_face(char ***rubiks)
 {
     int i,j,k;
     printf("Which face ?\n");
-}
+}*/
 
+
+
+void scramble_rubiks(char ***rubiks)
+{
+    init_rubiks(rubiks);
+    FRONT_clockwise(rubiks, (rand()%5)+1);
+    BACK_clockwise(rubiks, (rand()%5)+1);
+    UP_clockwise(rubiks, (rand()%5)+1);
+    DOWN_clockwise(rubiks, (rand()%5)+1);
+    RIGHT_clockwise(rubiks, (rand()%5)+1);
+    LEFT_clockwise(rubiks, (rand()%5)+1);
+    FRONT_anticlockwise(rubiks, (rand()%5)+1);
+    BACK_anticlockwise(rubiks, (rand()%5)+1);
+    UP_anticlockwise(rubiks, (rand()%5)+1);
+    DOWN_anticlockwise(rubiks, (rand()%5)+1);
+    RIGHT_anticlockwise(rubiks, (rand()%5)+1);
+    LEFT_anticlockwise(rubiks, (rand()%5)+1);
+}
 
 void display_rubiks(char ***rubiks)
 {
