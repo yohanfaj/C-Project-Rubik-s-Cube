@@ -181,7 +181,7 @@ void fill_face(char ***rubiks)
     char c;
     for (i = 0; i < FACE; i++)
     {
-        printf("Please give your character input in UPPERCASE ! \n")
+        printf("Please give your character input in UPPERCASE ! \n");
         printf("Face: %s\n", index_to_side(i));
         for (j = 0; j < SIZE; j++)
         {
@@ -275,25 +275,27 @@ void free_rubiks(char ***rubiks)
 
 void FRONT_clockwise(char ***rubiks, int type)
 {
-    int cpt,i,j,k;
-    for (cpt = 0; cpt < type; cpt++)
-    {
-        rubiks[side_to_index("UP")][2][0] = rubiks[side_to_index("RIGHT")][0][0];
-        rubiks[side_to_index("UP")][2][1] = rubiks[side_to_index("RIGHT")][1][0];
-        rubiks[side_to_index("UP")][2][2] = rubiks[side_to_index("RIGHT")][2][0];
-
-        rubiks[side_to_index("RIGHT")][0][0] = rubiks[side_to_index("DOWN")][0][0];
-        rubiks[side_to_index("RIGHT")][1][0] = rubiks[side_to_index("DOWN")][0][1];
-        rubiks[side_to_index("RIGHT")][2][0] = rubiks[side_to_index("DOWN")][0][2];
-
-        rubiks[side_to_index("DOWN")][0][0] = rubiks[side_to_index("LEFT")][0][2];
-        rubiks[side_to_index("DOWN")][0][1] = rubiks[side_to_index("LEFT")][1][2];
-        rubiks[side_to_index("DOWN")][0][2] = rubiks[side_to_index("LEFT")][2][2];
-
-        rubiks[side_to_index("LEFT")][0][2] = rubiks[side_to_index("UP")][2][0];
-        rubiks[side_to_index("LEFT")][1][2] = rubiks[side_to_index("UP")][2][0];
-        rubiks[side_to_index("LEFT")][2][2] = rubiks[side_to_index("UP")][2][0];
-    } 
+    int i, cpt;
+    char save1[3], save2[3];
+    for(cpt=0;cpt<type;cpt++){
+        for(i=0;i<SIZE;i++){
+            save1[i]=rubiks[side_to_index("FRONT")][0][i];
+            save2[i]=rubiks[side_to_index("FRONT")][i][2];
+        }
+        for(i=0;i<SIZE;i++){
+            rubiks[side_to_index("FRONT")][0][i]=rubiks[side_to_index("FRONT")][2-i][0];
+            rubiks[side_to_index("FRONT")][2-i][0]=rubiks[side_to_index("FRONT")][2][2-i];
+            rubiks[side_to_index("FRONT")][2][2-i]=save2[i];
+            rubiks[side_to_index("FRONT")][i][2]=save1[i];
+        }
+        for(i=0;i<SIZE;i++){
+            save1[i]=rubiks[side_to_index("UP")][2][i];
+            rubiks[side_to_index("UP")][2][i]=rubiks[side_to_index("LEFT")][2-i][2];
+            rubiks[side_to_index("LEFT")][2-i][2]=rubiks[side_to_index("DOWN")][0][2-i];
+            rubiks[side_to_index("DOWN")][0][2-i]=rubiks[side_to_index("RIGHT")][i][0];
+            rubiks[side_to_index("RIGHT")][i][0]=save1[i];
+        }
+    }
 }
 
 
