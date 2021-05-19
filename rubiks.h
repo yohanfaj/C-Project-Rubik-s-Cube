@@ -36,19 +36,19 @@ void free_rubiks(char ***rubiks);
 
 
 /* MOVEMENT FUNCTIONS */
-void FRONT_clockwise();
-void BACK_clockwise();
-void UP_clockwise();
-void DOWN_clockwise();
-void RIGHT_clockwise();
-void LEFT_clockwise();
+void FRONT_clockwise(char ***rubiks, int type);
+void BACK_clockwise(char ***rubiks, int type);
+void UP_clockwise(char ***rubiks, int type);
+void DOWN_clockwise(char ***rubiks, int type);
+void RIGHT_clockwise(char ***rubiks, int type);
+void LEFT_clockwise(char ***rubiks, int type);
 
-void FRONT_anticlockwise();
-void BACK_anticlockwise();
-void UP_anticlockwise();
-void DOWN_anticlockwise();
-void RIGHT_anticlockwise();
-void LEFT_anticlockwise();
+void FRONT_anticlockwise(char ***rubiks, int type);
+void BACK_anticlockwise(char ***rubiks, int type);
+void UP_anticlockwise(char ***rubiks, int type);
+void DOWN_anticlockwise(char ***rubiks, int type);
+void RIGHT_anticlockwise(char ***rubiks, int type);
+void LEFT_anticlockwise(char ***rubiks, int type);
 
 void horizontal_rotation();
 void vertical_rotation();

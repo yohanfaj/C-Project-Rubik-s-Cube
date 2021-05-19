@@ -259,72 +259,23 @@ void fill_all_faces(char ***rubiks)
 }*/
 
 
+
 void scramble_rubiks(char ***rubiks)
 {
-    int i,j,k;
-    int random_case;
-    int cptR=8, cptB=8, cptG=8;
-    int cptW=8, cptY=8, cptO=8;
-    for (i = 0; i < FACE; i++)
-    {
-        for (j = 0; j < SIZE; j++)
-        {
-            for (k = 0; k < SIZE; k++)
-            {
-                random_case = rand()%6;
-                switch (random_case)
-                {
-                case 0:
-                    if (cptR>=0) {
-                        rubiks[i][j][k] = 'R';
-                        cptR--;
-                    }
-                    break;
-
-                case 1:
-                    if (cptB>=0) {
-                        rubiks[i][j][k] = 'B';
-                        cptB--;
-                    }
-                    break;
-
-                case 2:
-                    if (cptG>=0) {
-                        rubiks[i][j][k] = 'G';
-                        cptG--;
-                    }
-                    break;
-
-                case 3:
-                    if (cptY>=0) {
-                        rubiks[i][j][k] = 'Y';
-                        cptY--;
-                    }
-                    break;
-
-                case 4:
-                    if (cptO>=0) {
-                        rubiks[i][j][k] = 'O';
-                        cptO--;
-                    }
-                    break;
-
-                case 5:
-                    if (cptW>=0) {
-                        rubiks[i][j][k] = 'W';
-                        cptW--;
-                    }
-                    break;
-
-                default: 
-                    rubiks[i][j][k] = '-';
-                    break;
-                }
-            }
-        }
-    }
+    init_rubiks(rubiks);
+    FRONT_clockwise(rubiks, (rand()%5)+1);
+    BACK_clockwise(rubiks, (rand()%5)+1);
+    UP_clockwise(rubiks, (rand()%5)+1);
+    DOWN_clockwise(rubiks, (rand()%5)+1);
+    RIGHT_clockwise(rubiks, (rand()%5)+1);
+    LEFT_clockwise(rubiks, (rand()%5)+1);
+    FRONT_anticlockwise(rubiks, (rand()%5)+1);
+    BACK_anticlockwise(rubiks, (rand()%5)+1);
+    UP_anticlockwise(rubiks, (rand()%5)+1);
+    DOWN_anticlockwise(rubiks, (rand()%5)+1);
+    RIGHT_anticlockwise(rubiks, (rand()%5)+1);
+    LEFT_anticlockwise(rubiks, (rand()%5)+1);
 }
-
 
 void display_rubiks(char ***rubiks)
 {
