@@ -39,7 +39,7 @@ void main(void)
 
             case 3:
                 printf("Please fill the cube with the following letters: R for RED, B for BLUE, G for GREEN, Y for YELLOW, O for ORANGE or W for WHITE: \n");
-                fill_face(rubiks);
+                fill_all_faces(rubiks);
                 printf("Here is your custom rubiks cube: \n");
                 display_rubiks(rubiks);
 

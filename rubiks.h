@@ -29,8 +29,8 @@ const char* index_to_side(int i);
 char*** create_rubiks();
 void init_rubiks(char ***rubiks);
 void display_rubiks(char ***rubiks);
-void blank_rubiks();
-void fill_rubiks();
+void blank_rubiks(char *** rubiks);
+void fill_all_faces(char *** rubiks);
 void scramble_rubiks();
 void free_rubiks(char ***rubiks);
 
