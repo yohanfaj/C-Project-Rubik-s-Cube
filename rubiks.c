@@ -550,6 +550,30 @@ void UP_anticlockwise(char ***rubiks, int type){
     }
 }
 
+void DOWN_anticlockwise(char ***rubiks, int type){
+    int i, cpt;
+    char save1[3], save2[3];
+    for(cpt=0;cpt<type;cpt++){
+        for(i=0;i<SIZE;i++){
+            save1[i]=rubiks[side_to_index("DOWN")][0][i];
+            save2[i]=rubiks[side_to_index("DOWN")][i][2];
+        }
+        for(i=0;i<SIZE;i++){
+            rubiks[side_to_index("DOWN")][i][2]=rubiks[side_to_index("DOWN")][2][2-i];
+            rubiks[side_to_index("DOWN")][2][2-i]=rubiks[side_to_index("DOWN")][0][2-i];
+            rubiks[side_to_index("DOWN")][0][2-i]=save1[i];
+            rubiks[side_to_index("DOWN")][0][i]=save2[i];
+        }
+        for(i=0;i<SIZE;i++){
+            save1[i]=rubiks[side_to_index("LEFT")][2][i];
+            rubiks[side_to_index("LEFT")][2][i]=rubiks[side_to_index("FRONT")][2][i];
+            rubiks[side_to_index("FRONT")][2][i]=rubiks[side_to_index("RIGHT")][2][i];
+            rubiks[side_to_index("RIGHT")][2][i]=rubiks[side_to_index("BACK")][2][i];
+            rubiks[side_to_index("LEFT")][2][i]=save1[i];
+        }
+    }
+}
+
 
 void text_color(int color) {
     static int BACKGROUND;
