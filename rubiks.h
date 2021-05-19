@@ -38,7 +38,7 @@ void free_rubiks(char ***rubiks);
 /* MOVEMENT FUNCTIONS */
 void FRONT_clockwise();
 void BACK_clockwise();
-void UP_cloxkwise();
+void UP_clockwise();
 void DOWN_clockwise();
 void RIGHT_clockwise();
 void LEFT_clockwise();

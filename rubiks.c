@@ -316,6 +316,30 @@ void BACK_clockwise(char ***rubiks, int type){
     }
 }
 
+void UP_clockwise(char ***rubiks, int type){
+    int i, cpt;
+    char save1[3], save2[3];
+    for(cpt=0;cpt<type;cpt++){
+        for(i=0;i<SIZE;i++){
+            save1[i]=rubiks[side_to_index("UP")][0][i];
+            save2[i]=rubiks[side_to_index("UP")][i][2];
+        }
+        for(i=0;i<SIZE;i++){
+            rubiks[side_to_index("UP")][0][i]=rubiks[side_to_index("UP")][2-i][0];
+            rubiks[side_to_index("UP")][2-i][0]=rubiks[side_to_index("UP")][2][2-i];
+            rubiks[side_to_index("UP")][2][2-i]=save2[i];
+            rubiks[side_to_index("UP")][i][2]=save1[i];
+        }
+        for(i=0;i<SIZE;i++){
+            save1[i]=rubiks[side_to_index("LEFT")][0][i];
+            rubiks[side_to_index("LEFT")][0][i]=rubiks[side_to_index("FRONT")][0][i];
+            rubiks[side_to_index("FRONT")][0][i]=rubiks[side_to_index("RIGHT")][0][i];
+            rubiks[side_to_index("RIGHT")][0][i]=rubiks[side_to_index("BACK")][0][i];
+            rubiks[side_to_index("BACK")][0][i]=save1[i];
+        }
+    }
+}
+
 
 void text_color(int color) {
     static int BACKGROUND;
