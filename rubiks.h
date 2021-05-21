@@ -21,6 +21,7 @@ enum T_COLOR{RED_CASE=12,BLUE_CASE=9,GREEN_CASE=2,WHITE_CASE=15,YELLOW_CASE=14,O
 /* ENUM TYPE FUNCTIONS */
 
 enum T_COLOR select_color(char color);
+char index_to_color(int i);
 enum T_SIDE side_to_index(const char* side);
 const char* index_to_side(int i);
 
@@ -30,9 +31,13 @@ char*** create_rubiks();
 void init_rubiks(char ***rubiks);
 void display_rubiks(char ***rubiks);
 void blank_rubiks(char *** rubiks);
-void fill_all_faces(char *** rubiks);
-void scramble_rubiks();
+void scramble_rubiks(char ***rubiks);
 void free_rubiks(char ***rubiks);
+
+int get_cpt_color(char ***rubiks);
+int check_comb_centers(char ***rubiks);
+int check_comb_corners(char ***rubiks);
+void fill_all_faces(char *** rubiks);
 
 
 /* MOVEMENT FUNCTIONS */

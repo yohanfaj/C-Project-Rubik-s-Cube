@@ -40,6 +40,32 @@ enum T_COLOR select_color(char color)
     }
 }
 
+char index_to_color(int i)
+{
+    switch (i)
+    {
+    case 0:
+        return 'W';
+        break;
+    case 1: 
+        return 'O';
+        break;
+    case 2:
+        return 'G';
+        break;
+    case 3:
+        return 'R';
+        break;
+    case 4:
+        return 'B';
+        break;
+    case 5;
+        return 'Y';
+        break;
+    default: 
+        break;
+    }
+}
 
 enum T_SIDE side_to_index(const char* side)
 {
@@ -174,12 +200,59 @@ void init_rubiks(char ***rubiks)
 }
  
 
+int get_cpt_color(char ***rubiks)
+{
+    int i,j,k;
+    int cpt[10];
+    for (i = 0; i < FACE; i++)
+    {
+        for (j = 0; j < SIZE; j++)
+        {
+            for (k = 0; k < SIZE; k++)
+            {
+                if (rubiks[i][j][k] == 'R')
+                    cpt[0]++;
+                else if (rubiks[i][j][k] == 'B')
+                    cpt[1]++;
+                else if(rubiks[i][j][k] == 'G')
+                    cpt[2]++;
+                else if (rubiks[i][j][k] == 'Y')
+                    cpt[3]++;
+                else if (rubiks[i][j][k] == 'O')
+                    cpt[4]++;
+                else if (rubiks[i][j][k] == 'W')
+                    cpt[5]++
+            } 
+        }  
+    }
+}
+
+
+int check_comb_centers(char ***rubiks)
+{
+    int i, check=1;
+    if (rubiks[i][1][1] == rubiks[i][0][1] || rubiks[i][1][1] == rubiks[i][2][1] 
+    || rubiks[i][1][1] == rubiks[i][1][0] || rubiks[i][1][1] == rubiks[i][1][2] || rubiks[i][1][1] != index_to_color(i))
+        check = 0;
+    return check;
+}
+
+int check_comb_corners(char ***rubiks)
+{
+    int i,j,k, check=1;
+    if (/*condition*/)
+        check=0;
+    return check;
+}
+
+
 
 void fill_all_faces(char ***rubiks)
 {
     int i,j,k;
-    int cptR=8, cptB=8, cptG=8;
-    int cptW=8, cptY=8, cptO=8;
+    int cpt[] = {8, 8, 8, 8, 8, 8}, index;
+    // {cptR, cptB, cptG, cptY, cpt0, cptW};
+    blank_rubiks(rubiks);
     for (i = 0; i < FACE; i++)
     {
         printf("Face: %s\n", index_to_side(i));
@@ -192,51 +265,57 @@ void fill_all_faces(char ***rubiks)
                 switch (rubiks[i][j][k])
                 {
                 case 'R':
-                    if (cptR>=0)
-                        cptR--;
+                    index = 0;
+                    if (cpt[index]>=0)
+                        cpt[index]--;
                     else
                         rubiks[i][j][k] = '-';
-                        cptR=0;
+                        cpt[index]=0;
                     break;
 
                 case 'B':
-                    if (cptB>=0)
-                        cptB--;
+                    index = 1;
+                    if (cpt[index]>=0)
+                        cpt[index]--;
                     else
                         rubiks[i][j][k] = '-';
-                        cptB=0;
+                        cpt[index]=0;
                     break;
 
                 case 'G':
-                    if (cptG>=0)
-                        cptG--;
+                    index = 2;
+                    if (cpt[index]>=0)
+                        cpt[index]--;
                     else
                         rubiks[i][j][k] = '-';
-                        cptG=0;
+                        cpt[index]=0;
                     break;
 
                 case 'Y':
-                    if (cptY>=0)
-                        cptY--;
+                    index = 3;
+                    if (cpt[index]>=0)
+                        cpt[index]--;
                     else
                         rubiks[i][j][k] = '-';
-                        cptY=0;
+                        cpt[index]=0;
                     break;
 
                 case 'O':
-                    if (cptO>=0)
-                        cptO--;
+                    index = 4;
+                    if (cpt[index]>=0)
+                        cpt[index]--;
                     else
                         rubiks[i][j][k] = '-';
-                        cptO=0;
+                        cpt[index]=0;
                     break;
 
                 case 'W':
-                    if (cptW>=0)
-                        cptW--;
+                    index = 5;
+                    if (cpt[index]>=0)
+                        cpt[index]--;
                     else
                         rubiks[i][j][k] = '-';
-                        cptW=0;
+                        cpt[index]=0;
                     break;
 
                 default:
@@ -247,16 +326,22 @@ void fill_all_faces(char ***rubiks)
             printf("\n");
         }
         printf("\nCOLOR CASES REMAINING: \n");
-        printf("RED: %d -- BLUE: %d -- GREEN: %d\n", cptR, cptB, cptG);
-        printf("YELLOW: %d -- ORANGE: %d -- WHITE: %d\n\n", cptY, cptO, cptW);
+        printf("RED: %d -- BLUE: %d -- GREEN: %d\n", cpt[0], cpt[1], cpt[2]);
+        printf("YELLOW: %d -- ORANGE: %d -- WHITE: %d\n\n", cpt[3], cpt[4], cpt[5]);
     }
 }
 
-/*fill_user_face(char ***rubiks)
+
+fill_user_face(char ***rubiks)
 {
     int i,j,k;
+    get_cpt_color(rubiks);
+    printf("\nCOLOR CASES REMAINING: \n");
+    printf("RED: %d -- BLUE: %d -- GREEN: %d\n", cpt[0], cpt[1], cpt[2]);
+    printf("YELLOW: %d -- ORANGE: %d -- WHITE: %d\n\n", cpt[3], cpt[4], cpt[5]);
+
     printf("Which face ?\n");
-}*/
+}
 
 
 
