@@ -63,7 +63,7 @@ void DOWN_anticlockwise(char ***rubiks, int type);
 void RIGHT_anticlockwise(char ***rubiks, int type);
 void LEFT_anticlockwise(char ***rubiks, int type);
 
-void horizontal_rotation();
+void horizontal_rotation(char ***rubiks);
 void vertical_rotation();
 int move_rubiks();
 

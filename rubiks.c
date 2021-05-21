@@ -59,7 +59,7 @@ char index_to_color(int i)
     case 4:
         return 'B';
         break;
-    case 5;
+    case 5:
         return 'Y';
         break;
     default: 
@@ -312,7 +312,7 @@ int get_cpt_color(char ***rubiks)
                 else if (rubiks[i][j][k] == 'O')
                     cpt[4]++;
                 else if (rubiks[i][j][k] == 'W')
-                    cpt[5]++
+                    cpt[5]++;
             } 
         }  
     }
@@ -331,13 +331,13 @@ int check_comb_centers(char ***rubiks)
 int check_comb_corners(char ***rubiks)
 {
     int i,j,k, check=1;
-    if (/*condition*/)
+    /*if (condition)
         check=0;
-    return check;
+    return check;*/
 }
 
 
-
+/*
 void switch_color_input(char c)
 {
     int index;
@@ -408,6 +408,7 @@ void switch_color_input(char c)
         break;
     }
 }
+*/
 
 void switch_two_cells(char c1, char c2)
 {
@@ -433,7 +434,7 @@ void fill_all_cube(char ***rubiks)
             {
                 printf("Line %d - Cell %d: ", j, k);
                 scanf(" %c", &(rubiks[i][j][k]));
-                switch_color_input(rubiks[i][j][k]);
+                /*switch_color_input(rubiks[i][j][k]);*/
             }
             printf("\n");
         }
@@ -443,7 +444,7 @@ void fill_all_cube(char ***rubiks)
     }
 }
 
-
+/*
 void fill_user_face(char ***rubiks)
 {
     int i,j;
@@ -465,8 +466,8 @@ void fill_user_face(char ***rubiks)
         }
     }
 } 
-
-
+*/
+/*
 void fill_user_cell(char ***rubiks)
 {
     int i,j;
@@ -485,9 +486,9 @@ void fill_user_cell(char ***rubiks)
     scanf(" %c", &(rubiks[side_to_index(face)][i][j]));
     switch_color_input(rubiks[side_to_index(face)][i][j]);
 }
+*/
 
-
-
+/*
 void fill_menu(char ***rubiks)
 {
     int i,j,k, op;
@@ -575,7 +576,7 @@ void fill_menu(char ***rubiks)
         break;
     }
 }
-
+*/
 
 
 /* MOVEMENT FUNCTIONS */
@@ -870,6 +871,47 @@ void LEFT_anticlockwise(char ***rubiks, int type){
     }
 }
 
+void horizontal_rotation(char ***rubiks){
+    int save, i, j;
+    for(i=0;i<3;i++){
+        for(j=0;j<3;j++){
+            save = rubiks[side_to_index("LEFT")][i][j];
+            rubiks[side_to_index("LEFT")][i][j]=rubiks[side_to_index("RIGHT")][i][j];
+            rubiks[side_to_index("RIGHT")][i][j]=save;
+        }
+    }
+    for(i=0;i<3;i++){
+        for(j=0;j<3;j++){
+            save = rubiks[side_to_index("FRONT")][i][j];
+            rubiks[side_to_index("FRONT")][i][j]=rubiks[side_to_index("BACK")][i][j];
+            rubiks[side_to_index("BACK")][i][j]=save;
+        }
+    }
+    for(i=0;i<2;i++){
+        save=rubiks[side_to_index("UP")][0][i];
+        rubiks[side_to_index("UP")][0][i]=rubiks[side_to_index("UP")][2][2-i];
+        rubiks[side_to_index("UP")][2][2-i]=save;
+        save = rubiks[side_to_index("UP")][i][2];
+        rubiks[side_to_index("UP")][i][2] = rubiks[side_to_index("UP")][2-i][0];
+        rubiks[side_to_index("UP")][2-i][0] = save;
+    }
+    for(i=0;i<2;i++){
+        save=rubiks[side_to_index("UP")][0][i];
+        rubiks[side_to_index("UP")][0][i]=rubiks[side_to_index("UP")][2][2-i];
+        rubiks[side_to_index("UP")][2][2-i]=save;
+        save = rubiks[side_to_index("UP")][i][2];
+        rubiks[side_to_index("UP")][i][2] = rubiks[side_to_index("UP")][2-i][0];
+        rubiks[side_to_index("UP")][2-i][0] = save;
+    }
+    for(i=0;i<2;i++){
+        save=rubiks[side_to_index("DOWN")][0][i];
+        rubiks[side_to_index("DOWN")][0][i]=rubiks[side_to_index("DOWN")][2][2-i];
+        rubiks[side_to_index("DOWN")][2][2-i]=save;
+        save = rubiks[side_to_index("DOWN")][i][2];
+        rubiks[side_to_index("DOWN")][i][2] = rubiks[side_to_index("DOWN")][2-i][0];
+        rubiks[side_to_index("DOWN")][2-i][0] = save;
+    }
+}
 
 void text_color(int color) {
     static int BACKGROUND;
