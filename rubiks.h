@@ -15,7 +15,7 @@
 enum T_SIDE {UP,LEFT,FRONT,RIGHT,BACK,DOWN};
 
 
-enum T_COLOR{RED_CASE=12,BLUE_CASE=9,GREEN_CASE=2,WHITE_CASE=15,YELLOW_CASE=14,ORANGE_CASE=4,LG_CASE=7};
+enum T_COLOR{RED_CELL=12,BLUE_CELL=9,GREEN_CELL=2,WHITE_CELL=15,YELLOW_CELL=14,ORANGE_CELL=4,LG_CELL=7};
 
 
 /* ENUM TYPE FUNCTIONS */
@@ -34,10 +34,18 @@ void blank_rubiks(char *** rubiks);
 void scramble_rubiks(char ***rubiks);
 void free_rubiks(char ***rubiks);
 
+
+/* FILLING THE CUBE FUNCTIONS */
 int get_cpt_color(char ***rubiks);
 int check_comb_centers(char ***rubiks);
 int check_comb_corners(char ***rubiks);
-void fill_all_faces(char *** rubiks);
+void switch_color_input(char c);
+void switch_two_cells(char c1, char c2);
+void fill_all_cube(char *** rubiks);
+void fill_user_face(char ***rubiks);
+void fill_user_cell(char ***rubiks);
+void fill_menu(char ***rubiks);
+
 
 
 /* MOVEMENT FUNCTIONS */

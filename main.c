@@ -18,7 +18,7 @@ void main(void)
     {
         do
         {
-            printf("\nWhat do you want to do ? \nPress 1 to display a blank cube, 2 to initialize it, 3 to custom it, 4 to scramble it or 0 to quit: ");
+            printf("\nWhat do you want to do ? \nPress 1 to display a blank cube, 2 to initialize it, 3 to fill it manually, 4 to scramble it or 0 to quit: ");
             scanf("%d", &op);
         } while (op < 0 && op >3);
         printf("\n");
@@ -38,9 +38,7 @@ void main(void)
                 break;
 
             case 3:
-                printf("Please fill the cube with the following CAPITAL letters: R for RED, B for BLUE, G for GREEN, Y for YELLOW, O for ORANGE or W for WHITE: \n");
-                fill_all_faces(rubiks);
-                printf("Here is your custom rubiks cube: \n");
+                fill_menu(rubiks);
                 display_rubiks(rubiks);
 
             case 4:
