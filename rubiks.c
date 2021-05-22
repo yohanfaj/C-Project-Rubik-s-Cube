@@ -330,7 +330,19 @@ int check_comb_centers(char ***rubiks)
 int check_comb_corners(char ***rubiks)
 {
     int i,j,k, check=1;
-    if (rubiks[side_to_index("UP")][2][0]==rubiks[side_to_index("LEFT")][0][2] ||
+    if (rubiks[side_to_index("LEFT")][0][1]==rubiks[side_to_index("UP")][1][0] ||
+    rubiks[side_to_index("LEFT")][1][0]==rubiks[side_to_index("BACK")][1][2] ||
+    rubiks[side_to_index("LEFT")][2][1]==rubiks[side_to_index("DOWN")][1][0] ||
+    rubiks[side_to_index("LEFT")][1][2]==rubiks[side_to_index("FRONT")][1][0] ||
+    rubiks[side_to_index("UP")][0][1]==rubiks[side_to_index("BACK")][0][1] ||
+    rubiks[side_to_index("UP")][2][1]==rubiks[side_to_index("FRONT")][0][1] ||
+    rubiks[side_to_index("UP")][1][2]==rubiks[side_to_index("RIGHT")][0][1] ||
+    rubiks[side_to_index("FRONT")][2][1]==rubiks[side_to_index("DOWN")][0][1] ||
+    rubiks[side_to_index("FRONT")][1][2]==rubiks[side_to_index("RIGHT")][1][0] ||
+    rubiks[side_to_index("DOWN")][1][2]==rubiks[side_to_index("RIGHT")][2][1] ||
+    rubiks[side_to_index("DOWN")][2][1]==rubiks[side_to_index("BACK")][2][1] ||
+    rubiks[side_to_index("RIGHT")][1][2]==rubiks[side_to_index("BACK")][1][0] ||
+    rubiks[side_to_index("UP")][2][0]==rubiks[side_to_index("LEFT")][0][2] ||
     rubiks[side_to_index("LEFT")][0][2]==rubiks[side_to_index("FRONT")][0][0] ||
     rubiks[side_to_index("FRONT")][0][0]==rubiks[side_to_index("UP")][2][0] ||
     rubiks[side_to_index("UP")][2][2]==rubiks[side_to_index("FRONT")][0][2] ||
@@ -920,14 +932,6 @@ void horizontal_rotation(char ***rubiks){
         rubiks[side_to_index("UP")][2-i][0] = save;
     }
     for(i=0;i<2;i++){
-        save=rubiks[side_to_index("UP")][0][i];
-        rubiks[side_to_index("UP")][0][i]=rubiks[side_to_index("UP")][2][2-i];
-        rubiks[side_to_index("UP")][2][2-i]=save;
-        save = rubiks[side_to_index("UP")][i][2];
-        rubiks[side_to_index("UP")][i][2] = rubiks[side_to_index("UP")][2-i][0];
-        rubiks[side_to_index("UP")][2-i][0] = save;
-    }
-    for(i=0;i<2;i++){
         save=rubiks[side_to_index("DOWN")][0][i];
         rubiks[side_to_index("DOWN")][0][i]=rubiks[side_to_index("DOWN")][2][2-i];
         rubiks[side_to_index("DOWN")][2][2-i]=save;
@@ -940,14 +944,14 @@ void horizontal_rotation(char ***rubiks){
 void vertical_rotation(char ***rubiks){
     int i, save, j;
     for(i=0;i<SIZE;i++){
-        for(j=0;j<2;j++){
+        for(j=0;j<SIZE;j++){
             save = rubiks[side_to_index("UP")][i][j];
             rubiks[side_to_index("UP")][i][j]=rubiks[side_to_index("DOWN")][i][j];
             rubiks[side_to_index("DOWN")][i][j]=save;
         }
     }
     for(i=0;i<SIZE;i++){
-        for(j=0;j<2;j++){
+        for(j=0;j<SIZE;j++){
             save = rubiks[side_to_index("FRONT")][i][j];
             rubiks[side_to_index("FRONT")][i][j]=rubiks[side_to_index("BACK")][2-i][2-j];
             rubiks[side_to_index("BACK")][2-i][2-j]=save;
