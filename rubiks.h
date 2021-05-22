@@ -38,7 +38,7 @@ void free_rubiks(char ***rubiks);
 int get_cpt_color(char ***rubiks);
 int check_comb_centers(char ***rubiks);
 int check_comb_corners(char ***rubiks);
-void switch_color_input(char c);
+void switch_color_input(char c, int cpt[]);
 void switch_two_cells(char c1, char c2);
 void fill_all_cube(char *** rubiks);
 void fill_user_face(char ***rubiks);

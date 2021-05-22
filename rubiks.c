@@ -337,14 +337,14 @@ int check_comb_corners(char ***rubiks)
 
 
 
-void switch_color_input(char c)
+void switch_color_input(char c, int cpt[])
 {
-    int index, cpt[10];
+    int index;
     switch (c)
     {
     case 'R':
         index = 0;
-        if (cpt[index]>=0)
+        if (cpt[index]>0)
                 cpt[index]--;
         else {
             c = '-';
@@ -354,7 +354,7 @@ void switch_color_input(char c)
 
     case 'B':
         index = 1;
-        if (cpt[index]>=0)
+        if (cpt[index]>0)
             cpt[index]--;
         else {
             c = '-';
@@ -364,7 +364,7 @@ void switch_color_input(char c)
 
     case 'G':
         index = 2;
-        if (cpt[index]>=0)
+        if (cpt[index]>0)
             cpt[index]--;
         else {
             c = '-';
@@ -374,7 +374,7 @@ void switch_color_input(char c)
 
     case 'Y':
         index = 3;
-        if (cpt[index]>=0)
+        if (cpt[index]>0)
             cpt[index]--;
         else {
             c = '-';
@@ -384,7 +384,7 @@ void switch_color_input(char c)
 
     case 'O':
         index = 4;
-        if (cpt[index]>=0)
+        if (cpt[index]>0)
             cpt[index]--;
         else {
             c = '-';
@@ -394,7 +394,7 @@ void switch_color_input(char c)
 
     case 'W':
         index = 5;
-        if (cpt[index]>=0)
+        if (cpt[index]>0)
             cpt[index]--;
         else {
             c = '-';
@@ -433,7 +433,7 @@ void fill_all_cube(char ***rubiks)
             {
                 printf("Line %d - Cell %d: ", j, k);
                 scanf(" %c", &(rubiks[i][j][k]));
-                /*switch_color_input(rubiks[i][j][k]);*/
+                switch_color_input(rubiks[i][j][k], cpt);
             }
             printf("\n");
         }
@@ -462,7 +462,7 @@ void fill_user_face(char ***rubiks)
         {
             printf("Line %d - Cell %d: ", i, j);
             scanf(" %c", &(rubiks[side_to_index(face)][i][j]));
-            switch_color_input(rubiks[side_to_index(face)][i][j]);
+            switch_color_input(rubiks[side_to_index(face)][i][j], cpt);
         }
     }
 } 
@@ -485,7 +485,7 @@ void fill_user_cell(char ***rubiks)
 
     printf("Color input: ");
     scanf(" %c", &(rubiks[side_to_index(face)][i][j]));
-    switch_color_input(rubiks[side_to_index(face)][i][j]);
+    switch_color_input(rubiks[side_to_index(face)][i][j], cpt);
 }
 
 
@@ -509,7 +509,7 @@ void fill_menu(char ***rubiks)
     printf("\t 3) filling an specific cell.\n");
     do
     {
-        printf("Please, select one of these with 1, 2 or 3:");
+        printf("Please, select one of these with 1, 2 or 3: ");
         scanf("%d", &op);
     } while (op < 1 && op > 3);
 
