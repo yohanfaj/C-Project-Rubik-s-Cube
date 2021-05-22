@@ -47,6 +47,10 @@ void main(void)
                 display_rubiks(rubiks);
                 break;
             
+            case 5:
+                init_rubiks(rubiks);
+                horizontal_rotation(rubiks);
+                display_rubiks(rubiks);
             case 0:
                 printf("Thank you for using the simulator. Have a nice day !");
                 break;
