@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <windows.h>
-#include "conio.h"
 #include "rubiks.h"
 #define FACE 6
 #define SIZE 3
