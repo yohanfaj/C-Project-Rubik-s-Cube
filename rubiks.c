@@ -327,7 +327,7 @@ int check_comb_centers(char ***rubiks)
     return check;
 }
 
-int check_comb_corners(char ***rubiks)
+int check_comb(char ***rubiks)
 {
     int i,j,k, check=1;
     if (rubiks[side_to_index("LEFT")][0][1]==rubiks[side_to_index("UP")][1][0] ||
