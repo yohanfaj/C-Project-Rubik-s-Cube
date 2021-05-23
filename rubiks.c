@@ -327,7 +327,7 @@ int check_comb_centers(char ***rubiks)
     return check;
 }
 
-int check_comb(char ***rubiks)
+int check_comb_corners(char ***rubiks)
 {
     int i,j,k, check=1;
     if (rubiks[side_to_index("LEFT")][0][1]==rubiks[side_to_index("UP")][1][0] ||
@@ -528,25 +528,11 @@ void fill_user_cell(char ***rubiks)
 void fill_menu(char ***rubiks)
 {
     int i,j,k, op;
-    printf("PAY ATTENTION !!! there are several conditions to follow in order to fill the cube correctly: \n");
-    printf("\t 1) The center cell of the cube must always be of the same color:\n");
-    printf("\t\t UP=WHITE, LEFT=ORANGE, FRONT=GREEN,\n");
-    printf("\t\t RIGHT=RED, BACK=BLUE, DOWN=YELLOW.\n");
-    printf("\t 2) Two cells adjacent to the center cell must be of different colors.\n");
-    printf("\t 3) Two adjacent corners must be of different colors.\n");
-    printf("\n Also, please fill the cube with the following CAPITAL letters:\n");
-    printf("\t R for RED, B for BLUE, G for GREEN,"); 
-    printf("\t Y for YELLOW, O for ORANGE or W for WHITE.");
-
-    printf("\n\n Now, you have the choice between three filling methods:\n");
-    printf("\t 1) filling entirely a blank cube,\n");
-    printf("\t 2) filling an entire specific face,\n");
-    printf("\t 3) filling an specific cell.\n");
     do
     {
         printf("Please, select one of these with 1, 2 or 3: ");
         scanf("%d", &op);
-    } while (op < 1 && op > 3);
+    } while (op < 1 || op > 3);
 
     switch (op)
     {
@@ -583,7 +569,7 @@ void fill_menu(char ***rubiks)
                 printf("ATTENTION !!! there is a problem with the corners of your cube."); 
                 printf("Please take into account the conditions of filling !\n");
             }
-        } while (check_comb_centers(rubiks) == 0 && check_comb_corners(rubiks) == 0);
+        } while (check_comb_centers(rubiks) == 0 || check_comb_corners(rubiks) == 0);
         printf("Your new cube is: \n");
         display_rubiks(rubiks);
         break;
@@ -602,7 +588,7 @@ void fill_menu(char ***rubiks)
                 printf("ATTENTION !!! there is a problem with the corners of your cube."); 
                 printf("Please take into account the conditions of filling !\n");
             }
-        } while (check_comb_centers(rubiks) == 0 && check_comb_corners(rubiks) == 0);
+        } while (check_comb_centers(rubiks) == 0 || check_comb_corners(rubiks) == 0);
         printf("Your new cube is: \n");
         display_rubiks(rubiks);
         break;
