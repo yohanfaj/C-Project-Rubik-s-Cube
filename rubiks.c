@@ -327,7 +327,7 @@ int check_comb_centers(char ***rubiks)
     return check;
 }
 
-int check_comb(char ***rubiks)
+int check_comb_corners(char ***rubiks)
 {
     int i,j,k, check=1;
     if (rubiks[side_to_index("LEFT")][0][1]==rubiks[side_to_index("UP")][1][0] ||
@@ -528,25 +528,11 @@ void fill_user_cell(char ***rubiks)
 void fill_menu(char ***rubiks)
 {
     int i,j,k, op;
-    printf("PAY ATTENTION !!! there are several conditions to follow in order to fill the cube correctly: \n");
-    printf("\t 1) The center cell of the cube must always be of the same color:\n");
-    printf("\t\t UP=WHITE, LEFT=ORANGE, FRONT=GREEN,\n");
-    printf("\t\t RIGHT=RED, BACK=BLUE, DOWN=YELLOW.\n");
-    printf("\t 2) Two cells adjacent to the center cell must be of different colors.\n");
-    printf("\t 3) Two adjacent corners must be of different colors.\n");
-    printf("\n Also, please fill the cube with the following CAPITAL letters:\n");
-    printf("\t R for RED, B for BLUE, G for GREEN,"); 
-    printf("\t Y for YELLOW, O for ORANGE or W for WHITE.");
-
-    printf("\n\n Now, you have the choice between three filling methods:\n");
-    printf("\t 1) filling entirely a blank cube,\n");
-    printf("\t 2) filling an entire specific face,\n");
-    printf("\t 3) filling an specific cell.\n");
     do
     {
         printf("Please, select one of these with 1, 2 or 3: ");
         scanf("%d", &op);
-    } while (op < 1 && op > 3);
+    } while (op < 1 || op > 3);
 
     switch (op)
     {
@@ -583,7 +569,7 @@ void fill_menu(char ***rubiks)
                 printf("ATTENTION !!! there is a problem with the corners of your cube."); 
                 printf("Please take into account the conditions of filling !\n");
             }
-        } while (check_comb_centers(rubiks) == 0 && check_comb_corners(rubiks) == 0);
+        } while (check_comb_centers(rubiks) == 0 || check_comb_corners(rubiks) == 0);
         printf("Your new cube is: \n");
         display_rubiks(rubiks);
         break;
@@ -602,7 +588,7 @@ void fill_menu(char ***rubiks)
                 printf("ATTENTION !!! there is a problem with the corners of your cube."); 
                 printf("Please take into account the conditions of filling !\n");
             }
-        } while (check_comb_centers(rubiks) == 0 && check_comb_corners(rubiks) == 0);
+        } while (check_comb_centers(rubiks) == 0 || check_comb_corners(rubiks) == 0);
         printf("Your new cube is: \n");
         display_rubiks(rubiks);
         break;
@@ -615,7 +601,127 @@ void fill_menu(char ***rubiks)
 
 
 
+void move_rubiks(char ***rubiks)
+{
+    int type, op1, op_cube, op_clock, op_side;
+    do
+    {
+        printf("Press 1 to move the entire cube, or 2 for a specific face: ");
+        scanf("%d", &op1);
+    } while (op1 < 1 || op1 > 2);
+
+    switch (op1)
+    {
+    case 1:
+        do
+        {
+            printf("\nHORIZONTAL or VERTICAL Rotation ? Press 1 or 2: ");
+            scanf("%d", &op_cube);
+        } while (op_cube < 1 || op_cube > 2);
+        printf("\n");
+        switch (op_cube)
+        {
+        case 1:
+            horizontal_rotation(rubiks);
+            break;
+        case 2:
+            vertical_rotation(rubiks);
+        default:
+            break;
+        }
+        display_rubiks(rubiks);
+        break;
+    
+    case 2:
+        
+        do
+        {
+            printf("\nCLOCKWISE or ANTICLOCKWISE rotation ? Press 1 or 2: ");
+            scanf("%d", &op_clock);
+        } while (op_clock < 1 || op_clock > 2);
+        printf("\n");
+
+         do
+        {
+            printf("\nHow many rotations ? 1 for a quarter turn, 2 for a half turn, or 3 for three quarter turns: ");
+            scanf("%d", &type);
+        } while (type < 1 || type > 3);
+
+        printf("1: UP -- 2: LEFT -- 3: FRONT\n");
+        printf("4: RIGHT -- 5: BACK -- 6: DOWN\n");
+        do
+        {
+            printf("Enter the side on which you want to apply the rotation: ");
+        } while (op_side < 1 || op_side > 6);
+
+
+        switch (op_clock)
+        {
+        case 1:
+           switch (op_side)
+           {
+           case 1:
+               UP_clockwise(rubiks, type);
+               break;
+           case 2:
+                LEFT_clockwise(rubiks, type);
+                break;
+            case 3:
+                FRONT_clockwise(rubiks, type);
+                break;
+            case 4:
+                RIGHT_clockwise(rubiks, type);
+                break;
+            case 5:
+                BACK_clockwise(rubiks, type);
+                break;
+            case 6:
+                DOWN_clockwise(rubiks, type);
+                break;
+           default:
+               break;
+           }
+           display_rubiks(rubiks);
+           break;
+        
+        case 2:
+           switch (op_side)
+           {
+            case 1:
+               UP_anticlockwise(rubiks, type);
+               break;
+            case 2:
+                LEFT_anticlockwise(rubiks, type);
+                break;
+            case 3:
+                FRONT_anticlockwise(rubiks, type);
+                break;
+            case 4:
+                RIGHT_anticlockwise(rubiks, type);
+                break;
+            case 5:
+                BACK_anticlockwise(rubiks, type);
+                break;
+            case 6:
+                DOWN_anticlockwise(rubiks, type);
+                break;
+           default:
+               break;
+           }
+            display_rubiks(rubiks);
+            break;
+            
+        default:
+            break;
+        }     
+    default:
+        break;
+    }   
+}
+
+
 /* MOVEMENT FUNCTIONS */
+
 
 void FRONT_clockwise(char ***rubiks, int type)
 {
@@ -975,6 +1081,11 @@ void vertical_rotation(char ***rubiks){
     }
 }
 
+
+
+/* RESOLUTION FUNCTION */
+
+
 void perfect_cross(char ***rubiks){
     int i;
     for(i=0;i<2;i++){
@@ -1052,6 +1163,9 @@ void perfect_cross(char ***rubiks){
         BACK_clockwise(rubiks, 1);
     }
 }
+
+
+/* TEXT COLOR FUNCTION */
 
 void text_color(int color) {
     static int BACKGROUND;

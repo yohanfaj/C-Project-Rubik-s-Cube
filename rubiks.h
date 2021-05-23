@@ -63,13 +63,13 @@ void RIGHT_anticlockwise(char ***rubiks, int type);
 void LEFT_anticlockwise(char ***rubiks, int type);
 
 void horizontal_rotation(char ***rubiks);
-void vertical_rotation();
-int move_rubiks();
+void vertical_rotation(char *** rubiks);
+void move_rubiks(char ***rubiks);
 
-/* RESOLUTION */
+/* RESOLUTION FUNCTION */
 void perfect_cross(char ***rubiks);
 
-/* TEXT COLOR */
+/* TEXT COLOR FUNCTION */
 void text_color(int color);
 
 #endif
