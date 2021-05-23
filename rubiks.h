@@ -66,6 +66,9 @@ void horizontal_rotation(char ***rubiks);
 void vertical_rotation();
 int move_rubiks();
 
+/* RESOLUTION */
+void perfect_cross(char ***rubiks);
+
 /* TEXT COLOR */
 void text_color(int color);
 
