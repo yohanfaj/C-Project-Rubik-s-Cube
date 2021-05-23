@@ -17,9 +17,9 @@ void main(void)
     {
         do
         {
-            printf("\nWhat do you want to do ? \nPress 1 to display a blank cube, 2 to initialize it, 3 to scramble it, 4 to fill it manually or 0 to quit: ");
+            printf("\nWhat do you want to do ? \nPress 1 to display a blank cube, 2 to initialize it, 3 to scramble it, 4 to fill it manually, 5 to move the cube or 0 to quit: ");
             scanf("%d", &op);
-        } while (op < 0 || op >3);
+        } while (op < 0 || op > 6);
         printf("\n");
 
         switch (op)
@@ -40,6 +40,7 @@ void main(void)
                 scramble_rubiks(rubiks);
                 printf("Here is your scrambled cube: \n");
                 display_rubiks(rubiks);
+                break;
 
             case 4:
                 printf("PAY ATTENTION !!! there are several conditions to follow in order to fill the cube correctly: \n");
@@ -57,13 +58,12 @@ void main(void)
                 printf("\t 2) filling an entire specific face,\n");
                 printf("\t 3) filling an specific cell.\n");
                 fill_menu(rubiks);
-                display_rubiks(rubiks);
                 break;
             
             case 5:
-                init_rubiks(rubiks);
-                horizontal_rotation(rubiks);
-                display_rubiks(rubiks);
+                move_rubiks(rubiks);
+                break;
+
             case 0:
                 printf("Thank you for using the simulator. Have a nice day !");
                 break;
