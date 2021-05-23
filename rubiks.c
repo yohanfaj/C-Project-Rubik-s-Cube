@@ -273,6 +273,7 @@ void display_rubiks(char ***rubiks)
         printf("\n");
     }
     text_color(15);
+    printf("\n");
 }
 
 void blank_rubiks(char ***rubiks){
@@ -741,11 +742,11 @@ void FRONT_clockwise(char ***rubiks, int type)
     int i, cpt;
     char save1[3], save2[3];
     for(cpt=0;cpt<type;cpt++){
-        for(i=0;i<SIZE;i++){
+        for(i=0;i<2;i++){
             save1[i]=rubiks[side_to_index("FRONT")][0][i];
             save2[i]=rubiks[side_to_index("FRONT")][i][2];
         }
-        for(i=0;i<SIZE;i++){
+        for(i=0;i<2;i++){
             rubiks[side_to_index("FRONT")][0][i]=rubiks[side_to_index("FRONT")][2-i][0];
             rubiks[side_to_index("FRONT")][2-i][0]=rubiks[side_to_index("FRONT")][2][2-i];
             rubiks[side_to_index("FRONT")][2][2-i]=save2[i];
@@ -766,11 +767,11 @@ void BACK_clockwise(char ***rubiks, int type){
     int i, cpt;
     char save1[3], save2[3];
     for(cpt=0;cpt<type;cpt++){
-        for(i=0;i<SIZE;i++){
+        for(i=0;i<2;i++){
             save1[i]=rubiks[4][0][i];
             save2[i]=rubiks[4][i][2];
         }
-        for(i=0;i<SIZE;i++){
+        for(i=0;i<2;i++){
             rubiks[4][0][i]=rubiks[4][2-i][0];
             rubiks[4][2-i][0]=rubiks[4][2][2-i];
             rubiks[4][2][2-i]=save2[i];
@@ -790,11 +791,11 @@ void UP_clockwise(char ***rubiks, int type){
     int i, cpt;
     char save1[3], save2[3];
     for(cpt=0;cpt<type;cpt++){
-        for(i=0;i<SIZE;i++){
+        for(i=0;i<2;i++){
             save1[i]=rubiks[side_to_index("UP")][0][i];
             save2[i]=rubiks[side_to_index("UP")][i][2];
         }
-        for(i=0;i<SIZE;i++){
+        for(i=0;i<2;i++){
             rubiks[side_to_index("UP")][0][i]=rubiks[side_to_index("UP")][2-i][0];
             rubiks[side_to_index("UP")][2-i][0]=rubiks[side_to_index("UP")][2][2-i];
             rubiks[side_to_index("UP")][2][2-i]=save2[i];
@@ -814,11 +815,11 @@ void DOWN_clockwise(char ***rubiks, int type){
     int i, cpt;
     char save1[3], save2[3];
     for(cpt=0;cpt<type;cpt++){
-        for(i=0;i<SIZE;i++){
+        for(i=0;i<2;i++){
             save1[i]=rubiks[side_to_index("DOWN")][0][i];
             save2[i]=rubiks[side_to_index("DOWN")][i][2];
         }
-        for(i=0;i<SIZE;i++){
+        for(i=0;i<2;i++){
             rubiks[side_to_index("DOWN")][0][i]=rubiks[side_to_index("DOWN")][2-i][0];
             rubiks[side_to_index("DOWN")][2-i][0]=rubiks[side_to_index("DOWN")][2][2-i];
             rubiks[side_to_index("DOWN")][2][2-i]=save2[i];
@@ -838,11 +839,11 @@ void RIGHT_clockwise(char ***rubiks, int type){
     int i, cpt;
     char save1[3], save2[3];
     for(cpt=0;cpt<type;cpt++){
-        for(i=0;i<SIZE;i++){
+        for(i=0;i<2;i++){
             save1[i]=rubiks[side_to_index("RIGHT")][0][i];
             save2[i]=rubiks[side_to_index("RIGHT")][i][2];
         }
-        for(i=0;i<SIZE;i++){
+        for(i=0;i<2;i++){
             rubiks[side_to_index("RIGHT")][0][i]=rubiks[side_to_index("RIGHT")][2-i][0];
             rubiks[side_to_index("RIGHT")][2-i][0]=rubiks[side_to_index("RIGHT")][2][2-i];
             rubiks[side_to_index("RIGHT")][2][2-i]=save2[i];
@@ -860,13 +861,13 @@ void RIGHT_clockwise(char ***rubiks, int type){
 
 void LEFT_clockwise(char ***rubiks, int type){
     int i, cpt;
-    char save1[3], save2[3];
+    char save1[2], save2[2];
     for(cpt=0;cpt<type;cpt++){
-        for(i=0;i<SIZE;i++){
+        for(i=0;i<2;i++){
             save1[i]=rubiks[side_to_index("LEFT")][0][i];
             save2[i]=rubiks[side_to_index("LEFT")][i][2];
         }
-        for(i=0;i<SIZE;i++){
+        for(i=0;i<2;i++){
             rubiks[side_to_index("LEFT")][0][i]=rubiks[side_to_index("LEFT")][2-i][0];
             rubiks[side_to_index("LEFT")][2-i][0]=rubiks[side_to_index("LEFT")][2][2-i];
             rubiks[side_to_index("LEFT")][2][2-i]=save2[i];
@@ -886,14 +887,14 @@ void FRONT_anticlockwise(char ***rubiks, int type){
     int i, cpt;
     char save1[3], save2[3];
     for(cpt=0;cpt<type;cpt++){
-        for(i=0;i<SIZE;i++){
+        for(i=0;i<2;i++){
             save1[i]=rubiks[side_to_index("FRONT")][0][i];
             save2[i]=rubiks[side_to_index("FRONT")][i][2];
         }
-        for(i=0;i<SIZE;i++){
+        for(i=0;i<2;i++){
             rubiks[side_to_index("FRONT")][i][2]=rubiks[side_to_index("FRONT")][2][2-i];
-            rubiks[side_to_index("FRONT")][2][2-i]=rubiks[side_to_index("FRONT")][0][2-i];
-            rubiks[side_to_index("FRONT")][0][2-i]=save1[i];
+            rubiks[side_to_index("FRONT")][2][2-i]=rubiks[side_to_index("FRONT")][2-i][0];
+            rubiks[side_to_index("FRONT")][2-i][0]=save1[i];
             rubiks[side_to_index("FRONT")][0][i]=save2[i];
         }
         for(i=0;i<SIZE;i++){
@@ -910,14 +911,14 @@ void BACK_anticlockwise(char ***rubiks, int type){
     int i, cpt;
     char save1[3], save2[3];
     for(cpt=0;cpt<type;cpt++){
-        for(i=0;i<SIZE;i++){
+        for(i=0;i<2;i++){
             save1[i]=rubiks[side_to_index("BACK")][0][i];
             save2[i]=rubiks[side_to_index("BACK")][i][2];
         }
-        for(i=0;i<SIZE;i++){
+        for(i=0;i<2;i++){
             rubiks[side_to_index("BACK")][i][2]=rubiks[side_to_index("BACK")][2][2-i];
-            rubiks[side_to_index("BACK")][2][2-i]=rubiks[side_to_index("BACK")][0][2-i];
-            rubiks[side_to_index("BACK")][0][2-i]=save1[i];
+            rubiks[side_to_index("BACK")][2][2-i]=rubiks[side_to_index("BACK")][2-i][0];
+            rubiks[side_to_index("BACK")][2-i][0]=save1[i];
             rubiks[side_to_index("BACK")][0][i]=save2[i];
         }
         for(i=0;i<SIZE;i++){
@@ -934,14 +935,14 @@ void UP_anticlockwise(char ***rubiks, int type){
     int i, cpt;
     char save1[3], save2[3];
     for(cpt=0;cpt<type;cpt++){
-        for(i=0;i<SIZE;i++){
+        for(i=0;i<2;i++){
             save1[i]=rubiks[side_to_index("UP")][0][i];
             save2[i]=rubiks[side_to_index("UP")][i][2];
         }
-        for(i=0;i<SIZE;i++){
+        for(i=0;i<2;i++){
             rubiks[side_to_index("UP")][i][2]=rubiks[side_to_index("UP")][2][2-i];
-            rubiks[side_to_index("UP")][2][2-i]=rubiks[side_to_index("UP")][0][2-i];
-            rubiks[side_to_index("UP")][0][2-i]=save1[i];
+            rubiks[side_to_index("UP")][2][2-i]=rubiks[side_to_index("UP")][2-i][0];
+            rubiks[side_to_index("UP")][2-i][0]=save1[i];
             rubiks[side_to_index("UP")][0][i]=save2[i];
         }
         for(i=0;i<SIZE;i++){
@@ -958,14 +959,14 @@ void DOWN_anticlockwise(char ***rubiks, int type){
     int i, cpt;
     char save1[3], save2[3];
     for(cpt=0;cpt<type;cpt++){
-        for(i=0;i<SIZE;i++){
+        for(i=0;i<2;i++){
             save1[i]=rubiks[side_to_index("DOWN")][0][i];
             save2[i]=rubiks[side_to_index("DOWN")][i][2];
         }
-        for(i=0;i<SIZE;i++){
+        for(i=0;i<2;i++){
             rubiks[side_to_index("DOWN")][i][2]=rubiks[side_to_index("DOWN")][2][2-i];
-            rubiks[side_to_index("DOWN")][2][2-i]=rubiks[side_to_index("DOWN")][0][2-i];
-            rubiks[side_to_index("DOWN")][0][2-i]=save1[i];
+            rubiks[side_to_index("DOWN")][2][2-i]=rubiks[side_to_index("DOWN")][2-i][0];
+            rubiks[side_to_index("DOWN")][2-i][0]=save1[i];
             rubiks[side_to_index("DOWN")][0][i]=save2[i];
         }
         for(i=0;i<SIZE;i++){
@@ -982,14 +983,14 @@ void RIGHT_anticlockwise(char ***rubiks, int type){
     int i, cpt;
     char save1[3], save2[3];
     for(cpt=0;cpt<type;cpt++){
-        for(i=0;i<SIZE;i++){
+        for(i=0;i<2;i++){
             save1[i]=rubiks[side_to_index("RIGHT")][0][i];
             save2[i]=rubiks[side_to_index("RIGHT")][i][2];
         }
-        for(i=0;i<SIZE;i++){
+        for(i=0;i<2;i++){
             rubiks[side_to_index("RIGHT")][i][2]=rubiks[side_to_index("RIGHT")][2][2-i];
-            rubiks[side_to_index("RIGHT")][2][2-i]=rubiks[side_to_index("RIGHT")][0][2-i];
-            rubiks[side_to_index("RIGHT")][0][2-i]=save1[i];
+            rubiks[side_to_index("RIGHT")][2][2-i]=rubiks[side_to_index("RIGHT")][2-i][0];
+            rubiks[side_to_index("RIGHT")][2-i][0]=save1[i];
             rubiks[side_to_index("RIGHT")][0][i]=save2[i];
         }
         for(i=0;i<SIZE;i++){
@@ -1006,14 +1007,14 @@ void LEFT_anticlockwise(char ***rubiks, int type){
     int i, cpt;
     char save1[3], save2[3];
     for(cpt=0;cpt<type;cpt++){
-        for(i=0;i<SIZE;i++){
+        for(i=0;i<2;i++){
             save1[i]=rubiks[side_to_index("LEFT")][0][i];
             save2[i]=rubiks[side_to_index("LEFT")][i][2];
         }
-        for(i=0;i<SIZE;i++){
+        for(i=0;i<2;i++){
             rubiks[side_to_index("LEFT")][i][2]=rubiks[side_to_index("LEFT")][2][2-i];
-            rubiks[side_to_index("LEFT")][2][2-i]=rubiks[side_to_index("LEFT")][0][2-i];
-            rubiks[side_to_index("LEFT")][0][2-i]=save1[i];
+            rubiks[side_to_index("LEFT")][2][2-i]=rubiks[side_to_index("LEFT")][2-i][0];
+            rubiks[side_to_index("LEFT")][2-i][0]=save1[i];
             rubiks[side_to_index("LEFT")][0][i]=save2[i];
         }
         for(i=0;i<SIZE;i++){
