@@ -1088,80 +1088,82 @@ void vertical_rotation(char ***rubiks){
 
 void perfect_cross(char ***rubiks){
     int i;
-    for(i=0;i<2;i++){
-        if(rubiks[side_to_index("UP")][2][1]==rubiks[side_to_index("FRONT")][1][1] && rubiks[side_to_index("FRONT")][0][1]=='W'){
+    do{
+        for(i=0;i<2;i++){
+            if(rubiks[side_to_index("UP")][2][1]==rubiks[side_to_index("FRONT")][1][1] && rubiks[side_to_index("FRONT")][0][1]=='W'){
+                FRONT_clockwise(rubiks, 1);
+                UP_anticlockwise(rubiks, 1);
+                RIGHT_clockwise(rubiks, 1);
+                UP_clockwise(rubiks, 1);
+            }
+            if(rubiks[side_to_index("FRONT")][2][1]=='W' && rubiks[side_to_index("DOWN")][0][1]==rubiks[side_to_index("FRONT")][1][1]){
+                FRONT_anticlockwise(rubiks, 1);
+                RIGHT_anticlockwise(rubiks, 1);
+                DOWN_anticlockwise(rubiks, 1);
+                RIGHT_clockwise(rubiks, 1);
+                FRONT_anticlockwise(rubiks, 2);
+            }
+            if(rubiks[side_to_index("FRONT")][1][2]=='W' && rubiks[side_to_index("RIGHT")][1][0]==rubiks[side_to_index("FRONT")][1][1]){
+                RIGHT_anticlockwise(rubiks, 1);
+                DOWN_anticlockwise(rubiks, 1);
+                RIGHT_clockwise(rubiks, 1);
+                FRONT_anticlockwise(rubiks, 2);
+            }
+            if(rubiks[side_to_index("FRONT")][0][1]=='W' && rubiks[side_to_index("UP")][2][1]==rubiks[side_to_index("RIGHT")][1][1]){
+                FRONT_clockwise(rubiks, 1);
+                RIGHT_clockwise(rubiks, 1);
+            }
+            if(rubiks[side_to_index("UP")][1][2]==rubiks[side_to_index("LEFT")][1][1]&&rubiks[side_to_index("RIGHT")][0][1]=='W'){
+                RIGHT_anticlockwise(rubiks, 1);
+                FRONT_anticlockwise(rubiks, 1);
+                UP_clockwise(rubiks, 1);
+            }
+            if(rubiks[side_to_index("UP")][1][2]==rubiks[side_to_index("RIGHT")][1][1]&&rubiks[side_to_index("RIGHT")][0][1]==rubiks[side_to_index("UP")][1][2]){
+                RIGHT_clockwise(rubiks, 1);
+                UP_anticlockwise(rubiks, 1);
+                BACK_clockwise(rubiks, 1);
+                UP_clockwise(rubiks, 1);
+            }
+            if(rubiks[side_to_index("RIGHT")][2][1]=='W' && rubiks[side_to_index("DOWN")][1][2]==rubiks[side_to_index("RIGHT")][1][1]){
+                RIGHT_anticlockwise(rubiks, 1);
+                BACK_anticlockwise(rubiks, 1);
+                DOWN_anticlockwise(rubiks, 1);
+                BACK_clockwise(rubiks, 1);
+                RIGHT_anticlockwise(rubiks, 2);
+            }
+            if(rubiks[side_to_index("RIGHT")][1][2]=='W' && rubiks[side_to_index("BACK")][1][0]==rubiks[side_to_index("RIGHT")][1][1]){
+                BACK_anticlockwise(rubiks, 1);
+                DOWN_anticlockwise(rubiks, 1);
+                RIGHT_clockwise(rubiks, 1);
+                RIGHT_anticlockwise(rubiks, 2);
+            }
+            if(rubiks[side_to_index("RIGHT")][0][1]=='W' && rubiks[side_to_index("UP")][1][2]==rubiks[side_to_index("BACK")][1][1]){
+                RIGHT_clockwise(rubiks, 1);
+                BACK_clockwise(rubiks, 1);
+            }
+            if(rubiks[side_to_index("UP")][0][1]==rubiks[side_to_index("FRONT")][1][1]&&rubiks[side_to_index("BACK")][0][1]=='W'){
+                BACK_anticlockwise(rubiks, 1);
+                RIGHT_anticlockwise(rubiks, 1);
+                UP_clockwise(rubiks, 1);
+            }
+            horizontal_rotation(rubiks);
+        }
+        if((rubiks[side_to_index("UP")][0][1]==rubiks[side_to_index("UP")][1][0]==rubiks[side_to_index("UP")][1][2]==rubiks[side_to_index("UP")][2][1]=='W')&&(rubiks[side_to_index("LEFT")][0][1]!=rubiks[side_to_index("LEFT")][1][1]||rubiks[side_to_index("FRONT")][0][1]!=rubiks[side_to_index("FRONT")][1][1]||rubiks[side_to_index("RIGHT")][0][1]!=rubiks[side_to_index("RIGHT")][1][1]||rubiks[side_to_index("BACK")][0][1]!=rubiks[side_to_index("BACK")][1][1])){
+            UP_clockwise(rubiks, 1);
+        }
+        if(rubiks[side_to_index("DOWN")][0][1]=='W'){
             FRONT_clockwise(rubiks, 1);
-            UP_anticlockwise(rubiks, 1);
-            RIGHT_clockwise(rubiks, 1);
-            UP_clockwise(rubiks, 1);
         }
-        if(rubiks[side_to_index("FRONT")][2][1]=='W' && rubiks[side_to_index("DOWN")][0][1]==rubiks[side_to_index("FRONT")][1][1]){
-            FRONT_anticlockwise(rubiks, 1);
-            RIGHT_anticlockwise(rubiks, 1);
-            DOWN_anticlockwise(rubiks, 1);
-            RIGHT_clockwise(rubiks, 1);
-            FRONT_anticlockwise(rubiks, 2);
+        if(rubiks[side_to_index("DOWN")][1][0]=='W'){
+            LEFT_clockwise(rubiks, 1);
         }
-        if(rubiks[side_to_index("FRONT")][1][2]=='W' && rubiks[side_to_index("RIGHT")][1][0]==rubiks[side_to_index("FRONT")][1][1]){
-            RIGHT_anticlockwise(rubiks, 1);
-            DOWN_anticlockwise(rubiks, 1);
-            RIGHT_clockwise(rubiks, 1);
-            FRONT_anticlockwise(rubiks, 2);
-        }
-        if(rubiks[side_to_index("FRONT")][0][1]=='W' && rubiks[side_to_index("UP")][2][1]==rubiks[side_to_index("RIGHT")][1][1]){
-            FRONT_clockwise(rubiks, 1);
+        if(rubiks[side_to_index("DOWN")][1][2]=='W'){
             RIGHT_clockwise(rubiks, 1);
         }
-        if(rubiks[side_to_index("UP")][1][2]==rubiks[side_to_index("LEFT")][1][1]&&rubiks[side_to_index("RIGHT")][0][1]=='W'){
-            RIGHT_anticlockwise(rubiks, 1);
-            FRONT_anticlockwise(rubiks, 1);
-            UP_clockwise(rubiks, 1);
-        }
-        if(rubiks[side_to_index("UP")][1][2]==rubiks[side_to_index("RIGHT")][1][1]&&rubiks[side_to_index("RIGHT")][0][1]==rubiks[side_to_index("UP")][1][2]){
-            RIGHT_clockwise(rubiks, 1);
-            UP_anticlockwise(rubiks, 1);
-            BACK_clockwise(rubiks, 1);
-            UP_clockwise(rubiks, 1);
-        }
-        if(rubiks[side_to_index("RIGHT")][2][1]=='W' && rubiks[side_to_index("DOWN")][1][2]==rubiks[side_to_index("RIGHT")][1][1]){
-            RIGHT_anticlockwise(rubiks, 1);
-            BACK_anticlockwise(rubiks, 1);
-            DOWN_anticlockwise(rubiks, 1);
-            BACK_clockwise(rubiks, 1);
-            RIGHT_anticlockwise(rubiks, 2);
-        }
-        if(rubiks[side_to_index("RIGHT")][1][2]=='W' && rubiks[side_to_index("BACK")][1][0]==rubiks[side_to_index("RIGHT")][1][1]){
-            BACK_anticlockwise(rubiks, 1);
-            DOWN_anticlockwise(rubiks, 1);
-            RIGHT_clockwise(rubiks, 1);
-            RIGHT_anticlockwise(rubiks, 2);
-        }
-        if(rubiks[side_to_index("RIGHT")][0][1]=='W' && rubiks[side_to_index("UP")][1][2]==rubiks[side_to_index("BACK")][1][1]){
-            RIGHT_clockwise(rubiks, 1);
+        if(rubiks[side_to_index("DOWN")][2][1]=='W'){
             BACK_clockwise(rubiks, 1);
         }
-        if(rubiks[side_to_index("UP")][0][1]==rubiks[side_to_index("FRONT")][1][1]&&rubiks[side_to_index("BACK")][0][1]=='W'){
-            BACK_anticlockwise(rubiks, 1);
-            RIGHT_anticlockwise(rubiks, 1);
-            UP_clockwise(rubiks, 1);
-        }
-        horizontal_rotation(rubiks);
-    }
-    if((rubiks[side_to_index("UP")][0][1]==rubiks[side_to_index("UP")][1][0]==rubiks[side_to_index("UP")][1][2]==rubiks[side_to_index("UP")][2][1]=='W')&&(rubiks[side_to_index("LEFT")][0][1]!=rubiks[side_to_index("LEFT")][1][1]||rubiks[side_to_index("FRONT")][0][1]!=rubiks[side_to_index("FRONT")][1][1]||rubiks[side_to_index("RIGHT")][0][1]!=rubiks[side_to_index("RIGHT")][1][1]||rubiks[side_to_index("BACK")][0][1]!=rubiks[side_to_index("BACK")][1][1])){
-        UP_clockwise(rubiks, 1);
-    }
-    if(rubiks[side_to_index("DOWN")][0][1]=='W'){
-        FRONT_clockwise(rubiks, 1);
-    }
-    if(rubiks[side_to_index("DOWN")][1][0]=='W'){
-        LEFT_clockwise(rubiks, 1);
-    }
-    if(rubiks[side_to_index("DOWN")][1][2]=='W'){
-        RIGHT_clockwise(rubiks, 1);
-    }
-    if(rubiks[side_to_index("DOWN")][2][1]=='W'){
-        BACK_clockwise(rubiks, 1);
-    }
+    }while(rubiks[side_to_index("UP")][0][1]!='W'||rubiks[side_to_index("UP")][1][0]!='W'||rubiks[side_to_index("UP")][1][2]!='W'||rubiks[side_to_index("UP")][2][1]!='W'||rubiks[side_to_index("LEFT")][0][1]!=rubiks[side_to_index("LEFT")][1][1]||rubiks[side_to_index("FRONT")][0][1]!=rubiks[side_to_index("FRONT")][1][1]||rubiks[side_to_index("RIGHT")][0][1]!=rubiks[side_to_index("RIGHT")][1][1]||rubiks[side_to_index("BACK")][0][1]!=rubiks[side_to_index("BACK")][1][1]);
 }
 
 
