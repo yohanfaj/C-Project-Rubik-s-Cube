@@ -202,18 +202,31 @@ void init_rubiks(char ***rubiks)
 void scramble_rubiks(char ***rubiks)
 {
     init_rubiks(rubiks);
-    FRONT_clockwise(rubiks, (rand()%5)+1);
-    BACK_clockwise(rubiks, (rand()%5)+1);
-    UP_clockwise(rubiks, (rand()%5)+1);
-    DOWN_clockwise(rubiks, (rand()%5)+1);
-    RIGHT_clockwise(rubiks, (rand()%5)+1);
-    LEFT_clockwise(rubiks, (rand()%5)+1);
-    FRONT_anticlockwise(rubiks, (rand()%5)+1);
-    BACK_anticlockwise(rubiks, (rand()%5)+1);
-    UP_anticlockwise(rubiks, (rand()%5)+1);
-    DOWN_anticlockwise(rubiks, (rand()%5)+1);
-    RIGHT_anticlockwise(rubiks, (rand()%5)+1);
-    LEFT_anticlockwise(rubiks, (rand()%5)+1);
+    int r;
+    r = rand()%5;
+    FRONT_clockwise(rubiks, r);
+    r = rand()%5;
+    BACK_clockwise(rubiks, r);
+    r = rand()%5;
+    UP_clockwise(rubiks, r);
+    r = rand()%5;
+    DOWN_clockwise(rubiks, r);
+    r = rand()%5;
+    RIGHT_clockwise(rubiks, r);
+    r = rand()%5;
+    LEFT_clockwise(rubiks, r);
+    r = rand()%5;
+    FRONT_anticlockwise(rubiks, r);
+    r = rand()%5;
+    BACK_anticlockwise(rubiks, r);
+    r = rand()%5;
+    UP_anticlockwise(rubiks, r);
+    r = rand()%5;
+    DOWN_anticlockwise(rubiks, r);
+    r = rand()%5;
+    RIGHT_anticlockwise(rubiks, r);
+    r = rand()%5;
+    LEFT_anticlockwise(rubiks, r);
 }
 
 void display_rubiks(char ***rubiks)
@@ -1087,6 +1100,7 @@ void vertical_rotation(char ***rubiks){
 
 
 void perfect_cross(char ***rubiks){
+    int cpt = 0;
     int i;
     do{
         for(i=0;i<2;i++){
@@ -1163,7 +1177,9 @@ void perfect_cross(char ***rubiks){
         if(rubiks[side_to_index("DOWN")][2][1]=='W'){
             BACK_clockwise(rubiks, 1);
         }
-    }while(rubiks[side_to_index("UP")][0][1]!='W'||rubiks[side_to_index("UP")][1][0]!='W'||rubiks[side_to_index("UP")][1][2]!='W'||rubiks[side_to_index("UP")][2][1]!='W'||rubiks[side_to_index("LEFT")][0][1]!=rubiks[side_to_index("LEFT")][1][1]||rubiks[side_to_index("FRONT")][0][1]!=rubiks[side_to_index("FRONT")][1][1]||rubiks[side_to_index("RIGHT")][0][1]!=rubiks[side_to_index("RIGHT")][1][1]||rubiks[side_to_index("BACK")][0][1]!=rubiks[side_to_index("BACK")][1][1]);
+        cpt=cpt+1;
+        display_rubiks(rubiks);
+    }while(cpt<5 );
 }
 
 
