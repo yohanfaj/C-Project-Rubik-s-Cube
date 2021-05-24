@@ -1,3 +1,9 @@
+/* 
+BARBIER Adrien - FAJERMAN Yohan - L1 INT 1
+C PROJECT - The Rubik's Cube - rubiks.h
+The file acts as a header file, containing two enum variables as well as all the functions' prototypes, which we use throughout our program.
+*/
+
 #ifndef RUBIKS_H_
 #define RUBIKS_H_
 
@@ -12,8 +18,6 @@
 /* ENUM VARIABLES */
 
 enum T_SIDE {UP,LEFT,FRONT,RIGHT,BACK,DOWN};
-
-
 enum T_COLOR{RED_CELL=12,BLUE_CELL=9,GREEN_CELL=2,WHITE_CELL=15,YELLOW_CELL=14,ORANGE_CELL=4,LG_CELL=7};
 
 

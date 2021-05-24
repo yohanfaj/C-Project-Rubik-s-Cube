@@ -1,3 +1,9 @@
+/* 
+BARBIER Adrien - FAJERMAN Yohan - L1 INT 1
+C PROJECT - The Rubik's Cube - rubiks.c
+The file contains all the functions' definitions we use throughout our program.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

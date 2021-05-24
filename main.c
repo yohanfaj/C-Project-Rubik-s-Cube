@@ -1,3 +1,9 @@
+/* 
+BARBIER Adrien - FAJERMAN Yohan - L1 INT 1
+C PROJECT - The Rubik's Cube - main.c
+The file contains the main algorithm, including the User Interface, which performs our program.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
