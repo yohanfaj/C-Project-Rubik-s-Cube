@@ -1061,6 +1061,20 @@ void horizontal_rotation(char ***rubiks){
     }
 }
 
+void half_horizontal_rotation(char ***rubiks){
+    char save;
+    int i;
+    UP_anticlockwise(rubiks, 1);
+    DOWN_clockwise(rubiks, 1);
+    for(i=0;i<SIZE;i++){
+        save = rubiks[side_to_index("BACK")][1][i];
+        rubiks[side_to_index("BACK")][1][i]=rubiks[side_to_index("RIGHT")][1][i];
+        rubiks[side_to_index("RIGHT")][1][i]=rubiks[side_to_index("FRONT")][1][i];
+        rubiks[side_to_index("FRONT")][1][i]=rubiks[side_to_index("LEFT")][1][i];
+        rubiks[side_to_index("LEFT")][1][i]=save;
+    }
+}
+
 void vertical_rotation(char ***rubiks){
     int i, save, j;
     for(i=0;i<SIZE;i++){
@@ -1101,7 +1115,6 @@ void vertical_rotation(char ***rubiks){
 
 
 void perfect_cross(char ***rubiks){
-    int cpt = 0;
     int i;
     do{
         for(i=0;i<2;i++){
@@ -1178,11 +1191,61 @@ void perfect_cross(char ***rubiks){
         if(rubiks[side_to_index("DOWN")][2][1]=='W'){
             BACK_clockwise(rubiks, 1);
         }
-        cpt=cpt+1;
-        display_rubiks(rubiks);
-    }while(cpt<5 );
+    }while(rubiks[side_to_index("UP")][0][1]!='W'||rubiks[side_to_index("UP")][1][0]!='W'||rubiks[side_to_index("UP")][1][2]!='W'||rubiks[side_to_index("UP")][2][1]!='W'||rubiks[side_to_index("LEFT")][0][1]!=rubiks[side_to_index("LEFT")][1][1]||rubiks[side_to_index("FRONT")][0][1]!=rubiks[side_to_index("FRONT")][1][1]||rubiks[side_to_index("RIGHT")][0][1]!=rubiks[side_to_index("RIGHT")][1][1]||rubiks[side_to_index("BACK")][0][1]!=rubiks[side_to_index("BACK")][1][1]);
 }
 
+void first_crown(char ***rubiks){
+    int i, check[4]={0,0,0,0}, cpt = 0;
+    do{
+        for(i=0;i<4;i++){
+            if(corner_check(rubiks)==1)
+                check[i]=1;
+            else{
+                if(corner_case1(rubiks)==0)
+                    DOWN_clockwise(rubiks, 1);
+                else{
+                    while(corner_check(rubiks)==0){
+                        RIGHT_anticlockwise(rubiks, 1);
+                        DOWN_anticlockwise(rubiks, 1);
+                        RIGHT_clockwise(rubiks, 1);
+                        RIGHT_anticlockwise(rubiks, 1);
+                    }
+                    check[i]=1;
+                }
+                if(corner_case2(rubiks)==0){
+                    RIGHT_anticlockwise(rubiks, 1);
+                    DOWN_clockwise(rubiks, 1);
+                    RIGHT_clockwise(rubiks, 1);
+                }
+            }
+            display_rubiks(rubiks);
+            half_horizontal_rotation(rubiks);
+        }
+        cpt++;
+    }while(cpt<3);
+}
+
+int corner_case1(char ***rubiks){
+    if(rubiks[side_to_index("FRONT")][2][2]!='W'||rubiks[side_to_index("FRONT")][2][2]!=rubiks[side_to_index("FRONT")][1][1]||rubiks[side_to_index("FRONT")][2][2]!=rubiks[side_to_index("RIGHT")][1][1]
+    || rubiks[side_to_index("DOWN")][0][2]!='W'||rubiks[side_to_index("DOWN")][0][2]!=rubiks[side_to_index("FRONT")][1][1]||rubiks[side_to_index("DOWN")][0][2]!=rubiks[side_to_index("RIGHT")][1][1]
+    || rubiks[side_to_index("RIGHT")][2][0]!='W'||rubiks[side_to_index("RIGHT")][2][0]!=rubiks[side_to_index("FRONT")][1][1]||rubiks[side_to_index("RIGHT")][2][0]!=rubiks[side_to_index("RIGHT")][1][1])
+        return 0;
+    return 1;
+}
+
+int corner_case2(char ***rubiks){
+    if(rubiks[side_to_index("UP")][2][2]!='W'||rubiks[side_to_index("UP")][2][2]!=rubiks[side_to_index("FRONT")][1][1]||rubiks[side_to_index("UP")][2][2]!=rubiks[side_to_index("RIGHT")][1][1]
+    || rubiks[side_to_index("FRONT")][0][2]!='W'||rubiks[side_to_index("FRONT")][0][2]!=rubiks[side_to_index("FRONT")][1][1]||rubiks[side_to_index("FRONT")][0][2]!=rubiks[side_to_index("RIGHT")][1][1]
+    || rubiks[side_to_index("RIGHT")][0][0]!='W'||rubiks[side_to_index("RIGHT")][0][0]!=rubiks[side_to_index("FRONT")][1][1]||rubiks[side_to_index("RIGHT")][0][0]!=rubiks[side_to_index("RIGHT")][1][1])
+        return 0;
+    return 1;
+}
+
+int corner_check(char ***rubiks){
+    if(rubiks[side_to_index("UP")][2][2]=='W'&&rubiks[side_to_index("FRONT")][0][2]==rubiks[side_to_index("FRONT")][1][1]&&rubiks[side_to_index("RIGHT")][0][0]&&rubiks[side_to_index("RIGHT")][1][1])
+        return 1;
+    return 0;
+}
 
 /* TEXT COLOR FUNCTION */
 

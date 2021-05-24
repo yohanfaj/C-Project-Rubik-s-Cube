@@ -64,10 +64,15 @@ void LEFT_anticlockwise(char ***rubiks, int type);
 
 void horizontal_rotation(char ***rubiks);
 void vertical_rotation(char *** rubiks);
+void half_horizontal_rotation(char ***rubiks);
 void move_rubiks(char ***rubiks);
 
 /* RESOLUTION FUNCTION */
 void perfect_cross(char ***rubiks);
+void first_crown(char ***rubiks);
+int corner_case1(char ***rubiks);
+int corner_case2(char ***rubiks);
+int corner_check(char ***rubiks);
 
 /* TEXT COLOR FUNCTION */
 void text_color(int color);
