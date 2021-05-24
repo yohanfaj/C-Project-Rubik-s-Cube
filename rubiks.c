@@ -1413,7 +1413,7 @@ int yellow_cross_side_by_side(char ***rubiks){
 int L_shape(char ***rubiks){
     int i, check=0;
     for(i=0;i<4;i++){
-        if(rubiks[side_to_index("UP")][1][0]==rubiks[side_to_index("UP")][1][1]&&rubiks[side_to_index("UP")][0][1]==rubiks[side_to_index("UP")][1][1])
+        if(rubiks[side_to_index("UP")][1][0]==rubiks[side_to_index("UP")][1][1]&&rubiks[side_to_index("UP")][0][1]==rubiks[side_to_index("UP")][1][1]&&rubiks[side_to_index("UP")][1][2]!=rubiks[side_to_index("UP")][1][1]&&rubiks[side_to_index("UP")][2][1]!=rubiks[side_to_index("UP")][1][1])
             check++;
         UP_clockwise(rubiks, 1);
     }
@@ -1425,7 +1425,7 @@ int L_shape(char ***rubiks){
 int barr(char ***rubiks){
     int i, check=0;
     for(i=0;i<2;i++){
-        if(rubiks[side_to_index("UP")][0][1]==rubiks[side_to_index("UP")][1][1]&&rubiks[side_to_index("UP")][2][1]==rubiks[side_to_index("UP")][1][1])
+        if(rubiks[side_to_index("UP")][1][0]==rubiks[side_to_index("UP")][1][1]&&rubiks[side_to_index("UP")][1][2]==rubiks[side_to_index("UP")][1][1]&&rubiks[side_to_index("UP")][0][1]!=rubiks[side_to_index("UP")][1][1]&&rubiks[side_to_index("UP")][2][1]!=rubiks[side_to_index("UP")][1][1])
             check++;
         UP_clockwise(rubiks, 1);
     }
