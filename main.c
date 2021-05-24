@@ -16,7 +16,8 @@ void main(void)
 {
     int i,j,k, op;
     int op_move_cube, op_clock, op_side, type;
-    int init=0;
+    int init=0, scrambled=0;
+    int solved=0, cont=1, step;
     char ***rubiks = create_rubiks();
     
     printf("\nWelcome to the RUBIK'S CUBE SIMULATOR ! \n");
@@ -50,6 +51,7 @@ void main(void)
                 scramble_rubiks(rubiks);
                 printf("Here is your scrambled cube: \n");
                 display_rubiks(rubiks);
+                scrambled=1;
                 break;
 
             case 4:
@@ -149,11 +151,31 @@ void main(void)
                 break;
 
             case 7:
-                scramble_rubiks(rubiks);
-                display_rubiks(rubiks);
-                printf("\n");
-                perfect_cross(rubiks);
-                display_rubiks(rubiks);
+                if (scrambled = 1)
+                {
+                    do
+                    {
+                        do
+                        {
+                            printf("\nWhich step ?");
+                            printf("\n1: PERFECT CROSS -- 2: 1st CROWN -- 3: 2nd CROWN: ");
+                            scanf("%d", &step);
+                        } while (step < 1 || step > 3);
+                        printf("\n");
+                        
+                        solving_process(rubiks, step);
+                        display_rubiks(rubiks);
+                        do
+                        {
+                            printf("Continue to solve? or try it by yourself? press 1 or 2: ");
+                            scanf("%d", &cont);
+                        } while (cont < 1 || cont > 2);
+                        if (cont == 2)
+                            break;
+                    } while (cont == 1 || solved == 0);
+                }
+                else
+                    printf("\nPlease SCRAMBLE the Cube before solving it !\n");
                 break;
 
             case 0:

@@ -1297,6 +1297,29 @@ int second_crown_check(char ***rubiks){
     return 0;
 }
 
+
+void solving_process(char ***rubiks, int i)
+{
+    switch (i)
+    {
+    case 1:
+        printf("Next step: PERFECT WHITE CROSS\n");
+        perfect_cross(rubiks);
+        break;
+    case 2:
+        printf("Next step: FIRST CROWN\n");
+        first_crown(rubiks);
+        break;
+    case 3:
+        printf("Next step: SECOND CROWN\n");
+        second_crown(rubiks);
+        break;
+    default:
+        break;
+    }
+}
+
+
 /* TEXT COLOR FUNCTION */
 
 void text_color(int color) {

@@ -87,6 +87,7 @@ int left_move_check(char ***rubiks);
 int right_move_check(char ***rubiks);
 int bad_orientation(char ***rubiks);
 int second_crown_check(char ***rubiks);
+void solving_process(char ***rubiks, int i);
 
 /* TEXT COLOR FUNCTION */
 void text_color(int color);
