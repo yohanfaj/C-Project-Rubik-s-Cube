@@ -21,6 +21,7 @@ void main(void)
     char ***rubiks = create_rubiks();
     
     printf("\nWelcome to the RUBIK'S CUBE SIMULATOR ! \n");
+    printf("ATTENTION! Be sure to INITIALIZE your cube before performing any movements! \n");
 
     do
     {
