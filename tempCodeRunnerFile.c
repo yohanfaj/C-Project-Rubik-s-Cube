@@ -1,0 +1,1 @@
+5 to move the entire cube, 6 to move a specific face, 7 to solve a scrambled cube
