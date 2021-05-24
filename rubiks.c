@@ -1195,7 +1195,7 @@ void perfect_cross(char ***rubiks){
 }
 
 void first_crown(char ***rubiks){
-    int i, check[4]={0,0,0,0}, cpt = 0;
+    int i, check[4]={0,0,0,0};
     do{
         for(i=0;i<4;i++){
             if(corner_check(rubiks)==1)
@@ -1221,8 +1221,7 @@ void first_crown(char ***rubiks){
             display_rubiks(rubiks);
             half_horizontal_rotation(rubiks);
         }
-        cpt++;
-    }while(cpt<3);
+    }while(check[0]==0 || check[1]==0 || check[2]==0 || check[3]==0);
 }
 
 int corner_case1(char ***rubiks){
