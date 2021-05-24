@@ -1248,7 +1248,7 @@ void second_crown(char ***rubiks){
         }
         cpt2++;
         display_rubiks(rubiks);
-    }while(cpt2<3);
+    }while(check[0]==0 || check[1]==0 || check[2]==0 || check[3]==0);
 }
 
 int left_move_check(char ***rubiks){
