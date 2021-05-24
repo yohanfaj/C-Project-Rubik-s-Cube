@@ -615,125 +615,6 @@ void fill_menu(char ***rubiks)
 
 
 
-void move_rubiks(char ***rubiks)
-{
-    int type, op1, op_cube, op_clock, op_side;
-    do
-    {
-        printf("Press 1 to move the entire cube, or 2 for a specific face: ");
-        scanf("%d", &op1);
-    } while (op1 < 1 || op1 > 2);
-
-    switch (op1)
-    {
-    case 1:
-        do
-        {
-            printf("\nHORIZONTAL or VERTICAL Rotation ? Press 1 or 2: ");
-            scanf("%d", &op_cube);
-        } while (op_cube < 1 || op_cube > 2);
-        printf("\n");
-        switch (op_cube)
-        {
-        case 1:
-            horizontal_rotation(rubiks);
-            break;
-        case 2:
-            vertical_rotation(rubiks);
-        default:
-            break;
-        }
-        display_rubiks(rubiks);
-        break;
-    
-    case 2:
-        
-        do
-        {
-            printf("\nCLOCKWISE or ANTICLOCKWISE rotation ? Press 1 or 2: ");
-            scanf("%d", &op_clock);
-        } while (op_clock < 1 || op_clock > 2);
-        printf("\n");
-
-         do
-        {
-            printf("\nHow many rotations ? 1 for a quarter turn, 2 for a half turn, or 3 for three quarter turns: ");
-            scanf("%d", &type);
-        } while (type < 1 || type > 3);
-
-        printf("1: UP -- 2: LEFT -- 3: FRONT\n");
-        printf("4: RIGHT -- 5: BACK -- 6: DOWN\n");
-        do
-        {
-            printf("Enter the side on which you want to apply the rotation: ");
-        } while (op_side < 1 || op_side > 6);
-
-
-        switch (op_clock)
-        {
-        case 1:
-           switch (op_side)
-           {
-           case 1:
-               UP_clockwise(rubiks, type);
-               break;
-           case 2:
-                LEFT_clockwise(rubiks, type);
-                break;
-            case 3:
-                FRONT_clockwise(rubiks, type);
-                break;
-            case 4:
-                RIGHT_clockwise(rubiks, type);
-                break;
-            case 5:
-                BACK_clockwise(rubiks, type);
-                break;
-            case 6:
-                DOWN_clockwise(rubiks, type);
-                break;
-           default:
-               break;
-           }
-           display_rubiks(rubiks);
-           break;
-        
-        case 2:
-           switch (op_side)
-           {
-            case 1:
-               UP_anticlockwise(rubiks, type);
-               break;
-            case 2:
-                LEFT_anticlockwise(rubiks, type);
-                break;
-            case 3:
-                FRONT_anticlockwise(rubiks, type);
-                break;
-            case 4:
-                RIGHT_anticlockwise(rubiks, type);
-                break;
-            case 5:
-                BACK_anticlockwise(rubiks, type);
-                break;
-            case 6:
-                DOWN_anticlockwise(rubiks, type);
-                break;
-           default:
-               break;
-           }
-            display_rubiks(rubiks);
-            break;
-            
-        default:
-            break;
-        }     
-    default:
-        break;
-    }   
-}
-
-
 /* MOVEMENT FUNCTIONS */
 
 
@@ -1106,6 +987,81 @@ void vertical_rotation(char ***rubiks){
         save = rubiks[side_to_index("RIGHT")][i][2];
         rubiks[side_to_index("RIGHT")][i][2] = rubiks[side_to_index("RIGHT")][2-i][0];
         rubiks[side_to_index("RIGHT")][2-i][0] = save;
+    }
+}
+
+
+void move_cube(char ***rubiks, int op)
+{
+    switch (op)
+    {
+    case 1:
+        horizontal_rotation(rubiks);
+        break;
+    case 2:
+        half_horizontal_rotation(rubiks);
+        break;
+    case 3:
+        vertical_rotation(rubiks);
+        break;
+    default:
+        break;
+    }
+}
+
+
+void move_side_clockwise(char ***rubiks, int op, int type)
+{
+    switch (op)
+    {
+    case 1:
+        UP_clockwise(rubiks, type);
+        break;
+     case 2:
+        LEFT_clockwise(rubiks, type);
+        break;
+    case 3:
+        FRONT_clockwise(rubiks, type);
+        break;
+    case 4:
+        RIGHT_clockwise(rubiks, type);
+        break;
+    case 5:
+        BACK_clockwise(rubiks, type);
+        break;
+    case 6:
+        DOWN_clockwise(rubiks, type);
+        break;
+    default:
+        break;
+    }
+}
+
+
+void move_side_anticlockwise(char ***rubiks, int op, int type)
+{
+    switch (op)
+    {
+    case 1:
+        UP_anticlockwise(rubiks, type);
+        break;
+     case 2:
+        LEFT_anticlockwise(rubiks, type);
+        break;
+    case 3:
+        FRONT_anticlockwise(rubiks, type);
+        break;
+    case 4:
+        RIGHT_anticlockwise(rubiks, type);
+        break;
+    case 5:
+        BACK_anticlockwise(rubiks, type);
+        break;
+    case 6:
+        DOWN_anticlockwise(rubiks, type);
+        break;
+    default:
+        break;
     }
 }
 

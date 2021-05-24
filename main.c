@@ -9,6 +9,7 @@
 void main(void)
 {
     int i,j,k, op;
+    int op_move_cube, op_clock, op_side, type;
     char ***rubiks = create_rubiks();
     
     printf("\nWelcome to the RUBIK'S CUBE SIMULATOR ! \n");
@@ -17,9 +18,10 @@ void main(void)
     {
         do
         {
-            printf("\nWhat do you want to do ? \nPress 1 to display a blank cube, 2 to initialize it, 3 to scramble it, 4 to fill it manually, 5 to move the cube or 0 to quit: ");
+            printf("\nWhat do you want to do ? \nPress 1 to display a blank cube, 2 to initialize it, 3 to scramble it, 4 to fill it manually,\n");
+            printf("5 to move the entire cube, 6 to move a specific face, 7 to solve a scrambled cube or 0 to quit: ");
             scanf("%d", &op);
-        } while (op < 0 || op > 6);
+        } while (op < 0 || op > 7);
         printf("\n");
 
         switch (op)
@@ -61,7 +63,76 @@ void main(void)
                 break;
             
             case 5:
-                move_rubiks(rubiks);
+                do
+                {
+                    printf("\nHORIZONTAL, HALF HORIZONTAL or VERTICAL Rotation ? Press 1, 2 or 3: ");
+                    scanf("%d", &op_move_cube);
+                } while (op_move_cube < 1 || op_move_cube > 3);
+                printf("\n");
+
+                switch (op_move_cube)
+                {
+                    case 1:
+                        horizontal_rotation(rubiks);
+                        break;
+                    case 2:
+                        half_horizontal_rotation(rubiks);
+                        break;
+                    case 3:
+                        vertical_rotation(rubiks);
+                        break;
+                    default:
+                        break;
+                }
+                display_rubiks(rubiks);
+                break;
+
+
+            case 6:
+                do
+                {
+                    printf("\nCLOCKWISE or ANTICLOCKWISE rotation ? Press 1 or 2: ");
+                    scanf("%d", &op_clock);
+                } while (op_clock < 1 || op_clock > 2);
+                printf("\n");
+
+                do
+                {
+                    printf("\nHow many rotations ? 1 for a quarter turn, 2 for a half turn, or 3 for three quarter turns: ");
+                    scanf("%d", &type);
+                } while (type < 1 || type > 3);
+                printf("\n");
+
+                printf("1: UP -- 2: LEFT -- 3: FRONT\n");
+                printf("4: RIGHT -- 5: BACK -- 6: DOWN\n");
+                do
+                {
+                    printf("Enter the side on which you want to apply the rotation: ");
+                    scanf("%d", &op_side);
+                } while (op_side < 1 || op_side > 6);
+                printf("\n");
+
+                switch (op_clock)
+                {
+                case 1:
+                    move_side_clockwise(rubiks, op_side, type);
+                    break;
+                case 2:
+                    move_side_anticlockwise(rubiks, op_side, type);
+                    break;
+                default:
+                    break;
+                }
+                
+                display_rubiks(rubiks);
+                break;
+
+            case 7:
+                scramble_rubiks(rubiks);
+                display_rubiks(rubiks);
+                printf("\n");
+                perfect_cross(rubiks);
+                display_rubiks(rubiks);
                 break;
 
             case 0:

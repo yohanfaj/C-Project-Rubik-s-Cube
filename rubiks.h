@@ -65,7 +65,10 @@ void LEFT_anticlockwise(char ***rubiks, int type);
 void horizontal_rotation(char ***rubiks);
 void vertical_rotation(char *** rubiks);
 void half_horizontal_rotation(char ***rubiks);
-void move_rubiks(char ***rubiks);
+
+void move_cube(char ***rubiks, int op);
+void move_side_clockwise(char ***rubiks, int op, int type);
+void move_side_anticlockwise(char ***rubiks, int op, int type);
 
 /* RESOLUTION FUNCTION */
 void perfect_cross(char ***rubiks);
