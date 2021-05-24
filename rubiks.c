@@ -1053,6 +1053,7 @@ void move_side_anticlockwise(char ***rubiks, int op, int type)
 
 
 void perfect_cross(char ***rubiks){
+    /* This function checks all different cases for FRONT and RIGHT faces, then rotates the cube to perform it again*/
     int i;
     do{
         for(i=0;i<2;i++){
@@ -1114,6 +1115,7 @@ void perfect_cross(char ***rubiks){
             }
             horizontal_rotation(rubiks);
         }
+        /* Here we check if white cases are on the DOWN face, to take them to the other faces*/
         if((rubiks[side_to_index("UP")][0][1]==rubiks[side_to_index("UP")][1][0]==rubiks[side_to_index("UP")][1][2]==rubiks[side_to_index("UP")][2][1]==rubiks[side_to_index("UP")][1][1])&&(rubiks[side_to_index("LEFT")][0][1]!=rubiks[side_to_index("LEFT")][1][1]||rubiks[side_to_index("FRONT")][0][1]!=rubiks[side_to_index("FRONT")][1][1]||rubiks[side_to_index("RIGHT")][0][1]!=rubiks[side_to_index("RIGHT")][1][1]||rubiks[side_to_index("BACK")][0][1]!=rubiks[side_to_index("BACK")][1][1])){
             UP_clockwise(rubiks, 1);
         }
@@ -1133,6 +1135,7 @@ void perfect_cross(char ***rubiks){
 }
 
 void first_crown(char ***rubiks){
+    /* We'll check different configurations and adapt to them */
     int i, check[4]={0,0,0,0};
     do{
         for(i=0;i<4;i++){
@@ -1178,12 +1181,14 @@ int corner_case2(char ***rubiks){
 }
 
 int corner_check(char ***rubiks){
+    /* This function checks if a corner is well placed */
     if(rubiks[side_to_index("UP")][2][2]==rubiks[side_to_index("UP")][1][1]&&rubiks[side_to_index("FRONT")][0][2]==rubiks[side_to_index("FRONT")][1][1]&&rubiks[side_to_index("RIGHT")][0][0]&&rubiks[side_to_index("RIGHT")][1][1])
         return 1;
     return 0;
 }
 
 void second_crown(char ***rubiks){
+    /* We check the 4 positions and adapt, depending on the case */
     int i, check[4]={0,0,0,0}, cpt, cpt2=0;
     vertical_rotation(rubiks);
     do{
@@ -1228,12 +1233,14 @@ void second_crown(char ***rubiks){
 }
 
 int left_move_check(char ***rubiks){
+    /* check if left move is needed */
     if(rubiks[side_to_index("FRONT")][0][1]==rubiks[side_to_index("FRONT")][1][1]&&rubiks[side_to_index("UP")][2][1]==rubiks[side_to_index("LEFT")][1][1])
         return 1;
     return 0;
 }
 
 int right_move_check(char ***rubiks){
+    /* check if right move is needed */
     if(rubiks[side_to_index("FRONT")][0][1]==rubiks[side_to_index("FRONT")][1][1]&&rubiks[side_to_index("UP")][2][1]==rubiks[side_to_index("RIGHT")][1][1])
         return 1;
     return 0;
@@ -1262,19 +1269,23 @@ void right_move(char ***rubiks){
 }
 
 int bad_orientation(char ***rubiks){
+    /* checks if the 2 colors are at the wrong place */
     if(rubiks[side_to_index("FRONT")][1][2]==rubiks[side_to_index("RIGHT")][1][1]&&rubiks[side_to_index("RIGHT")][1][0]==rubiks[side_to_index("FRONT")][1][1])
         return 1;
     return 0;
 }
 
 int second_crown_check(char ***rubiks){
+    /* checks if the piece is at the right place on the front-right faces */
     if(rubiks[side_to_index("FRONT")][1][1]==rubiks[side_to_index("FRONT")][1][2]&&rubiks[side_to_index("RIGHT")][1][1]==rubiks[side_to_index("RIGHT")][1][0])
         return 1;
     return 0;
 }
 
 void last_crown(char ***rubiks){
+    /* This function is not finished yet, but still pretty advanced */
     int i, cpt = 0;
+    /* first checks combinations that are not crosses, in order to create one */
     do{
         if(single_case_yellow(rubiks)==1){
             RIGHT_anticlockwise(rubiks, 1);
@@ -1311,6 +1322,7 @@ void last_crown(char ***rubiks){
             FRONT_anticlockwise(rubiks, 1);
         }
     }while(yellow_cross_check(rubiks)==0);
+    /* checks the different cases (not fully working) and adapt */
     if(yellow_cross_check(rubiks)==1){
         if(perfect_yellow_cross(rubiks)==0){
             if(yellow_cross_facing_edge(rubiks)==1){
@@ -1334,6 +1346,7 @@ void last_crown(char ***rubiks){
             }
         }
     }
+    /* checks the number of corners that are at the good place */
     for(i=0;i<4;i++){
         if(check_corner_yellow(rubiks)==1)
             cpt++;
@@ -1378,12 +1391,14 @@ void last_crown(char ***rubiks){
 }
 
 int yellow_cross_check(char ***rubiks){
+    /* checks the yellow cross */
     if(rubiks[side_to_index("DOWN")][0][1]==rubiks[side_to_index("DOWN")][1][1]&&rubiks[side_to_index("DOWN")][1][0]==rubiks[side_to_index("DOWN")][1][1]&&rubiks[side_to_index("DOWN")][1][2]==rubiks[side_to_index("DOWN")][1][1]&&rubiks[side_to_index("DOWN")][2][1]==rubiks[side_to_index("DOWN")][1][1])
         return 1;
     return 0;
 }
 
 int perfect_yellow_cross(char ***rubiks){
+    /* checks if the cross is perfect or not */
     while(rubiks[side_to_index("FRONT")][0][1]!=rubiks[side_to_index("FRONT")][1][1])
         UP_clockwise(rubiks, 1);
     if(rubiks[side_to_index("BACK")][0][1]==rubiks[side_to_index("BACK")][1][1]&&rubiks[side_to_index("LEFT")][0][1]==rubiks[side_to_index("LEFT")][1][1]&&rubiks[side_to_index("RIGHT")][0][1]==rubiks[side_to_index("RIGHT")][1][1]&&rubiks[side_to_index("FRONT")][0][1]==rubiks[side_to_index("FRONT")][1][1])
@@ -1392,6 +1407,7 @@ int perfect_yellow_cross(char ***rubiks){
 }
 
 int yellow_cross_facing_edge(char ***rubiks){
+    /* Should check if it is the case where 2 faces are good, edging each other */
     int i=0,j=0;
     while((rubiks[side_to_index("BACK")][0][1]!=rubiks[side_to_index("BACK")][1][1]||rubiks[side_to_index("FRONT")][0][1]!=rubiks[side_to_index("FRONT")][1][1])&&i<4){
         UP_anticlockwise(rubiks, 1);
@@ -1408,6 +1424,7 @@ int yellow_cross_facing_edge(char ***rubiks){
 }
 
 int yellow_cross_side_by_side(char ***rubiks){
+    /* checks if it is the case where 2 faces are on good and on opposite faces */
     int i=0,j=0;
     while((rubiks[side_to_index("RIGHT")][0][1]!=rubiks[side_to_index("RIGHT")][1][1]||rubiks[side_to_index("FRONT")][0][1]!=rubiks[side_to_index("FRONT")][1][1])&&i<4){
         UP_anticlockwise(rubiks, 1);
@@ -1424,6 +1441,7 @@ int yellow_cross_side_by_side(char ***rubiks){
 }
 
 int L_shape(char ***rubiks){
+    /* checks the L Shape */
     int i, check=0;
     for(i=0;i<4;i++){
         if(rubiks[side_to_index("UP")][1][0]==rubiks[side_to_index("UP")][1][1]&&rubiks[side_to_index("UP")][0][1]==rubiks[side_to_index("UP")][1][1]&&rubiks[side_to_index("UP")][1][2]!=rubiks[side_to_index("UP")][1][1]&&rubiks[side_to_index("UP")][2][1]!=rubiks[side_to_index("UP")][1][1])
@@ -1436,6 +1454,7 @@ int L_shape(char ***rubiks){
 }
 
 int barr(char ***rubiks){
+    /* Checks the barr form */
     int i, check=0;
     for(i=0;i<2;i++){
         if(rubiks[side_to_index("UP")][1][0]==rubiks[side_to_index("UP")][1][1]&&rubiks[side_to_index("UP")][1][2]==rubiks[side_to_index("UP")][1][1]&&rubiks[side_to_index("UP")][0][1]!=rubiks[side_to_index("UP")][1][1]&&rubiks[side_to_index("UP")][2][1]!=rubiks[side_to_index("UP")][1][1])
@@ -1450,6 +1469,7 @@ int barr(char ***rubiks){
 }
 
 int single_case_yellow(char ***rubiks){
+    /* Checks if there is only one single yellow case */
     int i, cpt=0;
     for(i=0;i<4;i++){
         if(rubiks[side_to_index("UP")][0][1]==rubiks[side_to_index("UP")][1][1])
@@ -1462,6 +1482,7 @@ int single_case_yellow(char ***rubiks){
 }
 
 int check_corner_yellow(char ***rubiks){
+    /*checks if the UP - FRONT - RIGHT corner has the right colors */
     if((rubiks[side_to_index("UP")][2][2]==rubiks[side_to_index("UP")][1][1]||rubiks[side_to_index("FRONT")][0][2]==rubiks[side_to_index("UP")][1][1]||rubiks[side_to_index("RIGHT")][0][0]==rubiks[side_to_index("UP")][1][1])
 || (rubiks[side_to_index("UP")][2][2]==rubiks[side_to_index("FRONT")][1][1]||rubiks[side_to_index("FRONT")][0][2]==rubiks[side_to_index("FRONT")][1][1]||rubiks[side_to_index("RIGHT")][0][0]==rubiks[side_to_index("FRONT")][1][1])
 || (rubiks[side_to_index("UP")][2][2]==rubiks[side_to_index("RIGHT")][1][1]||rubiks[side_to_index("FRONT")][0][2]==rubiks[side_to_index("RIGHT")][1][1]||rubiks[side_to_index("RIGHT")][0][0]==rubiks[side_to_index("RIGHT")][1][1]))
