@@ -118,39 +118,50 @@ void main(void)
                 {
                     do
                     {
-                        printf("\nCLOCKWISE or ANTICLOCKWISE rotation ? Press 1 or 2: ");
-                        scanf("%d", &op_clock);
-                    } while (op_clock < 1 || op_clock > 2);
-                    printf("\n");
+                         do
+                        {
+                            printf("\nCLOCKWISE or ANTICLOCKWISE rotation ? Press 1 or 2: ");
+                            scanf("%d", &op_clock);
+                        } while (op_clock < 1 || op_clock > 2);
+                        printf("\n");
 
-                    do
-                    {
-                        printf("\nHow many rotations ? 1 for a quarter turn, 2 for a half turn, or 3 for three quarter turns: ");
-                        scanf("%d", &type);
-                    } while (type < 1 || type > 3);
-                    printf("\n");
+                        do
+                        {
+                            printf("\nHow many rotations ? 1 for a quarter turn, 2 for a half turn, or 3 for three quarter turns: ");
+                            scanf("%d", &type);
+                        } while (type < 1 || type > 3);
+                        printf("\n");
 
-                    printf("1: UP -- 2: LEFT -- 3: FRONT\n");
-                    printf("4: RIGHT -- 5: BACK -- 6: DOWN\n");
-                    do
-                    {
-                        printf("Enter the side on which you want to apply the rotation: ");
-                        scanf("%d", &op_side);
-                    } while (op_side < 1 || op_side > 6);
-                    printf("\n");
+                        printf("1: UP -- 2: LEFT -- 3: FRONT\n");
+                        printf("4: RIGHT -- 5: BACK -- 6: DOWN\n");
+                        do
+                        {
+                            printf("Enter the side on which you want to apply the rotation: ");
+                            scanf("%d", &op_side);
+                        } while (op_side < 1 || op_side > 6);
+                        printf("\n");
 
-                    switch (op_clock)
-                    {
-                    case 1:
-                        move_side_clockwise(rubiks, op_side, type);
-                        break;
-                    case 2:
-                        move_side_anticlockwise(rubiks, op_side, type);
-                        break;
-                    default:
-                        break;
-                    }
-                    display_rubiks(rubiks);
+                        switch (op_clock)
+                        {
+                        case 1:
+                            move_side_clockwise(rubiks, op_side, type);
+                            break;
+                        case 2:
+                            move_side_anticlockwise(rubiks, op_side, type);
+                            break;
+                        default:
+                            break;
+                        }
+                        display_rubiks(rubiks);
+
+                        do
+                        {
+                            printf("Continue to perform some rotations? or do something else? Press 1 or 2: ");
+                            scanf("%d", &cont);
+                        } while (cont < 1 || cont > 2);
+                        if (cont == 2)
+                            break;
+                    } while (cont == 1);
                 }
                 else
                     printf("\nPlease INITIALIZE the Cube before performing any movement !\n");
