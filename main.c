@@ -151,7 +151,7 @@ void main(void)
                 break;
 
             case 7:
-                if (int==1)
+                if (init==1)
                 {
                     do
                     {
