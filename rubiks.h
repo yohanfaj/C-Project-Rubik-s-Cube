@@ -74,6 +74,12 @@ int corner_case1(char ***rubiks);
 int corner_case2(char ***rubiks);
 int corner_check(char ***rubiks);
 void second_crown(char ***rubiks);
+void left_move(char ***rubiks);
+void right_move(char ***rubiks);
+int left_move_check(char ***rubiks);
+int right_move_check(char ***rubiks);
+int bad_orientation(char ***rubiks);
+int second_crown_check(char ***rubiks);
 
 /* TEXT COLOR FUNCTION */
 void text_color(int color);

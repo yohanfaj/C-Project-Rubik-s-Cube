@@ -1091,7 +1091,7 @@ void vertical_rotation(char ***rubiks){
             rubiks[side_to_index("BACK")][2-i][2-j]=save;
         }
     }
-    for(i=0;i<SIZE;i++){
+    for(i=0;i<2;i++){
         save=rubiks[side_to_index("LEFT")][0][i];
         rubiks[side_to_index("LEFT")][0][i]=rubiks[side_to_index("LEFT")][2][2-i];
         rubiks[side_to_index("LEFT")][2][2-i]=save;
@@ -1099,7 +1099,7 @@ void vertical_rotation(char ***rubiks){
         rubiks[side_to_index("LEFT")][i][2] = rubiks[side_to_index("LEFT")][2-i][0];
         rubiks[side_to_index("LEFT")][2-i][0] = save;
     }
-    for(i=0;i<SIZE;i++){
+    for(i=0;i<2;i++){
         save=rubiks[side_to_index("RIGHT")][0][i];
         rubiks[side_to_index("RIGHT")][0][i]=rubiks[side_to_index("RIGHT")][2][2-i];
         rubiks[side_to_index("RIGHT")][2][2-i]=save;
@@ -1218,7 +1218,6 @@ void first_crown(char ***rubiks){
                     RIGHT_clockwise(rubiks, 1);
                 }
             }
-            display_rubiks(rubiks);
             half_horizontal_rotation(rubiks);
         }
     }while(check[0]==0 || check[1]==0 || check[2]==0 || check[3]==0);
@@ -1242,6 +1241,96 @@ int corner_case2(char ***rubiks){
 
 int corner_check(char ***rubiks){
     if(rubiks[side_to_index("UP")][2][2]==rubiks[side_to_index("UP")][1][1]&&rubiks[side_to_index("FRONT")][0][2]==rubiks[side_to_index("FRONT")][1][1]&&rubiks[side_to_index("RIGHT")][0][0]&&rubiks[side_to_index("RIGHT")][1][1])
+        return 1;
+    return 0;
+}
+
+void second_crown(char ***rubiks){
+    int i, check[4]={0,0,0,0}, cpt, cpt2=0;
+    vertical_rotation(rubiks);
+    do{
+        for(i=0;i<4;i++){
+            if(bad_orientation(rubiks)==1){
+                UP_clockwise(rubiks, 1);
+                RIGHT_clockwise(rubiks, 1);
+                UP_anticlockwise(rubiks, 1);
+                RIGHT_anticlockwise(rubiks, 1);
+                UP_anticlockwise(rubiks, 1);
+                FRONT_anticlockwise(rubiks, 1);
+                UP_clockwise(rubiks, 1);
+                FRONT_clockwise(rubiks, 1);
+                UP_clockwise(rubiks, 2);
+                UP_clockwise(rubiks, 1);
+                RIGHT_clockwise(rubiks, 1);
+                UP_anticlockwise(rubiks, 1);
+                RIGHT_anticlockwise(rubiks, 1);
+                UP_anticlockwise(rubiks, 1);
+                FRONT_anticlockwise(rubiks, 1);
+                UP_clockwise(rubiks, 1);
+                FRONT_clockwise(rubiks, 1);
+            }
+            else{
+                cpt = 0;
+                while(cpt < 4 && (right_move_check(rubiks)==0 && left_move_check(rubiks)==0)){
+                    UP_clockwise(rubiks, 1);
+                    cpt++;
+                }
+                if(left_move_check(rubiks)==1)
+                    left_move(rubiks);
+                if(right_move_check(rubiks)==1)
+                    right_move(rubiks);
+            }
+            if(second_crown_check(rubiks)==1)
+                check[i]=1;
+            half_horizontal_rotation(rubiks);
+        }
+        cpt2++;
+        display_rubiks(rubiks);
+    }while(cpt2<3);
+}
+
+int left_move_check(char ***rubiks){
+    if(rubiks[side_to_index("FRONT")][0][1]==rubiks[side_to_index("FRONT")][1][1]&&rubiks[side_to_index("UP")][2][1]==rubiks[side_to_index("LEFT")][1][1])
+        return 1;
+    return 0;
+}
+
+int right_move_check(char ***rubiks){
+    if(rubiks[side_to_index("FRONT")][0][1]==rubiks[side_to_index("FRONT")][1][1]&&rubiks[side_to_index("UP")][2][1]==rubiks[side_to_index("RIGHT")][1][1])
+        return 1;
+    return 0;
+}
+
+void left_move(char ***rubiks){
+    UP_anticlockwise(rubiks, 1);
+    LEFT_anticlockwise(rubiks, 1);
+    UP_clockwise(rubiks, 1);
+    LEFT_clockwise(rubiks, 1);
+    UP_clockwise(rubiks, 1);
+    FRONT_clockwise(rubiks, 1);
+    UP_anticlockwise(rubiks, 1);
+    FRONT_anticlockwise(rubiks, 1);
+}
+
+void right_move(char ***rubiks){
+    UP_clockwise(rubiks, 1);
+    RIGHT_clockwise(rubiks, 1);
+    UP_anticlockwise(rubiks, 1);
+    RIGHT_anticlockwise(rubiks, 1);
+    UP_anticlockwise(rubiks, 1);
+    FRONT_anticlockwise(rubiks, 1);
+    UP_clockwise(rubiks, 1);
+    FRONT_clockwise(rubiks, 1);
+}
+
+int bad_orientation(char ***rubiks){
+    if(rubiks[side_to_index("FRONT")][1][2]==rubiks[side_to_index("RIGHT")][1][1]&&rubiks[side_to_index("RIGHT")][1][0]==rubiks[side_to_index("FRONT")][1][1])
+        return 1;
+    return 0;
+}
+
+int second_crown_check(char ***rubiks){
+    if(rubiks[side_to_index("FRONT")][1][1]==rubiks[side_to_index("FRONT")][1][2]&&rubiks[side_to_index("RIGHT")][1][1]==rubiks[side_to_index("RIGHT")][1][0])
         return 1;
     return 0;
 }
