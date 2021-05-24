@@ -1118,30 +1118,30 @@ void perfect_cross(char ***rubiks){
     int i;
     do{
         for(i=0;i<2;i++){
-            if(rubiks[side_to_index("UP")][2][1]==rubiks[side_to_index("FRONT")][1][1] && rubiks[side_to_index("FRONT")][0][1]=='W'){
+            if(rubiks[side_to_index("UP")][2][1]==rubiks[side_to_index("FRONT")][1][1] && rubiks[side_to_index("FRONT")][0][1]==rubiks[side_to_index("UP")][1][1]){
                 FRONT_clockwise(rubiks, 1);
                 UP_anticlockwise(rubiks, 1);
                 RIGHT_clockwise(rubiks, 1);
                 UP_clockwise(rubiks, 1);
             }
-            if(rubiks[side_to_index("FRONT")][2][1]=='W' && rubiks[side_to_index("DOWN")][0][1]==rubiks[side_to_index("FRONT")][1][1]){
+            if(rubiks[side_to_index("FRONT")][2][1]==rubiks[side_to_index("UP")][1][1] && rubiks[side_to_index("DOWN")][0][1]==rubiks[side_to_index("FRONT")][1][1]){
                 FRONT_anticlockwise(rubiks, 1);
                 RIGHT_anticlockwise(rubiks, 1);
                 DOWN_anticlockwise(rubiks, 1);
                 RIGHT_clockwise(rubiks, 1);
                 FRONT_anticlockwise(rubiks, 2);
             }
-            if(rubiks[side_to_index("FRONT")][1][2]=='W' && rubiks[side_to_index("RIGHT")][1][0]==rubiks[side_to_index("FRONT")][1][1]){
+            if(rubiks[side_to_index("FRONT")][1][2]==rubiks[side_to_index("UP")][1][1] && rubiks[side_to_index("RIGHT")][1][0]==rubiks[side_to_index("FRONT")][1][1]){
                 RIGHT_anticlockwise(rubiks, 1);
                 DOWN_anticlockwise(rubiks, 1);
                 RIGHT_clockwise(rubiks, 1);
                 FRONT_anticlockwise(rubiks, 2);
             }
-            if(rubiks[side_to_index("FRONT")][0][1]=='W' && rubiks[side_to_index("UP")][2][1]==rubiks[side_to_index("RIGHT")][1][1]){
+            if(rubiks[side_to_index("FRONT")][0][1]==rubiks[side_to_index("UP")][1][1] && rubiks[side_to_index("UP")][2][1]==rubiks[side_to_index("RIGHT")][1][1]){
                 FRONT_clockwise(rubiks, 1);
                 RIGHT_clockwise(rubiks, 1);
             }
-            if(rubiks[side_to_index("UP")][1][2]==rubiks[side_to_index("LEFT")][1][1]&&rubiks[side_to_index("RIGHT")][0][1]=='W'){
+            if(rubiks[side_to_index("UP")][1][2]==rubiks[side_to_index("LEFT")][1][1]&&rubiks[side_to_index("RIGHT")][0][1]==rubiks[side_to_index("UP")][1][1]){
                 RIGHT_anticlockwise(rubiks, 1);
                 FRONT_anticlockwise(rubiks, 1);
                 UP_clockwise(rubiks, 1);
@@ -1152,46 +1152,46 @@ void perfect_cross(char ***rubiks){
                 BACK_clockwise(rubiks, 1);
                 UP_clockwise(rubiks, 1);
             }
-            if(rubiks[side_to_index("RIGHT")][2][1]=='W' && rubiks[side_to_index("DOWN")][1][2]==rubiks[side_to_index("RIGHT")][1][1]){
+            if(rubiks[side_to_index("RIGHT")][2][1]==rubiks[side_to_index("UP")][1][1] && rubiks[side_to_index("DOWN")][1][2]==rubiks[side_to_index("RIGHT")][1][1]){
                 RIGHT_anticlockwise(rubiks, 1);
                 BACK_anticlockwise(rubiks, 1);
                 DOWN_anticlockwise(rubiks, 1);
                 BACK_clockwise(rubiks, 1);
                 RIGHT_anticlockwise(rubiks, 2);
             }
-            if(rubiks[side_to_index("RIGHT")][1][2]=='W' && rubiks[side_to_index("BACK")][1][0]==rubiks[side_to_index("RIGHT")][1][1]){
+            if(rubiks[side_to_index("RIGHT")][1][2]==rubiks[side_to_index("UP")][1][1] && rubiks[side_to_index("BACK")][1][0]==rubiks[side_to_index("RIGHT")][1][1]){
                 BACK_anticlockwise(rubiks, 1);
                 DOWN_anticlockwise(rubiks, 1);
                 RIGHT_clockwise(rubiks, 1);
                 RIGHT_anticlockwise(rubiks, 2);
             }
-            if(rubiks[side_to_index("RIGHT")][0][1]=='W' && rubiks[side_to_index("UP")][1][2]==rubiks[side_to_index("BACK")][1][1]){
+            if(rubiks[side_to_index("RIGHT")][0][1]==rubiks[side_to_index("UP")][1][1] && rubiks[side_to_index("UP")][1][2]==rubiks[side_to_index("BACK")][1][1]){
                 RIGHT_clockwise(rubiks, 1);
                 BACK_clockwise(rubiks, 1);
             }
-            if(rubiks[side_to_index("UP")][0][1]==rubiks[side_to_index("FRONT")][1][1]&&rubiks[side_to_index("BACK")][0][1]=='W'){
+            if(rubiks[side_to_index("UP")][0][1]==rubiks[side_to_index("FRONT")][1][1]&&rubiks[side_to_index("BACK")][0][1]==rubiks[side_to_index("UP")][1][1]){
                 BACK_anticlockwise(rubiks, 1);
                 RIGHT_anticlockwise(rubiks, 1);
                 UP_clockwise(rubiks, 1);
             }
             horizontal_rotation(rubiks);
         }
-        if((rubiks[side_to_index("UP")][0][1]==rubiks[side_to_index("UP")][1][0]==rubiks[side_to_index("UP")][1][2]==rubiks[side_to_index("UP")][2][1]=='W')&&(rubiks[side_to_index("LEFT")][0][1]!=rubiks[side_to_index("LEFT")][1][1]||rubiks[side_to_index("FRONT")][0][1]!=rubiks[side_to_index("FRONT")][1][1]||rubiks[side_to_index("RIGHT")][0][1]!=rubiks[side_to_index("RIGHT")][1][1]||rubiks[side_to_index("BACK")][0][1]!=rubiks[side_to_index("BACK")][1][1])){
+        if((rubiks[side_to_index("UP")][0][1]==rubiks[side_to_index("UP")][1][0]==rubiks[side_to_index("UP")][1][2]==rubiks[side_to_index("UP")][2][1]==rubiks[side_to_index("UP")][1][1])&&(rubiks[side_to_index("LEFT")][0][1]!=rubiks[side_to_index("LEFT")][1][1]||rubiks[side_to_index("FRONT")][0][1]!=rubiks[side_to_index("FRONT")][1][1]||rubiks[side_to_index("RIGHT")][0][1]!=rubiks[side_to_index("RIGHT")][1][1]||rubiks[side_to_index("BACK")][0][1]!=rubiks[side_to_index("BACK")][1][1])){
             UP_clockwise(rubiks, 1);
         }
-        if(rubiks[side_to_index("DOWN")][0][1]=='W'){
+        if(rubiks[side_to_index("DOWN")][0][1]==rubiks[side_to_index("UP")][1][1]){
             FRONT_clockwise(rubiks, 1);
         }
-        if(rubiks[side_to_index("DOWN")][1][0]=='W'){
+        if(rubiks[side_to_index("DOWN")][1][0]==rubiks[side_to_index("UP")][1][1]){
             LEFT_clockwise(rubiks, 1);
         }
-        if(rubiks[side_to_index("DOWN")][1][2]=='W'){
+        if(rubiks[side_to_index("DOWN")][1][2]==rubiks[side_to_index("UP")][1][1]){
             RIGHT_clockwise(rubiks, 1);
         }
-        if(rubiks[side_to_index("DOWN")][2][1]=='W'){
+        if(rubiks[side_to_index("DOWN")][2][1]==rubiks[side_to_index("UP")][1][1]){
             BACK_clockwise(rubiks, 1);
         }
-    }while(rubiks[side_to_index("UP")][0][1]!='W'||rubiks[side_to_index("UP")][1][0]!='W'||rubiks[side_to_index("UP")][1][2]!='W'||rubiks[side_to_index("UP")][2][1]!='W'||rubiks[side_to_index("LEFT")][0][1]!=rubiks[side_to_index("LEFT")][1][1]||rubiks[side_to_index("FRONT")][0][1]!=rubiks[side_to_index("FRONT")][1][1]||rubiks[side_to_index("RIGHT")][0][1]!=rubiks[side_to_index("RIGHT")][1][1]||rubiks[side_to_index("BACK")][0][1]!=rubiks[side_to_index("BACK")][1][1]);
+    }while(rubiks[side_to_index("UP")][0][1]!=rubiks[side_to_index("UP")][1][1]||rubiks[side_to_index("UP")][1][0]!=rubiks[side_to_index("UP")][1][1]||rubiks[side_to_index("UP")][1][2]!=rubiks[side_to_index("UP")][1][1]||rubiks[side_to_index("UP")][2][1]!=rubiks[side_to_index("UP")][1][1]||rubiks[side_to_index("LEFT")][0][1]!=rubiks[side_to_index("LEFT")][1][1]||rubiks[side_to_index("FRONT")][0][1]!=rubiks[side_to_index("FRONT")][1][1]||rubiks[side_to_index("RIGHT")][0][1]!=rubiks[side_to_index("RIGHT")][1][1]||rubiks[side_to_index("BACK")][0][1]!=rubiks[side_to_index("BACK")][1][1]);
 }
 
 void first_crown(char ***rubiks){
@@ -1225,23 +1225,23 @@ void first_crown(char ***rubiks){
 }
 
 int corner_case1(char ***rubiks){
-    if(rubiks[side_to_index("FRONT")][2][2]!='W'||rubiks[side_to_index("FRONT")][2][2]!=rubiks[side_to_index("FRONT")][1][1]||rubiks[side_to_index("FRONT")][2][2]!=rubiks[side_to_index("RIGHT")][1][1]
-    || rubiks[side_to_index("DOWN")][0][2]!='W'||rubiks[side_to_index("DOWN")][0][2]!=rubiks[side_to_index("FRONT")][1][1]||rubiks[side_to_index("DOWN")][0][2]!=rubiks[side_to_index("RIGHT")][1][1]
-    || rubiks[side_to_index("RIGHT")][2][0]!='W'||rubiks[side_to_index("RIGHT")][2][0]!=rubiks[side_to_index("FRONT")][1][1]||rubiks[side_to_index("RIGHT")][2][0]!=rubiks[side_to_index("RIGHT")][1][1])
+    if(rubiks[side_to_index("FRONT")][2][2]!=rubiks[side_to_index("UP")][1][1]||rubiks[side_to_index("FRONT")][2][2]!=rubiks[side_to_index("FRONT")][1][1]||rubiks[side_to_index("FRONT")][2][2]!=rubiks[side_to_index("RIGHT")][1][1]
+    || rubiks[side_to_index("DOWN")][0][2]!=rubiks[side_to_index("UP")][1][1]||rubiks[side_to_index("DOWN")][0][2]!=rubiks[side_to_index("FRONT")][1][1]||rubiks[side_to_index("DOWN")][0][2]!=rubiks[side_to_index("RIGHT")][1][1]
+    || rubiks[side_to_index("RIGHT")][2][0]!=rubiks[side_to_index("UP")][1][1]||rubiks[side_to_index("RIGHT")][2][0]!=rubiks[side_to_index("FRONT")][1][1]||rubiks[side_to_index("RIGHT")][2][0]!=rubiks[side_to_index("RIGHT")][1][1])
         return 0;
     return 1;
 }
 
 int corner_case2(char ***rubiks){
-    if(rubiks[side_to_index("UP")][2][2]!='W'||rubiks[side_to_index("UP")][2][2]!=rubiks[side_to_index("FRONT")][1][1]||rubiks[side_to_index("UP")][2][2]!=rubiks[side_to_index("RIGHT")][1][1]
-    || rubiks[side_to_index("FRONT")][0][2]!='W'||rubiks[side_to_index("FRONT")][0][2]!=rubiks[side_to_index("FRONT")][1][1]||rubiks[side_to_index("FRONT")][0][2]!=rubiks[side_to_index("RIGHT")][1][1]
-    || rubiks[side_to_index("RIGHT")][0][0]!='W'||rubiks[side_to_index("RIGHT")][0][0]!=rubiks[side_to_index("FRONT")][1][1]||rubiks[side_to_index("RIGHT")][0][0]!=rubiks[side_to_index("RIGHT")][1][1])
+    if(rubiks[side_to_index("UP")][2][2]!=rubiks[side_to_index("UP")][1][1]||rubiks[side_to_index("UP")][2][2]!=rubiks[side_to_index("FRONT")][1][1]||rubiks[side_to_index("UP")][2][2]!=rubiks[side_to_index("RIGHT")][1][1]
+    || rubiks[side_to_index("FRONT")][0][2]!=rubiks[side_to_index("UP")][1][1]||rubiks[side_to_index("FRONT")][0][2]!=rubiks[side_to_index("FRONT")][1][1]||rubiks[side_to_index("FRONT")][0][2]!=rubiks[side_to_index("RIGHT")][1][1]
+    || rubiks[side_to_index("RIGHT")][0][0]!=rubiks[side_to_index("UP")][1][1]||rubiks[side_to_index("RIGHT")][0][0]!=rubiks[side_to_index("FRONT")][1][1]||rubiks[side_to_index("RIGHT")][0][0]!=rubiks[side_to_index("RIGHT")][1][1])
         return 0;
     return 1;
 }
 
 int corner_check(char ***rubiks){
-    if(rubiks[side_to_index("UP")][2][2]=='W'&&rubiks[side_to_index("FRONT")][0][2]==rubiks[side_to_index("FRONT")][1][1]&&rubiks[side_to_index("RIGHT")][0][0]&&rubiks[side_to_index("RIGHT")][1][1])
+    if(rubiks[side_to_index("UP")][2][2]==rubiks[side_to_index("UP")][1][1]&&rubiks[side_to_index("FRONT")][0][2]==rubiks[side_to_index("FRONT")][1][1]&&rubiks[side_to_index("RIGHT")][0][0]&&rubiks[side_to_index("RIGHT")][1][1])
         return 1;
     return 0;
 }
