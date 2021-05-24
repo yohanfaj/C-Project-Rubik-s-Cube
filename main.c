@@ -28,7 +28,8 @@ void main(void)
         {
             printf("\nHere are your options: ");
             printf("\n1: BLANK -- 2: INITIALIZE -- 3: SCRAMBLE -- 4: FILL\n");
-            printf("5: MOVE CUBE -- 6: MOVE SIDE -- 7: SOLVE -- 0: QUIT: ");
+            printf("5: MOVE CUBE -- 6: MOVE SIDE -- 7: SOLVE -- 0: QUIT\n");
+            printf("Action: ");
             scanf("%d", &op);
         } while (op < 0 || op > 7);
         printf("\n");
@@ -49,9 +50,14 @@ void main(void)
                 break;
 
             case 3:
-                scramble_rubiks(rubiks);
-                printf("Here is your scrambled cube: \n");
-                display_rubiks(rubiks);
+                if (init==1)
+                {
+                    scramble_rubiks(rubiks);
+                    printf("Here is your scrambled cube: \n");
+                    display_rubiks(rubiks);
+                }
+                else
+                    printf("\nPlease INITIALIZE the Cube before performing any movement !\n");
                 break;
 
             case 4:
