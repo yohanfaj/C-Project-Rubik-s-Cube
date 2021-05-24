@@ -1346,6 +1346,12 @@ void last_crown(char ***rubiks){
         UP_clockwise(rubiks, 1);
         RIGHT_anticlockwise(rubiks, 1);
         UP_anticlockwise(rubiks, 1);
+        cpt = 0;
+        for(i=0;i<4;i++){
+            if(check_corner_yellow(rubiks)==1)
+                cpt++;
+            UP_clockwise(rubiks, 1);
+        }
     }
     if(cpt==3){
         do{
