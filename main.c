@@ -49,27 +49,30 @@ void main(void)
             case 3:
                 scramble_rubiks(rubiks);
                 printf("Here is your scrambled cube: \n");
-                init=1;
                 display_rubiks(rubiks);
                 break;
 
             case 4:
-                printf("PAY ATTENTION !!! there are several conditions to follow in order to fill the cube correctly: \n");
-                printf("\t 1) The center cell of the cube must always be of the same color:\n");
-                printf("\t\t UP=WHITE, LEFT=ORANGE, FRONT=GREEN,\n");
-                printf("\t\t RIGHT=RED, BACK=BLUE, DOWN=YELLOW.\n");
-                printf("\t 2) Two cells adjacent to the center cell must be of different colors.\n");
-                printf("\t 3) Two adjacent corners must be of different colors.\n");
-                printf("\n Also, please fill the cube with the following CAPITAL letters:\n");
-                printf("\t R for RED, B for BLUE, G for GREEN,"); 
-                printf("\t Y for YELLOW, O for ORANGE or W for WHITE.");
+                if (init==1)
+                {
+                    printf("PAY ATTENTION !!! there are several conditions to follow in order to fill the cube correctly: \n");
+                    printf("\t 1) The center cell of the cube must always be of the same color:\n");
+                    printf("\t\t UP=WHITE, LEFT=ORANGE, FRONT=GREEN,\n");
+                    printf("\t\t RIGHT=RED, BACK=BLUE, DOWN=YELLOW.\n");
+                    printf("\t 2) Two cells adjacent to the center cell must be of different colors.\n");
+                    printf("\t 3) Two adjacent corners must be of different colors.\n");
+                    printf("\n Also, please fill the cube with the following CAPITAL letters:\n");
+                    printf("\t R for RED, B for BLUE, G for GREEN,"); 
+                    printf("\t Y for YELLOW, O for ORANGE or W for WHITE.");
 
-                printf("\n\n Now, you have the choice between three filling methods:\n");
-                printf("\t 1) filling entirely a blank cube,\n");
-                printf("\t 2) filling an entire specific face,\n");
-                printf("\t 3) filling an specific cell.\n");
-                fill_menu(rubiks);
-                init=1;
+                    printf("\n\n Now, you have the choice between three filling methods:\n");
+                    printf("\t 1) filling entirely a blank cube,\n");
+                    printf("\t 2) filling an entire specific face,\n");
+                    printf("\t 3) filling an specific cell.\n");
+                    fill_menu(rubiks);
+                }
+                else
+                    printf("\nPlease INITIALIZE the Cube before performing any movement !\n");
                 break;
             
             case 5:
@@ -99,7 +102,7 @@ void main(void)
                     display_rubiks(rubiks);
                 }
                 else
-                    printf("\nPlease INITIALIZE / SCRAMBLE the Cube before performing any movement !\n");
+                    printf("\nPlease INITIALIZE the Cube before performing any movement !\n");
                 break;
 
             case 6:
@@ -142,7 +145,7 @@ void main(void)
                     display_rubiks(rubiks);
                 }
                 else
-                    printf("\nPlease INITIALIZE / SCRAMBLE the Cube before performing any movement !\n");
+                    printf("\nPlease INITIALIZE the Cube before performing any movement !\n");
                 break;
 
             case 7:
