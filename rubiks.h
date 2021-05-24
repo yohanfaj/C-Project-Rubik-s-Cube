@@ -87,14 +87,7 @@ int left_move_check(char ***rubiks);
 int right_move_check(char ***rubiks);
 int bad_orientation(char ***rubiks);
 int second_crown_check(char ***rubiks);
-void last_crown(char ***rubiks);
-int yellow_cross_check(char ***rubiks);
-int perfect_yellow_cross(char ***rubiks);
-int yellow_cross_facing_edges(char ***rubiks);
-int yellow_cross_side_by_side(char ***rubiks);
-int single_case_yellow(char ***rubiks);
-int L_shape(char ***rubiks);
-int barr(char ***rubiks);
+void solving_process(char ***rubiks, int i);
 
 /* TEXT COLOR FUNCTION */
 void text_color(int color);

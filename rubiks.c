@@ -1297,139 +1297,28 @@ int second_crown_check(char ***rubiks){
     return 0;
 }
 
-void last_crown(char ***rubiks){
-    if(single_case_yellow(rubiks)==1){
-        RIGHT_anticlockwise(rubiks, 1);
-        UP_anticlockwise(rubiks, 1);
-        FRONT_anticlockwise(rubiks, 1);
-        UP_clockwise(rubiks, 1);
-        FRONT_clockwise(rubiks, 1);
-        RIGHT_clockwise(rubiks, 1);
-        FRONT_clockwise(rubiks, 1);
-        RIGHT_clockwise(rubiks, 1);
-        UP_clockwise(rubiks, 1);
-        RIGHT_anticlockwise(rubiks, 1);
-        UP_anticlockwise(rubiks, 1);
-        FRONT_anticlockwise(rubiks, 1);
-    }
-    if(L_shape(rubiks)==1){
-        while(rubiks[side_to_index("UP")][1][0]!=rubiks[side_to_index("UP")][1][1]||rubiks[side_to_index("UP")][0][1]!=rubiks[side_to_index("UP")][1][1])
-            UP_clockwise(rubiks, 1);
-        RIGHT_anticlockwise(rubiks, 1);
-        UP_anticlockwise(rubiks, 1);
-        FRONT_anticlockwise(rubiks, 1);
-        UP_clockwise(rubiks, 1);
-        FRONT_clockwise(rubiks, 1);
-        RIGHT_clockwise(rubiks, 1);
-    }
-    if(barr(rubiks)==1){
-        while(rubiks[side_to_index("UP")][1][0]!=rubiks[side_to_index("UP")][1][1])
-            UP_clockwise(rubiks, 1);
-        FRONT_clockwise(rubiks, 1);
-        RIGHT_clockwise(rubiks, 1);
-        UP_clockwise(rubiks, 1);
-        RIGHT_anticlockwise(rubiks, 1);
-        UP_anticlockwise(rubiks, 1);
-        FRONT_anticlockwise(rubiks, 1);
-    }
-    if(yellow_cross_check(rubiks)==1){
-        if(perfect_yellow_cross(rubiks)==0){
-            if(yellow_cross_facing_edge(rubiks)==1){
-                RIGHT_clockwise(rubiks, 1);
-                UP_clockwise(rubiks, 2);
-                RIGHT_anticlockwise(rubiks, 1);
-                UP_anticlockwise(rubiks, 1);
-                RIGHT_clockwise(rubiks, 1);
-                UP_anticlockwise(rubiks, 1);
-                RIGHT_anticlockwise(rubiks, 1);
-            }
-            if(yellow_cross_side_by_side(rubiks)==1){
-                RIGHT_clockwise(rubiks, 1);
-                UP_clockwise(rubiks, 2);
-                RIGHT_anticlockwise(rubiks, 1);
-                UP_anticlockwise(rubiks, 1);
-                RIGHT_clockwise(rubiks, 1);
-                UP_anticlockwise(rubiks, 1);
-                RIGHT_anticlockwise(rubiks, 1);
-                UP_anticlockwise(rubiks, 1);
-            }
-        }
-    }
-    if(L_shape(rubiks)==1){
 
+void solving_process(char ***rubiks, int i)
+{
+    switch (i)
+    {
+    case 1:
+        printf("Next step: PERFECT WHITE CROSS\n");
+        perfect_cross(rubiks);
+        break;
+    case 2:
+        printf("Next step: FIRST CROWN\n");
+        first_crown(rubiks);
+        break;
+    case 3:
+        printf("Next step: SECOND CROWN\n");
+        second_crown(rubiks);
+        break;
+    default:
+        break;
     }
 }
 
-int yellow_cross_check(char ***rubiks){
-    if(rubiks[side_to_index("DOWN")][0][1]==rubiks[side_to_index("DOWN")][1][1]&&rubiks[side_to_index("DOWN")][1][0]==rubiks[side_to_index("DOWN")][1][1]&&rubiks[side_to_index("DOWN")][1][2]==rubiks[side_to_index("DOWN")][1][1]&&rubiks[side_to_index("DOWN")][2][1]==rubiks[side_to_index("DOWN")][1][1])
-        return 1;
-    return 0;
-}
-
-int perfect_yellow_cross(char ***rubiks){
-    while(rubiks[side_to_index("FRONT")][0][1]!=rubiks[side_to_index("FRONT")][1][1])
-        UP_clockwise(rubiks, 1);
-    if(rubiks[side_to_index("BACK")][0][1]==rubiks[side_to_index("BACK")][1][1]&&rubiks[side_to_index("LEFT")][0][1]==rubiks[side_to_index("LEFT")][1][1]&&rubiks[side_to_index("RIGHT")][0][1]==rubiks[side_to_index("RIGHT")][1][1]&&rubiks[side_to_index("FRONT")][0][1]==rubiks[side_to_index("FRONT")][1][1])
-        return 1;
-    return 0;
-}
-
-int yellow_cross_facing_edge(char ***rubiks){
-    while(rubiks[side_to_index("FRONT")][0][1]!=rubiks[side_to_index("FRONT")][1][1])
-        UP_clockwise(rubiks, 1);
-    if(rubiks[side_to_index("FRONT")][0][1]==rubiks[side_to_index("FRONT")][1][1]&&rubiks[side_to_index("BACK")][0][1]==rubiks[side_to_index("BACK")][1][1])
-        return 1;
-    return 0;
-}
-
-int yellow_cross_side_by_side(char ***rubiks){
-    while(rubiks[side_to_index("FRONT")][0][1]!=rubiks[side_to_index("FRONT")][1][1])
-        UP_clockwise(rubiks, 1);
-    if(rubiks[side_to_index("LEFT")][0][1]==rubiks[side_to_index("LEFT")][1][1]){
-        UP_anticlockwise(rubiks, 1);
-        return 1;
-    }
-    if(rubiks[side_to_index("RIGHT")][0][1]==rubiks[side_to_index("RIGHT")][1][1])
-        return 1;
-    if(rubiks[side_to_index("BACK")][0][1]==rubiks[side_to_index("BACK")][1][1])
-        return 0;
-}
-
-int L_shape(char ***rubiks){
-    int i, check=0;
-    for(i=0;i<4;i++){
-        if(rubiks[side_to_index("UP")][1][0]==rubiks[side_to_index("UP")][1][1]&&rubiks[side_to_index("UP")][0][1]==rubiks[side_to_index("UP")][1][1])
-            check++;
-        UP_clockwise(rubiks, 1);
-    }
-    if(check==1)
-        return 1;
-    return 0;
-}
-
-int barr(char ***rubiks){
-    int i, check=0;
-    for(i=0;i<2;i++){
-        if(rubiks[side_to_index("UP")][0][1]==rubiks[side_to_index("UP")][1][1]&&rubiks[side_to_index("UP")][2][1]==rubiks[side_to_index("UP")][1][1])
-            check++;
-        UP_clockwise(rubiks, 1);
-    }
-    if(check==1)
-        return 1;
-    return 0;
-}
-
-int single_case_yellow(char ***rubiks){
-    int i, cpt=0;
-    for(i=0;i<4;i++){
-        if(rubiks[side_to_index("UP")][0][1]==rubiks[side_to_index("UP")][1][1])
-            cpt++;
-        UP_clockwise(rubiks, 1);
-    }
-    if(cpt==0)
-        return 1;
-    return 0;
-}
 
 /* TEXT COLOR FUNCTION */
 

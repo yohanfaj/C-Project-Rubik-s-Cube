@@ -17,6 +17,7 @@ void main(void)
     int i,j,k, op;
     int op_move_cube, op_clock, op_side, type;
     int init=0;
+    int solved=0, cont=1, step;
     char ***rubiks = create_rubiks();
     
     printf("\nWelcome to the RUBIK'S CUBE SIMULATOR ! \n");
@@ -25,8 +26,10 @@ void main(void)
     {
         do
         {
-            printf("\nWhat do you want to do ? \nPress 1 to display a BLANK cube, 2 to INITIALIZE it, 3 to SCRAMBLE it, 4 to FILL it manually,\n");
-            printf("5 to MOVE the entire CUBE, 6 to MOVE a specific SIDE, 7 to SOLVE a scrambled cube or 0 to QUIT: ");
+            printf("\nHere are your options: ");
+            printf("\n1: BLANK -- 2: INITIALIZE -- 3: SCRAMBLE -- 4: FILL\n");
+            printf("5: MOVE CUBE -- 6: MOVE SIDE -- 7: SOLVE -- 0: QUIT\n");
+            printf("Action: ");
             scanf("%d", &op);
         } while (op < 0 || op > 7);
         printf("\n");
@@ -47,9 +50,14 @@ void main(void)
                 break;
 
             case 3:
-                scramble_rubiks(rubiks);
-                printf("Here is your scrambled cube: \n");
-                display_rubiks(rubiks);
+                if (init==1)
+                {
+                    scramble_rubiks(rubiks);
+                    printf("Here is your scrambled cube: \n");
+                    display_rubiks(rubiks);
+                }
+                else
+                    printf("\nPlease INITIALIZE the Cube before performing any movement !\n");
                 break;
 
             case 4:
@@ -149,11 +157,31 @@ void main(void)
                 break;
 
             case 7:
-                scramble_rubiks(rubiks);
-                display_rubiks(rubiks);
-                printf("\n");
-                perfect_cross(rubiks);
-                display_rubiks(rubiks);
+                if (init==1)
+                {
+                    do
+                    {
+                        do
+                        {
+                            printf("\nWhich step ?");
+                            printf("\n1: PERFECT CROSS -- 2: 1st CROWN -- 3: 2nd CROWN: ");
+                            scanf("%d", &step);
+                        } while (step < 1 || step > 3);
+                        printf("\n");
+                        
+                        solving_process(rubiks, step);
+                        display_rubiks(rubiks);
+                        do
+                        {
+                            printf("Continue to solve? or try it by yourself? press 1 or 2: ");
+                            scanf("%d", &cont);
+                        } while (cont < 1 || cont > 2);
+                        if (cont == 2)
+                            break;
+                    } while (cont == 1 || solved == 0);
+                }
+                else
+                    printf("\nPlease INITIALIZE the Cube before solving it !\n");
                 break;
 
             case 0:
