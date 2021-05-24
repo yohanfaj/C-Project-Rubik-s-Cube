@@ -338,15 +338,6 @@ int get_cpt_color(char ***rubiks)
 }
 
 
-int check_comb_centers(char ***rubiks)
-{
-    int i, check=1;
-    if (rubiks[i][1][1] == rubiks[i][0][1] || rubiks[i][1][1] == rubiks[i][2][1] 
-    || rubiks[i][1][1] == rubiks[i][1][0] || rubiks[i][1][1] == rubiks[i][1][2] || rubiks[i][1][1] != index_to_color(i))
-        check = 0;
-    return check;
-}
-
 int check_comb_corners(char ***rubiks)
 {
     int i,j,k, check=1;
@@ -560,17 +551,12 @@ void fill_menu(char ***rubiks)
         do
         {
             fill_all_cube(rubiks);
-            if (check_comb_centers(rubiks) == 0)
-            {
-                printf("ATTENTION !!! there is a problem with the center cells of your cube."); 
-                printf("Please take into account the conditions of filling !\n");
-            }
-            else if (check_comb_corners(rubiks) == 0)
+            if (check_comb_corners(rubiks) == 0)
             {
                 printf("ATTENTION !!! there is a problem with the corners of your cube.");
                 printf("Please take into account the conditions of filling !\n");
             }
-        } while (check_comb_centers(rubiks) == 0 && check_comb_corners(rubiks) == 0);
+        } while (check_comb_corners(rubiks) == 0);
         printf("Your new cube is: \n");
         display_rubiks(rubiks);
         break;
@@ -579,17 +565,12 @@ void fill_menu(char ***rubiks)
         do
         {
             fill_user_face(rubiks);
-            if (check_comb_centers(rubiks) == 0)
-            {
-                printf("ATTENTION !!! there is a problem with the center cells of your cube."); 
-                printf("Please take into account the conditions of filling !\n");
-            }
-            else if (check_comb_corners(rubiks) == 0)
+            if (check_comb_corners(rubiks) == 0)
             {
                 printf("ATTENTION !!! there is a problem with the corners of your cube."); 
                 printf("Please take into account the conditions of filling !\n");
             }
-        } while (check_comb_centers(rubiks) == 0 || check_comb_corners(rubiks) == 0);
+        } while (check_comb_corners(rubiks) == 0);
         printf("Your new cube is: \n");
         display_rubiks(rubiks);
         break;
@@ -598,17 +579,12 @@ void fill_menu(char ***rubiks)
         do
         {
             fill_user_cell(rubiks);
-            if (check_comb_centers(rubiks) == 0)
-            {
-                printf("ATTENTION !!! there is a problem with the center cells of your cube."); 
-                printf("Please take into account the conditions of filling !\n");
-            }
-            else if (check_comb_corners(rubiks) == 0)
+            if (check_comb_corners(rubiks) == 0)
             {
                 printf("ATTENTION !!! there is a problem with the corners of your cube."); 
                 printf("Please take into account the conditions of filling !\n");
             }
-        } while (check_comb_centers(rubiks) == 0 || check_comb_corners(rubiks) == 0);
+        } while (check_comb_corners(rubiks) == 0);
         printf("Your new cube is: \n");
         display_rubiks(rubiks);
         break;
@@ -1298,6 +1274,7 @@ int second_crown_check(char ***rubiks){
 }
 
 void last_crown(char ***rubiks){
+    int i, cpt = 0;
     if(single_case_yellow(rubiks)==1){
         RIGHT_anticlockwise(rubiks, 1);
         UP_anticlockwise(rubiks, 1);
@@ -1355,8 +1332,40 @@ void last_crown(char ***rubiks){
             }
         }
     }
-    if(L_shape(rubiks)==1){
-
+    for(i=0;i<4;i++){
+        if(check_corner_yellow(rubiks)==1)
+            cpt++;
+        UP_clockwise(rubiks, 1);
+    }
+    if(cpt==0){
+        LEFT_anticlockwise(rubiks, 1);
+        UP_clockwise(rubiks, 1);
+        RIGHT_clockwise(rubiks, 1);
+        UP_anticlockwise(rubiks, 1);
+        LEFT_clockwise(rubiks, 1);
+        UP_clockwise(rubiks, 1);
+        RIGHT_anticlockwise(rubiks, 1);
+        UP_anticlockwise(rubiks, 1);
+    }
+    if(cpt==3){
+        do{
+            cpt=0;
+            while(check_corner_yellow(rubiks)!=1)
+                UP_clockwise(rubiks, 1);
+            LEFT_anticlockwise(rubiks, 1);
+            UP_clockwise(rubiks, 1);
+            RIGHT_clockwise(rubiks, 1);
+            UP_anticlockwise(rubiks, 1);
+            LEFT_clockwise(rubiks, 1);
+            UP_clockwise(rubiks, 1);
+            RIGHT_anticlockwise(rubiks, 1);
+            UP_anticlockwise(rubiks, 1);
+            for(i=0;i<4;i++){
+                if(check_corner_yellow(rubiks)==1)
+                    cpt++;
+                UP_clockwise(rubiks, 1);
+            }
+        }while(cpt!=4);
     }
 }
 
@@ -1427,6 +1436,14 @@ int single_case_yellow(char ***rubiks){
         UP_clockwise(rubiks, 1);
     }
     if(cpt==0)
+        return 1;
+    return 0;
+}
+
+int check_corner_yellow(char ***rubiks){
+    if((rubiks[side_to_index("UP")][2][2]==rubiks[side_to_index("UP")][1][1]||rubiks[side_to_index("FRONT")][0][2]==rubiks[side_to_index("UP")][1][1]||rubiks[side_to_index("RIGHT")][0][0]==rubiks[side_to_index("UP")][1][1])
+|| (rubiks[side_to_index("UP")][2][2]==rubiks[side_to_index("FRONT")][1][1]||rubiks[side_to_index("FRONT")][0][2]==rubiks[side_to_index("FRONT")][1][1]||rubiks[side_to_index("RIGHT")][0][0]==rubiks[side_to_index("FRONT")][1][1])
+|| (rubiks[side_to_index("UP")][2][2]==rubiks[side_to_index("RIGHT")][1][1]||rubiks[side_to_index("FRONT")][0][2]==rubiks[side_to_index("RIGHT")][1][1]||rubiks[side_to_index("RIGHT")][0][0]==rubiks[side_to_index("RIGHT")][1][1]))
         return 1;
     return 0;
 }
