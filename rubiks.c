@@ -1228,7 +1228,6 @@ void second_crown(char ***rubiks){
             half_horizontal_rotation(rubiks);
         }
         cpt2++;
-        display_rubiks(rubiks);
     }while(check[0]==0 || check[1]==0 || check[2]==0 || check[3]==0);
 }
 
