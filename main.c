@@ -79,6 +79,7 @@ void main(void)
                     printf("\t 2) filling an entire specific face,\n");
                     printf("\t 3) filling an specific cell.\n");
                     fill_menu(rubiks);
+                    display_rubiks(rubiks);
                 }
                 else
                     printf("\nPlease INITIALIZE the Cube before performing any movement !\n");
